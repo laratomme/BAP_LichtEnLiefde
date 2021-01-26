@@ -12,49 +12,64 @@ class UsergroupsController extends Controller
         $this->usergroupDAO = new UsergroupDAO();
     }
 
-    public function list()
+    public function usergroups()
     {
         if (!empty($_POST['action'])) {
-            if ($_POST['action'] == 'create') {
-                $this->handleCreate();
-            }
-        }
+            $action = $_POST['action'];
 
-        $usergroups = $this->usergroupDAO->readAll();
-        $this->set('usergroups', $usergroups);
+            $data = array();
+            $data['id'] = $_POST['id'];
+            $data['name'] = $_POST['name'];
+
+            switch ($action) {
+                case 'create':
+                    $id = $this->usergroupDAO->create($data);
+                    if ($id) {
+                        header("Location: index.php?page=usergroups&id=" . $id);
+                        exit();
+                    } else {
+                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Usergroup.');
+                    }
+                    break;
+                case 'update':
+                    if ($this->usergroupDAO->update($data)) {
+                        header("Location: index.php?page=usergroups&id=" . $data['id']);
+                        exit();
+                    } else {
+                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Usergroup.');
+                    }
+                    break;
+                case 'delete':
+                    $this->usergroupDAO->delete($data['id']);
+                    $this->_handleLoad();
+                    break;
+            }
+        } else {
+            $this->_handleLoad();
+        }
         $this->set('title', 'Usergroups');
     }
 
-    private function handleCreate()
+    private function _handleLoad()
     {
-        $data = array(
-            'name' => $_POST['name']
-        );
-        $createResult = $this->usergroupDAO->create($data);
-        if (!$createResult) {
-            $errors = $this->usergroupDAO->validate($data);
-            $this->set('errors', $errors);
-            if (strtolower($_SERVER['HTTP_ACCEPT']) == 'application/json') {
-                header('Content-Type: application/json');
-                echo json_encode(array(
-                    'result' => 'error',
-                    'errors' => $errors
-                ));
-                exit();
+        if (!empty($_GET['id'])) {
+            // Detail
+            if (!$usergroup = $this->usergroupDAO->readById($_GET['id'])) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroup.');
             }
-            $_SESSION['error'] = 'De usergroup kon niet toegevoegd worden!';
+            $this->set('usergroup', $usergroup);
         } else {
-            if (strtolower($_SERVER['HTTP_ACCEPT']) == 'application/json') {
-                header('Content-Type: application/json');
-                echo json_encode(array(
-                    'result' => 'ok',
-                    'usergroup' => $createResult
-                ));
-                exit();
-            }
-            $_SESSION['info'] = 'De usergroup is toegevoegd!';
-            header('Location: index.php');
-            exit();
+            // List
+            $usergroups = $this->usergroupDAO->readAll();
+            $this->set('usergroup', null);
+            $this->set('usergroups', $usergroups);
         }
+    }
+
+    private function _handleError($Message)
+    {
+        $_SESSION['error'] = $Message;
+        header('Location: index.php?page=usergroups');
+        exit();
     }
 }

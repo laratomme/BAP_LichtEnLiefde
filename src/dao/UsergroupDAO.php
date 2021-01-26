@@ -39,7 +39,7 @@ class UsergroupDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_UserGroup SET name = :name WHERE `id` = :id";
+            $sql = "UPDATE BAP_UserGroup SET name = :name WHERE UserGroupID = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':name', $data['name']);
             $stmt->bindValue(':id', $data['id']);
@@ -52,7 +52,7 @@ class UsergroupDAO extends DAO
 
     public function delete($id)
     {
-        $sql = "DELETE FROM BAP_UserGroup WHERE id = :id";
+        $sql = "DELETE FROM BAP_UserGroup WHERE UserGroupID = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
