@@ -23,6 +23,10 @@ $routes = array(
     'users' => array(
         'controller' => 'Users',
         'action' => 'users'
+    ),
+    'articletypes' => array(
+        'controller' => 'Articletypes',
+        'action' => 'articletypes'
     )
 );
 
