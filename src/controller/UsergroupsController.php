@@ -18,8 +18,8 @@ class UsergroupsController extends Controller
             $action = $_POST['action'];
 
             $data = array();
-            $data['id'] = $_POST['id'];
-            $data['name'] = $_POST['name'];
+            $data['Id'] = $_POST['id'];
+            $data['Name'] = $_POST['name'];
 
             switch ($action) {
                 case 'create':
@@ -40,7 +40,7 @@ class UsergroupsController extends Controller
                     }
                     break;
                 case 'delete':
-                    $this->usergroupDAO->delete($data['id']);
+                    $this->usergroupDAO->delete($data['Id']);
                     $this->_handleLoad();
                     break;
             }

@@ -19,6 +19,10 @@ $routes = array(
     'usergroups' => array(
         'controller' => 'Usergroups',
         'action' => 'usergroups'
+    ),
+    'users' => array(
+        'controller' => 'Users',
+        'action' => 'users'
     )
 );
 

@@ -8,9 +8,9 @@ class UsergroupDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_UserGroup (name) VALUES (:name)";
+            $sql = "INSERT INTO BAP_UserGroup (Name) VALUES (:Name)";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(':name', $data['name']);
+            $stmt->bindValue(':Name', $data['Name']);
             if ($stmt->execute()) {
                 return $this->pdo->lastInsertId();
             }
@@ -28,9 +28,9 @@ class UsergroupDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_UserGroup WHERE UserGroupID = :id";
+        $sql = "SELECT * FROM BAP_UserGroup WHERE UserGroupID = :Id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':Id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -39,10 +39,10 @@ class UsergroupDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_UserGroup SET name = :name WHERE UserGroupID = :id";
+            $sql = "UPDATE BAP_UserGroup SET Name = :Name WHERE UserGroupID = :Id";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(':name', $data['name']);
-            $stmt->bindValue(':id', $data['id']);
+            $stmt->bindValue(':Name', $data['Name']);
+            $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {
                 return true;
             }
@@ -52,9 +52,9 @@ class UsergroupDAO extends DAO
 
     public function delete($id)
     {
-        $sql = "DELETE FROM BAP_UserGroup WHERE UserGroupID = :id";
+        $sql = "DELETE FROM BAP_UserGroup WHERE UserGroupID = :Id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':Id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -62,8 +62,8 @@ class UsergroupDAO extends DAO
     public function validate($data)
     {
         $errors = [];
-        if (empty($data['name'])) {
-            $errors['name'] = 'Gelieve een naam in te geven';
+        if (empty($data['Name'])) {
+            $errors['Name'] = 'Gelieve een naam in te geven';
         }
         return $errors;
     }
