@@ -1,18 +1,18 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
-require_once __DIR__ . '/../dao/IconDAO.php';
+require_once __DIR__ . '/IconsController.php';
 require_once __DIR__ . '/../dao/ArticleTypeDAO.php';
 
 class ArticleTypesController extends Controller
 {
-    private $iconDAO;
+    private $iconsController;
     private $articletypeDAO;
 
     function __construct()
     {
-        $this->iconDAO = new IconDAO();
         $this->articletypeDAO = new ArticleTypeDAO();
+        $this->iconsController = new IconsController();
     }
 
     public function articletypes()
@@ -31,7 +31,7 @@ class ArticleTypesController extends Controller
 
             switch ($action) {
                 case 'create':
-                    $data['IconId'] = $this->_handleIcon($data, $action);
+                    $data['IconId'] = $this->iconsController->handleIcon($data, $action);
                     $id = $this->articletypeDAO->create($data);
                     if ($id) {
                         header("Location: index.php?page=articletypes&id=" . $id);
@@ -42,7 +42,7 @@ class ArticleTypesController extends Controller
                     break;
                 case 'update':
                     if ($this->articletypeDAO->update($data)) {
-                        $this->_handleIcon($data, $action);
+                        $this->iconsController->handleIcon($data, $action);
                         header("Location: index.php?page=articletypes&id=" . $data['Id']);
                         exit();
                     } else {
@@ -51,7 +51,7 @@ class ArticleTypesController extends Controller
                     break;
                 case 'delete':
                     $this->articletypeDAO->delete($data['Id']);
-                    $this->_handleIcon($data, $action);
+                    $this->iconsController->handleIcon($data, $action);
                     $this->_handleLoad();
                     break;
             }
@@ -59,61 +59,6 @@ class ArticleTypesController extends Controller
             $this->_handleLoad();
         }
         $this->set('title', 'Article Types');
-    }
-
-    private function _handleIcon($data, $action)
-    {
-        $icon = array();
-        $icon['Id'] = $data['IconId'];
-        $icon['Icon'] = !empty($data['FontIcon']) ? $data['FontIcon'] : null;
-        $icon['IsCustom'] = !empty($data['FontIcon']) ? 0 : 1;
-
-        $id = null;
-        switch ($action) {
-            case 'create':
-                $nextId = $this->iconDAO->getNextId();
-                if ($icon['IsCustom']) {
-                    $icon['Icon'] = $this->_handleUpload($data['CustomIcon'], $nextId['ID']);
-                }
-                $id = $this->iconDAO->create($icon);
-                break;
-            case 'update':
-                if ($data['UpdateIcon']) {
-                    if ($icon['IsCustom']) {
-                        $icon['Icon'] = $this->_handleUpload($data['CustomIcon'], $icon['Id']);
-                    }
-                    $this->iconDAO->update($icon);
-                }
-                break;
-            case 'delete':
-                $this->iconDAO->delete($icon['Id']);
-                break;
-        }
-        return $id;
-    }
-
-    private function _handleUpload($fileInfo, $id)
-    {
-        if (DIRECTORY_SEPARATOR == '/'){
-            $folder = dirname(__DIR__) . '/images/Icons/';
-        }
-        else
-        {
-            $folder = str_replace('\\', '/', dirname(__DIR__)) . '/images/Icons/';
-        }
-
-        $ext = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
-        $fileLoc = $folder . $id . '.' . $ext;
-        $file = 'images/Icons/' . $id . '.' . $ext;
-
-        if (!is_dir($folder)) {
-            mkdir($folder, 0777, true);
-        }
-
-        if (move_uploaded_file($fileInfo['tmp_name'], $fileLoc)) {
-            return $file;
-        }
-        return null;
     }
 
     private function _handleLoad()
@@ -124,7 +69,7 @@ class ArticleTypesController extends Controller
                 $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
             }
             $this->set('articletype', $articletype);
-            $this->set('icon', $this->iconDAO->readById($articletype['IconID']));
+            $this->set('icon', $this->iconsController->readByID($articletype['IconID']));
         } else {
             // List
             $articletypes = $this->articletypeDAO->readAll();

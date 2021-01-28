@@ -52,7 +52,7 @@
                 <?php if (!empty($_GET['id']) && !empty($icon['Icon'])) { ?>
                     <div>
                         <label for="icon">Huidig Icoon</label>
-                        <img src="<?php $icon['Icon'] ?>" alt="Icoon">
+                        <img src="<?php echo $icon['Icon'] ?>" alt="Icoon">
                     </div>
 
                     <div>
