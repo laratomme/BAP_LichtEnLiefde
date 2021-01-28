@@ -18,6 +18,26 @@ class CategoriesController extends Controller
         $this->iconsController = new IconsController();
     }
 
+    public function category()
+    {
+        if (!empty($_GET['id'])) {
+            // Detail
+            if (!$category = $this->categoryDAO->readById($_GET['id'])) {
+                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de Category.';
+                header('Location: index.php?page=home');
+                exit();
+            }
+            $this->set('category', $category);
+
+            $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
+
+            $this->set('title', $category['Name']);
+        } else {
+            header('Location: index.php?page=home');
+            exit();
+        }
+    }
+
     public function categories()
     {
         if (!empty($_POST['action'])) {

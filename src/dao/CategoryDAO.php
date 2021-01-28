@@ -46,6 +46,29 @@ class CategoryDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function readAllOnMainMenu()
+    {
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon, ic.IsCustom
+            FROM BAP_Category cat
+            INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+            WHERE OnMainMenu = 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function readAllChildren($parentId)
+    {
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon, ic.IsCustom
+        FROM BAP_Category cat
+        INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+        WHERE cat.CategoryParentID = :ParentId";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':ParentId', $parentId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readById($id)
     {
         $sql = "SELECT * FROM BAP_Category WHERE CategoryID = :Id";
