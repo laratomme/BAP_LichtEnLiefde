@@ -50,24 +50,24 @@ class IconsController extends Controller
 
     private function _handleUpload($fileInfo, $id)
     {
-        if (DIRECTORY_SEPARATOR == '/'){
-            $folder = dirname(__DIR__) . '/images/Icons/';
-        }
-        else
-        {
-            $folder = str_replace('\\', '/', dirname(__DIR__)) . '/images/Icons/';
-        }
+        if (!empty($fileInfo)) {
+            if (DIRECTORY_SEPARATOR == '/') {
+                $folder = dirname(__DIR__) . '/images/Icons/';
+            } else {
+                $folder = str_replace('\\', '/', dirname(__DIR__)) . '/images/Icons/';
+            }
 
-        $ext = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
-        $fileLoc = $folder . $id . '.' . $ext;
-        $file = 'images/Icons/' . $id . '.' . $ext;
+            $ext = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
+            $fileLoc = $folder . $id . '.' . $ext;
+            $file = 'images/Icons/' . $id . '.' . $ext;
 
-        if (!is_dir($folder)) {
-            mkdir($folder, 0777, true);
-        }
+            if (!is_dir($folder)) {
+                mkdir($folder, 0777, true);
+            }
 
-        if (move_uploaded_file($fileInfo['tmp_name'], $fileLoc)) {
-            return $file;
+            if (move_uploaded_file($fileInfo['tmp_name'], $fileLoc)) {
+                return $file;
+            }
         }
         return null;
     }

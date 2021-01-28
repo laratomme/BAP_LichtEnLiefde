@@ -2,20 +2,23 @@
 
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/IconsController.php';
-require_once __DIR__ . '/../dao/ArticleTypeDAO.php';
+require_once __DIR__ . '/../dao/CategoryDAO.php';
+require_once __DIR__ . '/../dao/UsergroupDAO.php';
 
-class ArticleTypesController extends Controller
+class CategoriesController extends Controller
 {
     private $iconsController;
-    private $articletypeDAO;
+    private $categoryDAO;
+    private $usergroupDAO;
 
     function __construct()
     {
-        $this->articletypeDAO = new ArticleTypeDAO();
+        $this->categoryDAO = new CategoryDAO();
+        $this->usergroupDAO = new UsergroupDAO();
         $this->iconsController = new IconsController();
     }
 
-    public function articletypes()
+    public function categories()
     {
         if (!empty($_POST['action'])) {
             $action = $_POST['action'];
@@ -23,8 +26,11 @@ class ArticleTypesController extends Controller
             $data = array();
             $data['Id'] = $_POST['id'];
             $data['IconId'] = $_POST['iconid'];
+            $data['CategoryParentId'] = $_POST['categoryparentid'];
+            $data['UserGroupId'] = $_POST['usergroupid'];
             $data['Name'] = $_POST['name'];
             $data['Description'] = $_POST['description'];
+            $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
             $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
             $data['FontIcon'] = empty($_POST['fonticon']) ? null : $_POST['fonticon'];
             $data['CustomIcon'] = empty($_FILES['customicon']) ? null : $_FILES['customicon'];
@@ -32,25 +38,25 @@ class ArticleTypesController extends Controller
             switch ($action) {
                 case 'create':
                     $data['IconId'] = $this->iconsController->handleIcon($data, $action);
-                    $id = $this->articletypeDAO->create($data);
+                    $id = $this->categoryDAO->create($data);
                     if ($id) {
-                        header("Location: index.php?page=articletypes&id=" . $id);
+                        header("Location: index.php?page=categories&id=" . $id);
                         exit();
                     } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het Artikel Type.');
+                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Category.');
                     }
                     break;
                 case 'update':
-                    if ($this->articletypeDAO->update($data)) {
+                    if ($this->categoryDAO->update($data)) {
                         $this->iconsController->handleIcon($data, $action);
-                        header("Location: index.php?page=articletypes&id=" . $data['Id']);
+                        header("Location: index.php?page=categories&id=" . $data['Id']);
                         exit();
                     } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het Artikel Type.');
+                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Category.');
                     }
                     break;
                 case 'delete':
-                    $this->articletypeDAO->delete($data['Id']);
+                    $this->categoryDAO->delete($data['Id']);
                     $this->iconsController->handleIcon($data, $action);
                     $this->_handleLoad();
                     break;
@@ -58,31 +64,34 @@ class ArticleTypesController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Article Types');
+        $this->set('title', 'Categories');
     }
 
     private function _handleLoad()
     {
+        $this->set('usergroups', $this->usergroupDAO->readAll());
+        $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
+
         if (!empty($_GET['id'])) {
             // Detail
-            if (!$articletype = $this->articletypeDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
+            if (!$category = $this->categoryDAO->readById($_GET['id'])) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
             }
-            $this->set('articletype', $articletype);
-            $this->set('icon', $this->iconsController->readByID($articletype['IconID']));
+
+            $this->set('category', $category);
+            $this->set('icon', $this->iconsController->readByID($category['IconID']));
         } else {
             // List
-            $articletypes = $this->articletypeDAO->readAll();
-            $this->set('articletype', null);
+            $this->set('categories', $this->categoryDAO->readAll());
+            $this->set('category', null);
             $this->set('icon', null);
-            $this->set('articletypes', $articletypes);
         }
     }
 
     private function _handleError($Message)
     {
         $_SESSION['error'] = $Message;
-        header('Location: index.php?page=articletypes');
+        header('Location: index.php?page=categories');
         exit();
     }
 }

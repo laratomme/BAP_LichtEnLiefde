@@ -24,6 +24,10 @@ $routes = array(
         'controller' => 'Users',
         'action' => 'users'
     ),
+    'categories' => array(
+        'controller' => 'Categories',
+        'action' => 'categories'
+    ),
     'articletypes' => array(
         'controller' => 'Articletypes',
         'action' => 'articletypes'

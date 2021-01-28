@@ -57,7 +57,7 @@
 
                     <div>
                         <label for="updateicon">Icoon Aanpassen:</label>
-                        <input id="updateicon" type="checkbox" name="updateicon" value="1" />
+                        <input id="updateicon" type="checkbox" name="updateicon" checked />
                     </div>
                 <?php } ?>
 
