@@ -39,6 +39,10 @@ $routes = array(
     'contenttypes' => array(
         'controller' => 'ContentTypes',
         'action' => 'contenttypes'
+    ),
+    'iconsets' => array(
+        'controller' => 'IconSets',
+        'action' => 'iconsets'
     )
 );
 
