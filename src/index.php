@@ -27,6 +27,10 @@ $routes = array(
     'articletypes' => array(
         'controller' => 'Articletypes',
         'action' => 'articletypes'
+    ),
+    'contenttypes' => array(
+        'controller' => 'ContentTypes',
+        'action' => 'contenttypes'
     )
 );
 

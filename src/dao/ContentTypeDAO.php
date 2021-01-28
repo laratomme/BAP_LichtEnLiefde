@@ -2,18 +2,20 @@
 
 require_once(__DIR__ . '/DAO.php');
 
-class ArticleTypeDAO extends DAO
+class ContentTypeDAO extends DAO
 {
     public function create($data)
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_ArticleType (Name, Description, IconID) 
-            VALUES (:Name, :Description, :IconId)";
+            $sql = "INSERT INTO BAP_ContentType (Name, Wrap, ContentName, MetaContentName, IconID) 
+            VALUES (:Name, :Wrap, :ContentName, :MetaContentName, :IconID)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
-            $stmt->bindValue(':Description', $data['Description']);
-            $stmt->bindValue(':IconId', $data['IconId']);
+            $stmt->bindValue(':Wrap', $data['Wrap']);
+            $stmt->bindValue(':ContentName', $data['ContentName']);
+            $stmt->bindValue(':MetaContentName', $data['MetaContentName']);
+            $stmt->bindValue(':IconID', $data['IconId']);
             if ($stmt->execute()) {
                 return $this->pdo->lastInsertId();
             }
@@ -23,7 +25,7 @@ class ArticleTypeDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_ArticleType";
+        $sql = "SELECT * FROM BAP_ContentType";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +33,7 @@ class ArticleTypeDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_ArticleType WHERE ArticleTypeID = :Id";
+        $sql = "SELECT * FROM BAP_ContentType WHERE ContentTypeID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         $stmt->execute();
@@ -42,16 +44,20 @@ class ArticleTypeDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_ArticleType SET 
+            $sql = "UPDATE BAP_ContentType SET 
                         Name = :Name, 
-                        Description = :Description, 
+                        Wrap = :Wrap,
+                        ContentName = :ContentName,
+                        MetaContentname = :MetaContentName,
                         IconID = :IconID
-                    WHERE ArticleTypeID = :ID";
+                    WHERE ContentTypeID = :Id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
-            $stmt->bindValue(':Description', $data['Description']);
+            $stmt->bindValue(':Wrap', $data['Wrap']);
+            $stmt->bindValue(':ContentName', $data['ContentName']);
+            $stmt->bindValue(':MetaContentname', $data['MetaContentname']);
             $stmt->bindValue(':IconID', $data['IconId']);
-            $stmt->bindValue(':ID', $data['Id']);
+            $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {
                 return true;
             }
@@ -61,7 +67,7 @@ class ArticleTypeDAO extends DAO
 
     public function delete($id)
     {
-        $sql = "DELETE FROM BAP_ArticleType WHERE ArticleTypeID = :Id";
+        $sql = "DELETE FROM BAP_ContentType WHERE ContentTypeID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         $stmt->execute();
@@ -73,6 +79,9 @@ class ArticleTypeDAO extends DAO
         $errors = [];
         if (empty($data['Name'])) {
             $errors['Name'] = 'Gelieve een naam in te geven';
+        }
+        if (empty($data['Wrap'])) {
+            $errors['Wrap'] = 'Gelieve een wrap in te geven';
         }
         if (empty($data['IconId'])) {
             $errors['Icoon'] = 'Gelieve een icoon in te geven';
