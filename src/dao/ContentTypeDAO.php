@@ -48,14 +48,14 @@ class ContentTypeDAO extends DAO
                         Name = :Name, 
                         Wrap = :Wrap,
                         ContentName = :ContentName,
-                        MetaContentname = :MetaContentName,
+                        MetaContentName = :MetaContentName,
                         IconID = :IconID
                     WHERE ContentTypeID = :Id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
             $stmt->bindValue(':Wrap', $data['Wrap']);
             $stmt->bindValue(':ContentName', $data['ContentName']);
-            $stmt->bindValue(':MetaContentname', $data['MetaContentname']);
+            $stmt->bindValue(':MetaContentName', $data['MetaContentName']);
             $stmt->bindValue(':IconID', $data['IconId']);
             $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {

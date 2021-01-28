@@ -46,20 +46,20 @@
                 <div>
                     <label for="contentname">Naam van Content Tag</label>
                     <input id="contentname" type="text" name="contentname" placeholder="Naam van Content Tag" value="<?php if (!empty($contenttype['ContentName'])) {
-                                                                                                        echo $contenttype['ContentName'];
-                                                                                                    } ?>" minlength="3" maxlength="64" />
+                                                                                                                            echo $contenttype['ContentName'];
+                                                                                                                        } ?>" minlength="3" maxlength="64" />
                 </div>
                 <div>
                     <label for="metacontentname">Naam van Meta Content Naam</label>
                     <input id="metacontentname" type="text" name="metacontentname" placeholder="Naam van Meta Content Tag" value="<?php if (!empty($contenttype['MetaContentName'])) {
-                                                                                                        echo $contenttype['MetaContentName'];
-                                                                                                    } ?>" minlength="3" maxlength="64" />
+                                                                                                                                        echo $contenttype['MetaContentName'];
+                                                                                                                                    } ?>" minlength="3" maxlength="64" />
                 </div>
                 <div>
                     <label for="wrap">Wrap</label>
                     <input id="wrap" type="text" name="wrap" placeholder="Content Type Wrap" value="<?php if (!empty($contenttype['Wrap'])) {
-                                                                                                                                echo $contenttype['Wrap'];
-                                                                                                                            } ?>" minlength="3" maxlength="256" required />
+                                                                                                        echo $contenttype['Wrap'];
+                                                                                                    } ?>" minlength="3" maxlength="256" required />
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($icon['Icon'])) { ?>
@@ -70,13 +70,23 @@
 
                     <div>
                         <label for="updateicon">Icoon Aanpassen:</label>
-                        <input id="updateicon" type="checkbox" name="updateicon" value="1" />
+                        <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
                 <?php } ?>
 
                 <div>
-                    <label for="customicon">Icoon Uploaden:</label>
-                    <input id="customicon" type="file" name="customicon" accept=".gif,.jpg,.jpeg,.png,.svg" />
+                    <label for="iconsetid">Icoon Kiezen:</label>
+                    <select id="iconsetid" name="iconsetid">
+                        <option value> -- None chosen -- </option>
+                        <?php foreach ($iconsets as $iconset) : ?>
+                            <option value="<?php echo $iconset['IconSetID']; ?>"><?php echo $iconset['Icon'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="iconfile">Icoon Uploaden:</label>
+                    <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>
 
                 <?php if (empty($_GET['id'])) { ?>

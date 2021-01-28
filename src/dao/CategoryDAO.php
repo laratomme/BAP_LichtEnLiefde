@@ -48,7 +48,7 @@ class CategoryDAO extends DAO
 
     public function readAllOnMainMenu()
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon, ic.IsCustom
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             WHERE OnMainMenu = 1";
@@ -59,7 +59,7 @@ class CategoryDAO extends DAO
 
     public function readAllChildren($parentId)
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon, ic.IsCustom
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon
         FROM BAP_Category cat
         INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
         WHERE cat.CategoryParentID = :ParentId";

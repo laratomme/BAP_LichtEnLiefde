@@ -2,14 +2,17 @@
 
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../dao/IconDAO.php';
+require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class IconsController extends Controller
 {
     private $iconDAO;
+    private $iconSetDAO;
 
     function __construct()
     {
         $this->iconDAO = new IconDAO();
+        $this->iconSetDAO = new IconSetDAO();
     }
 
     public function readByID($id)
@@ -21,22 +24,28 @@ class IconsController extends Controller
     {
         $icon = array();
         $icon['Id'] = $data['IconId'];
-        $icon['Icon'] = !empty($data['FontIcon']) ? $data['FontIcon'] : null;
-        $icon['IsCustom'] = !empty($data['FontIcon']) ? 0 : 1;
+        $icon['IsCustom'] = empty($data['IconSetId']) ? 1 : 0;
+        $icon['Icon'] = !empty($data['IconFile']) ? $data['IconFile'] : null;
 
         $id = null;
         switch ($action) {
             case 'create':
-                $nextId = $this->iconDAO->getNextId();
                 if ($icon['IsCustom']) {
-                    $icon['Icon'] = $this->_handleUpload($data['CustomIcon'], $nextId['ID']);
+                    $nextId = $this->iconDAO->getNextId();
+                    $icon['Icon'] = $this->_handleUpload($data['IconFile'], $nextId['ID']);
+                } else {
+                    $iconSet = $this->iconSetDAO->readByID($data['IconSetId']);
+                    $icon['Icon'] = $iconSet['Icon'];
                 }
                 $id = $this->iconDAO->create($icon);
                 break;
             case 'update':
                 if ($data['UpdateIcon']) {
                     if ($icon['IsCustom']) {
-                        $icon['Icon'] = $this->_handleUpload($data['CustomIcon'], $icon['Id']);
+                        $icon['Icon'] = $this->_handleUpload($data['IconFile'], $icon['Id']);
+                    } else {
+                        $iconSet = $this->iconSetDAO->readByID($data['IconSetId']);
+                        $icon['Icon'] = $iconSet['Icon']; 
                     }
                     $this->iconDAO->update($icon);
                 }

@@ -8,10 +8,9 @@ class IconDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_Icon (Icon, IsCustom) VALUES (:Icon, :IsCustom)";
+            $sql = "INSERT INTO BAP_Icon (Icon) VALUES (:Icon)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Icon', $data['Icon']);
-            $stmt->bindValue(':IsCustom', $data['IsCustom']);
             if ($stmt->execute()) {
                 return $this->pdo->lastInsertId();
             }
@@ -32,10 +31,9 @@ class IconDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_Icon SET Icon = :Icon, IsCustom = :IsCustom WHERE IconID = :Id";
+            $sql = "UPDATE BAP_Icon SET Icon = :Icon WHERE IconID = :Id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Icon', $data['Icon']);
-            $stmt->bindValue(':IsCustom', $data['IsCustom']);
             $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {
                 return true;

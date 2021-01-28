@@ -3,15 +3,18 @@
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/IconsController.php';
 require_once __DIR__ . '/../dao/ContentTypeDAO.php';
+require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class ContentTypesController extends Controller
 {
     private $iconsController;
     private $contentTypeDAO;
+    private $iconsetDAO;
 
     function __construct()
     {
         $this->contentTypeDAO = new ContentTypeDAO();
+        $this->iconsetDAO = new IconSetDAO();
         $this->iconsController = new IconsController();
     }
 
@@ -27,9 +30,10 @@ class ContentTypesController extends Controller
             $data['Wrap'] = $_POST['wrap'];
             $data['ContentName'] = $_POST['contentname'];
             $data['MetaContentName'] = $_POST['metacontentname'];
-            $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : $_POST['updateicon'];
-            $data['FontIcon'] = empty($_POST['fonticon']) ? null : $_POST['fonticon'];
-            $data['CustomIcon'] = empty($_FILES['customicon']) ? null : $_FILES['customicon'];
+            
+            $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
+            $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
+            $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
             switch ($action) {
                 case 'create':
@@ -65,6 +69,8 @@ class ContentTypesController extends Controller
 
     private function _handleLoad()
     {
+        $this->set('iconsets', $this->iconsetDAO->readAll());
+
         if (!empty($_GET['id'])) {
             // Detail
             if (!$contenttype = $this->contentTypeDAO->readById($_GET['id'])) {

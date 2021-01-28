@@ -57,13 +57,23 @@
 
                     <div>
                         <label for="updateicon">Icoon Aanpassen:</label>
-                        <input id="updateicon" type="checkbox" name="updateicon" checked />
+                        <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
                 <?php } ?>
 
                 <div>
-                    <label for="customicon">Icoon Uploaden:</label>
-                    <input id="customicon" type="file" name="customicon" accept=".gif,.jpg,.jpeg,.png,.svg" />
+                    <label for="iconsetid">Icoon Kiezen:</label>
+                    <select id="iconsetid" name="iconsetid">
+                        <option value> -- None chosen -- </option>
+                        <?php foreach ($iconsets as $iconset) : ?>
+                            <option value="<?php echo $iconset['IconSetID']; ?>"><?php echo $iconset['Icon'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="iconfile">Icoon Uploaden:</label>
+                    <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>
 
                 <?php if (empty($_GET['id'])) { ?>

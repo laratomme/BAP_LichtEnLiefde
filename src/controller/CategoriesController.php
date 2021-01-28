@@ -4,17 +4,20 @@ require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/IconsController.php';
 require_once __DIR__ . '/../dao/CategoryDAO.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
+require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class CategoriesController extends Controller
 {
     private $iconsController;
     private $categoryDAO;
     private $usergroupDAO;
+    private $iconsetDAO;
 
     function __construct()
     {
         $this->categoryDAO = new CategoryDAO();
         $this->usergroupDAO = new UsergroupDAO();
+        $this->iconsetDAO = new IconSetDAO();
         $this->iconsController = new IconsController();
     }
 
@@ -51,9 +54,10 @@ class CategoriesController extends Controller
             $data['Name'] = $_POST['name'];
             $data['Description'] = $_POST['description'];
             $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
+            
             $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
-            $data['FontIcon'] = empty($_POST['fonticon']) ? null : $_POST['fonticon'];
-            $data['CustomIcon'] = empty($_FILES['customicon']) ? null : $_FILES['customicon'];
+            $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
+            $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
             switch ($action) {
                 case 'create':
@@ -91,6 +95,7 @@ class CategoriesController extends Controller
     {
         $this->set('usergroups', $this->usergroupDAO->readAll());
         $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
+        $this->set('iconsets', $this->iconsetDAO->readAll());
 
         if (!empty($_GET['id'])) {
             // Detail
