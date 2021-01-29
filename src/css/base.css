@@ -1,0 +1,22 @@
+html {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: var(--colorWhite);
+    color: var(--colorBlack);
+}
+
+main {
+    margin: .9em 0.6em;
+}
