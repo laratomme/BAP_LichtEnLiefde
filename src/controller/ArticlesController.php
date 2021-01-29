@@ -23,21 +23,19 @@ class ArticlesController extends Controller
 
     public function article()
     {
-        // if (!empty($_GET['id'])) {
-        //     if (!$category = $this->categoryDAO->readById($_GET['id'])) {
-        //         $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de Category.';
-        //         header('Location: index.php?page=home');
-        //         exit();
-        //     }
-        //     $this->set('category', $category);
+        if (!empty($_GET['id'])) {
+            if (!$article = $this->articleDAO->readById($_GET['id'])) {
+                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van het Artikel.';
+                header('Location: index.php?page=home');
+                exit();
+            }
+            $this->set('article', $article);
 
-        //     $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
-
-        //     $this->set('title', $category['Name']);
-        // } else {
-        //     header('Location: index.php?page=home');
-        //     exit();
-        // }
+            $this->set('title', $article['Title']);
+        } else {
+            header('Location: index.php?page=home');
+            exit();
+        }
     }
 
     public function articles()
