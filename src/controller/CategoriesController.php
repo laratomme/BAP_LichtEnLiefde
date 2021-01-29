@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/IconsController.php';
+require_once __DIR__ . '/../dao/ArticleDAO.php';
 require_once __DIR__ . '/../dao/CategoryDAO.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
 require_once __DIR__ . '/../dao/IconSetDAO.php';
@@ -9,12 +10,14 @@ require_once __DIR__ . '/../dao/IconSetDAO.php';
 class CategoriesController extends Controller
 {
     private $iconsController;
+    private $articleDAO;
     private $categoryDAO;
     private $usergroupDAO;
     private $iconsetDAO;
 
     function __construct()
     {
+        $this->articleDAO = new ArticleDAO();
         $this->categoryDAO = new CategoryDAO();
         $this->usergroupDAO = new UsergroupDAO();
         $this->iconsetDAO = new IconSetDAO();
@@ -32,6 +35,7 @@ class CategoriesController extends Controller
             $this->set('category', $category);
 
             $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
+            $this->set('articles', $this->articleDAO->readAllByCategoryId($category['CategoryID']));
 
             $this->set('title', $category['Name']);
         } else {
@@ -53,7 +57,7 @@ class CategoriesController extends Controller
             $data['Name'] = $_POST['name'];
             $data['Description'] = $_POST['description'];
             $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
-            
+
             $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
             $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
             $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
@@ -92,23 +96,27 @@ class CategoriesController extends Controller
 
     private function _handleLoad()
     {
-        $this->set('usergroups', $this->usergroupDAO->readAll());
-        $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
-        $this->set('iconsets', $this->iconsetDAO->readAll());
-
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$category = $this->categoryDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
-            }
-
-            $this->set('category', $category);
-            $this->set('icon', $this->iconsController->readByID($category['IconID']));
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
             $this->set('categories', $this->categoryDAO->readAll());
             $this->set('category', null);
             $this->set('icon', null);
+        } else {
+            // Detail
+            $this->set('usergroups', $this->usergroupDAO->readAll());
+            $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
+            $this->set('iconsets', $this->iconsetDAO->readAll());
+
+            if (!empty($_GET['id'])) {
+                // Detail
+                if (!$category = $this->categoryDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
+                }
+                $this->set('category', $category);
+                $this->set('icon', $this->iconsController->readByID($category['IconID']));
+            } else {
+                $this->set('category', null);
+            }
         }
     }
 

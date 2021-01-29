@@ -35,7 +35,7 @@ class ArticleDAO extends DAO
     {
         $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon, ar.UserGroupID
             FROM BAP_Article ar
-            INNER JOIN BAP_ArticleType art on at.ArticleTypeID = ar.ArticleTypeID
+            INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
             WHERE ar.CategoryID = :Id";
         $stmt = $this->pdo->prepare($sql);
