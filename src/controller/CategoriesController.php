@@ -24,7 +24,6 @@ class CategoriesController extends Controller
     public function category()
     {
         if (!empty($_GET['id'])) {
-            // Detail
             if (!$category = $this->categoryDAO->readById($_GET['id'])) {
                 $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de Category.';
                 header('Location: index.php?page=home');

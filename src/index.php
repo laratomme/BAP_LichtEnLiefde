@@ -16,25 +16,29 @@ $routes = array(
         'controller' => 'Home',
         'action' => 'index'
     ),
-    'usergroups' => array(
-        'controller' => 'Usergroups',
-        'action' => 'usergroups'
-    ),
-    'users' => array(
-        'controller' => 'Users',
-        'action' => 'users'
+    'article' => array(
+        'controller' => 'Articles',
+        'action' => 'article'
     ),
     'category' => array(
         'controller' => 'Categories',
         'action' => 'category'
     ),
-    'categories' => array(
-        'controller' => 'Categories',
-        'action' => 'categories'
+    'contact' => array(
+        'controller' => 'Contact',
+        'action' => 'contact'
+    ),
+    'articles' => array(
+        'controller' => 'Articles',
+        'action' => 'articles'
     ),
     'articletypes' => array(
         'controller' => 'Articletypes',
         'action' => 'articletypes'
+    ),
+    'categories' => array(
+        'controller' => 'Categories',
+        'action' => 'categories'
     ),
     'contenttypes' => array(
         'controller' => 'ContentTypes',
@@ -43,6 +47,14 @@ $routes = array(
     'iconsets' => array(
         'controller' => 'IconSets',
         'action' => 'iconsets'
+    ),
+    'users' => array(
+        'controller' => 'Users',
+        'action' => 'users'
+    ),
+    'usergroups' => array(
+        'controller' => 'Usergroups',
+        'action' => 'usergroups'
     )
 );
 
