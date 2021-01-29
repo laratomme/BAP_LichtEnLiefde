@@ -49,10 +49,10 @@
                                                                                                                             } ?>" minlength="3" maxlength="128" />
                 </div>
 
-                <?php if (!empty($_GET['id']) && !empty($icon['Icon'])) { ?>
+                <?php if (!empty($_GET['id']) && !empty($articletype['Icon'])) { ?>
                     <div>
                         <label for="icon">Huidig Icoon</label>
-                        <img src="<?php echo $icon['Icon'] ?>" alt="Icoon">
+                        <img src="<?php echo $articletype['Icon'] ?>" alt="Icoon">
                     </div>
 
                     <div>

@@ -91,7 +91,6 @@ class CategoriesController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Categories');
     }
 
     private function _handleLoad()
@@ -99,8 +98,6 @@ class CategoriesController extends Controller
         if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
             $this->set('categories', $this->categoryDAO->readAll());
-            $this->set('category', null);
-            $this->set('icon', null);
         } else {
             // Detail
             $this->set('usergroups', $this->usergroupDAO->readAll());
@@ -108,12 +105,10 @@ class CategoriesController extends Controller
             $this->set('iconsets', $this->iconsetDAO->readAll());
 
             if (!empty($_GET['id'])) {
-                // Detail
                 if (!$category = $this->categoryDAO->readById($_GET['id'])) {
                     $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
                 }
                 $this->set('category', $category);
-                $this->set('icon', $this->iconsController->readByID($category['IconID']));
             } else {
                 $this->set('category', null);
             }

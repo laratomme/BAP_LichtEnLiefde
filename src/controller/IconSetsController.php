@@ -50,7 +50,6 @@ class IconSetsController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'IconSets');
     }
 
     private function _handleUpload($fileInfo)
@@ -78,17 +77,20 @@ class IconSetsController extends Controller
 
     private function _handleLoad()
     {
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$iconset = $this->iconSetDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Icon Set.');
-            }
-            $this->set('iconset', $iconset);
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $iconsets = $this->iconSetDAO->readAll();
             $this->set('iconset', null);
-            $this->set('iconsets', $iconsets);
+            $this->set('iconsets', $this->iconSetDAO->readAll());
+        } else {
+            // Detail
+            if (!empty($_GET['id'])) {
+                if (!$iconset = $this->iconSetDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Icon Set.');
+                }
+                $this->set('iconset', $iconset);
+            } else {
+                $this->set('iconset', null);
+            }
         }
     }
 

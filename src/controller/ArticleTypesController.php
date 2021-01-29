@@ -62,26 +62,25 @@ class ArticleTypesController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Article Types');
     }
 
     private function _handleLoad()
     {
-        $this->set('iconsets', $this->iconsetDAO->readAll());
-
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$articletype = $this->articletypeDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
-            }
-            $this->set('articletype', $articletype);
-            $this->set('icon', $this->iconsController->readByID($articletype['IconID']));
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $articletypes = $this->articletypeDAO->readAll();
-            $this->set('articletype', null);
-            $this->set('icon', null);
-            $this->set('articletypes', $articletypes);
+            $this->set('articletypes', $this->articletypeDAO->readAll());
+        } else {
+            // Detail
+            $this->set('iconsets', $this->iconsetDAO->readAll());
+
+            if (!empty($_GET['id'])) {
+                if (!$articletype = $this->articletypeDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
+                }
+                $this->set('articletype', $articletype);
+            } else {
+                $this->set('articletype', null);
+            }
         }
     }
 

@@ -30,8 +30,6 @@ class ArticlesController extends Controller
                 exit();
             }
             $this->set('article', $article);
-
-            $this->set('title', $article['Title']);
         } else {
             header('Location: index.php?page=home');
             exit();
@@ -77,19 +75,25 @@ class ArticlesController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Articles');
     }
 
     private function _handleLoad()
     {
         if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $this->set('article', null);
             $this->set('articles', $this->articleDAO->readAll());
         } else {
             // Detail
-            $this->set('articletypes', $this->articleTypeDAO->readAll());
-            $this->set('categories', $this->categoryDAO->readAll());
+            if (!$articletypes = $this->articleTypeDAO->readAll()) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Artikel Types.');
+            }
+            $this->set('articletypes', $articletypes);
+
+            if (!$categories = $this->categoryDAO->readAll()) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Categories.');
+            }
+            $this->set('categories', $categories);
+
             $this->set('usergroups', $this->usergroupDAO->readAll());
 
             if (!empty($_GET['id'])) {

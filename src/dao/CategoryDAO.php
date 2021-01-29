@@ -26,7 +26,10 @@ class CategoryDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_Category";
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, catPar.Name as CategoryParentName, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.IconID, ic.Icon
+            FROM BAP_Category cat
+            INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+            LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -34,7 +37,7 @@ class CategoryDAO extends DAO
 
     public function readAllExceptId($id)
     {
-        $sql = "SELECT * FROM BAP_Category";
+        $sql = "SELECT CategoryID, Name FROM BAP_Category";
         if (!empty($id)) {
             $sql = $sql . " WHERE CategoryID != :Id";
         }
@@ -71,7 +74,10 @@ class CategoryDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_Category WHERE CategoryID = :Id";
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.IconID, ic.Icon
+            FROM BAP_Category cat
+            INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+            WHERE CategoryID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         $stmt->execute();

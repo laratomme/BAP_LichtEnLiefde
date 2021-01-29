@@ -47,22 +47,23 @@ class UsergroupsController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Usergroups');
     }
 
     private function _handleLoad()
     {
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$usergroup = $this->usergroupDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroup.');
-            }
-            $this->set('usergroup', $usergroup);
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $usergroups = $this->usergroupDAO->readAll();
-            $this->set('usergroup', null);
-            $this->set('usergroups', $usergroups);
+            $this->set('usergroups', $this->usergroupDAO->readAll());
+        } else {
+            // Detail
+            if (!empty($_GET['id'])) {
+                if (!$usergroup = $this->usergroupDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroup.');
+                }
+                $this->set('usergroup', $usergroup);
+            } else {
+                $this->set('usergroup', null);
+            }
         }
     }
 

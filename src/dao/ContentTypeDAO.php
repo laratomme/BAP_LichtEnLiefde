@@ -25,7 +25,9 @@ class ContentTypeDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_ContentType";
+        $sql = "SELECT ct.ContentTypeID, ct.Name, ct.Wrap, ct.ContentName, ct.MetaContentName, ct.IconID, ic.Icon 
+            FROM BAP_ContentType ct
+            INNER JOIN BAP_Icon ic on ic.IconID = ct.IconID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +35,10 @@ class ContentTypeDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_ContentType WHERE ContentTypeID = :Id";
+        $sql = "SELECT ct.ContentTypeID, ct.Name, ct.Wrap, ct.ContentName, ct.MetaContentName, ct.IconID, ic.Icon
+            FROM BAP_ContentType ct
+            INNER JOIN BAP_Icon ic on ic.IconID = ct.IconID
+            WHERE ContentTypeID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         $stmt->execute();
