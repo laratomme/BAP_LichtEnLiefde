@@ -11,7 +11,7 @@
                 <?php foreach ($articles as $article) : ?>
                     <div><?php echo $article['ArticleID'] ?> - <?php echo $article['Title'] ?></div>
                     <div><?php echo $article['Description'] ?></div>
-                    <div><?php echo $article['ArticleTypeID'] ?> - <?php echo $article['CategoryID'] ?> - <?php echo $article['UserGroupID'] ?></div>
+                    <div><?php echo $article['ArticleTypeID'] ?> - <?php echo $article['ArticleTypeName'] ?> - <?php echo $article['CategoryID'] ?> - <?php echo $article['UserGroupID'] ?></div>
                     <div>
                         <a href="index.php?page=articles&id=<?php echo $article['ArticleID'] ?>">
                             <p>Bekijk Artikel</p>
@@ -71,7 +71,7 @@
                 <div>
                     <label for="usergroupid">Gebruikergroep</label>
                     <select id="usergroupid" name="usergroupid">
-                        <option value> -- Users -- </option>
+                        <option value>Iedereen</option>
                         <?php foreach ($usergroups as $usergroup) : ?>
                             <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($article['UserGroupID'])) {
                                                                                             echo $usergroup['UserGroupID'] === $article['UserGroupID'] ? "selected" : "";

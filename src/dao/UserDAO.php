@@ -26,7 +26,9 @@ class UserDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_User";
+        $sql = "SELECT u.UserID, u.Login, u.Password, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
+            FROM BAP_User u
+            INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -23,7 +23,9 @@ class ArticleTypeDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_ArticleType";
+        $sql = "SELECT art.ArticleTypeID, art.Name, art.Description, art.IconID, ic.Icon
+            FROM BAP_ArticleType art
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +33,10 @@ class ArticleTypeDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_ArticleType WHERE ArticleTypeID = :Id";
+        $sql = "SELECT art.ArticleTypeID, art.Name, art.Description, art.IconID, ic.Icon
+            FROM BAP_ArticleType art
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
+            WHERE art.ArticleTypeID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         $stmt->execute();

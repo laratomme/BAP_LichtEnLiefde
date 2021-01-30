@@ -30,7 +30,7 @@ class ContentTypesController extends Controller
             $data['Wrap'] = $_POST['wrap'];
             $data['ContentName'] = $_POST['contentname'];
             $data['MetaContentName'] = $_POST['metacontentname'];
-            
+
             $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
             $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
             $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
@@ -64,26 +64,25 @@ class ContentTypesController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Content Types');
     }
 
     private function _handleLoad()
     {
-        $this->set('iconsets', $this->iconsetDAO->readAll());
-
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$contenttype = $this->contentTypeDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Content Type.');
-            }
-            $this->set('contenttype', $contenttype);
-            $this->set('icon', $this->iconsController->readByID($contenttype['IconID']));
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $contenttypes = $this->contentTypeDAO->readAll();
-            $this->set('contenttype', null);
-            $this->set('icon', null);
-            $this->set('contenttypes', $contenttypes);
+            $this->set('contenttypes', $this->contentTypeDAO->readAll());
+        } else {
+            // Detail
+            $this->set('iconsets', $this->iconsetDAO->readAll());
+
+            if (!empty($_GET['id'])) {
+                if (!$contenttype = $this->contentTypeDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Content Type.');
+                }
+                $this->set('contenttype', $contenttype);
+            } else {
+                $this->set('contenttype', null);
+            }
         }
     }
 

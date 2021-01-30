@@ -15,11 +15,6 @@ class IconsController extends Controller
         $this->iconSetDAO = new IconSetDAO();
     }
 
-    public function readByID($id)
-    {
-        return $this->iconDAO->readById($id);
-    }
-
     public function handleIcon($data, $action)
     {
         $icon = array();

@@ -11,7 +11,7 @@
                 <?php foreach ($users as $user) : ?>
                     <div><?php echo $user['UserID'] ?> - <?php echo $user['FirstName'] ?> <?php echo $user['LastName'] ?></div>
                     <div><?php echo $user['Email'] ?> - <?php echo $user['Login'] ?> - <?php echo $user['Password'] ?></div>
-                    <div><?php echo $user['UserGroupID'] ?></div>
+                    <div><?php echo $user['UserGroupID'] ?> - <?php echo $user['UserGroupName'] ?></div>
                     <div>
                         <a href="index.php?page=users&id=<?php echo $user['UserID'] ?>">
                             <p>Bekijk Gebruiker</p>
@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <label for="usergroupid">Gebruikergroep</label>
-                    <select id="usergroupid" name="usergroupid">
+                    <select id="usergroupid" name="usergroupid" required>
                         <?php foreach ($usergroups as $usergroup) : ?>
                             <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($user['UserGroupID'])) {
                                                                                             echo $usergroup['UserGroupID'] === $user['UserGroupID'] ? "selected" : "";

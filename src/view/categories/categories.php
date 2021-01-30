@@ -11,7 +11,7 @@
                 <?php foreach ($categories as $category) : ?>
                     <div><?php echo $category['CategoryID'] ?> - <?php echo $category['Name'] ?> - <?php echo $category['OnMainMenu'] ?></div>
                     <div><?php echo $category['Description'] ?></div>
-                    <div><?php echo $category['CategoryParentID'] ?> - <?php echo $category['UserGroupID'] ?> - <?php echo $category['IconID'] ?></div>
+                    <div><?php echo $category['CategoryParentID'] ?> - <?php echo $category['CategoryParentName'] ?> - <?php echo $category['UserGroupID'] ?> - <?php echo $category['IconID'] ?></div>
                     <div>
                         <a href="index.php?page=categories&id=<?php echo $category['CategoryID'] ?>">
                             <p>Bekijk Category</p>
@@ -81,10 +81,10 @@
                     </select>
                 </div>
 
-                <?php if (!empty($_GET['id']) && !empty($icon['Icon'])) { ?>
+                <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>
                     <div>
                         <label for="icon">Huidig Icoon</label>
-                        <img src="<?php echo $icon['Icon'] ?>" alt="Icoon">
+                        <img src="<?php echo $category['Icon'] ?>" alt="Icoon">
                     </div>
 
                     <div>

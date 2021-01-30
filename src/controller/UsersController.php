@@ -55,27 +55,29 @@ class UsersController extends Controller
         } else {
             $this->_handleLoad();
         }
-        $this->set('title', 'Users');
     }
 
     private function _handleLoad()
     {
-        if (!$usergroups = $this->usergroupDAO->readAll()) {
-            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker Groepen.');
-        }
-        $this->set('usergroups', $usergroups);
-
-        if (!empty($_GET['id'])) {
-            // Detail
-            if (!$user = $this->userDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker.');
-            }
-            $this->set('user', $user);
-        } else {
+        if (empty($_GET['action']) && empty($_GET['id'])) {
             // List
-            $users = $this->userDAO->readAll();
             $this->set('user', null);
-            $this->set('users', $users);
+            $this->set('users', $this->userDAO->readAll());
+        } else {
+            // Detail
+            if (!$usergroups = $this->usergroupDAO->readAll()) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker Groepen.');
+            }
+            $this->set('usergroups', $usergroups);
+
+            if (!empty($_GET['id'])) {
+                if (!$user = $this->userDAO->readById($_GET['id'])) {
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker.');
+                }
+                $this->set('user', $user);
+            } else {
+                $this->set('user', null);
+            }
         }
     }
 
