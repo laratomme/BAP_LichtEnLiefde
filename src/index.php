@@ -32,6 +32,10 @@ $routes = array(
         'controller' => 'Login',
         'action' => 'login'
     ),
+    'settings' => array(
+        'controller' => 'Settings',
+        'action' => 'settings'
+    ),
     'articles' => array(
         'controller' => 'Articles',
         'action' => 'articles'

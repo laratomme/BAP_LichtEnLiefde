@@ -1,10 +1,10 @@
 <?php
 
+require_once __DIR__ . '/SettingsController.php';
 require_once __DIR__ . '/Security.php';
 
 class Controller
 {
-
   public $route;
   protected $viewVars = array();
   protected $env = 'development';
@@ -36,6 +36,7 @@ class Controller
       unset($_SESSION['error']);
     }
     $this->checkLogin();
+    $this->checkSettings();
   }
 
   public function set($variableName, $value)
@@ -60,9 +61,6 @@ class Controller
 
   private function checkLogin()
   {
-    // $key = 'fc4d57ed55a78de1a7b31e711866ef5a2848442349f52cd470008f6d30d47282';
-    // $key = pack("H*", $key);
-
     if (empty($_SESSION['userData'])) {
       $security = new Security();
       try {
@@ -70,6 +68,18 @@ class Controller
       } catch (Exception $e) {
         $security->removeLoginData();
         $_SESSION['error'] = $e->getMessage();
+      }
+    }
+  }
+
+  private function checkSettings()
+  {
+    if (empty($_SESSION['uiData'])) {
+      $settings = new SettingsController();
+      if (!isset($_COOKIE["uiData"]) || empty($_COOKIE["uiData"])) {
+        $settings->initSettings();
+      } else {
+        $settings->convertSettings();
       }
     }
   }

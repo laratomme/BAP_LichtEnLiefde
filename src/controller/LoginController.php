@@ -18,7 +18,6 @@ class LoginController extends Controller
     public function login()
     {
         if (!empty($_POST['action'])) {
-            // Login Logic
             $data = array();
             $data['Login'] = $_POST['login'];
             $data['Password'] = $_POST['password'];
