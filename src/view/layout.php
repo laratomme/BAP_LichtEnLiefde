@@ -22,40 +22,44 @@
     ?>
 
     <header>
-      <p>logo</p>
-      <nav></nav>
+      <div>
+        <p>logo</p>
+        <nav></nav>
+      </div>
     </header>
 
     <div class="search">
 
     </div>
 
-    <main class="main">
+    <main class="main container">
       <?php echo $content; ?>
     </main>
 
     <footer class="footer">
-      <address>
-        <div class="address-item">
-          <p>Licht en Liefde</p>
-          <span class="vl"></span>
-        </div>
+      <div class="container">
+        <address>
+          <div class="address-item">
+            <p>Licht en Liefde</p>
+            <span class="vl"></span>
+          </div>
 
-        <div class="address-item">
-          <p>Oudenburgweg 40, 8490 Varsenare</p>
-          <span class="vl"></span>
-        </div>
+          <div class="address-item">
+            <p>Oudenburgweg 40, 8490 Varsenare</p>
+            <span class="vl"></span>
+          </div>
 
-        <div class="address-item">
-          <p>+32 (0)50 40 60 50</p>
-          <span class="vl"></span>
-        </div>
+          <div class="address-item">
+            <p>+32 (0)50 40 60 50</p>
+            <span class="vl"></span>
+          </div>
 
-        <div class="address-item"> 
-          <a href="mailto:info@lichtenliefde.be">E-mail: info@lichtenliefde.be</a>
-        </div>
+          <div class="address-item">
+            <a href="mailto:info@lichtenliefde.be">E-mail: info@lichtenliefde.be</a>
+          </div>
 
-      </address>
+        </address>
+      </div>
     </footer>
 
   </div>

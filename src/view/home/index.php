@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="card-contact">
-        <div class="flex-icon">Icon</div>
+        <div class="flex-icon"><img class="card-icon" src="../../assets/img/icons/icon-contact-white-48px.svg" alt="white phone and mail vector icon"></div>
         <div class="card-contact--yellow">
             <p>Chat</p>
         </div>

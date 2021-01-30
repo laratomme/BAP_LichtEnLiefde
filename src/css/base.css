@@ -20,6 +20,6 @@ body {
 }
 
 main {
-    margin: .9em 0.6em;
+    padding: .9em .6em;
     flex: 1 0 auto;
 }

@@ -30,3 +30,7 @@
     align-self: end;
     color: var(--colorWhite);
 }
+
+.card-icon {
+    height: 82px;
+}
