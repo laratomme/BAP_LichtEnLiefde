@@ -56,13 +56,13 @@ class IconSetsController extends Controller
     {
         if (!empty($fileInfo)) {
             if (DIRECTORY_SEPARATOR == '/') {
-                $folder = dirname(__DIR__) . '/images/IconSets/';
+                $folder = dirname(__DIR__) . '/assets/img/icons/';
             } else {
-                $folder = str_replace('\\', '/', dirname(__DIR__)) . '/images/IconSets/';
+                $folder = str_replace('\\', '/', dirname(__DIR__)) . '/assets/img/icons/';
             }
 
             $fileLoc = $folder . $fileInfo['name'];
-            $file = 'images/IconSets/' . $fileInfo['name'];
+            $file = 'assets/img/icons/' . $fileInfo['name'];
 
             if (!is_dir($folder)) {
                 mkdir($folder, 0777, true);
