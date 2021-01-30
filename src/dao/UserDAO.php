@@ -36,9 +36,35 @@ class UserDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT * FROM BAP_User WHERE UserID = :Id";
+        $sql = "SELECT u.UserID, u.Login, u.Password, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
+            FROM BAP_User u
+            INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID
+            WHERE u.UserID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function readByLogin($login)
+    {
+        $sql = "SELECT UserID, Login, FirstName, LastName, LoginToken, UserGroupID
+            FROM BAP_User
+            WHERE Login = :Login";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':Login', $login);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function readByLoginData($data)
+    {
+        $sql = "SELECT UserID, Login, Password, FirstName, LastName, Email, UserGroupID, LoginToken
+            FROM BAP_User
+            WHERE Login = :Login AND Password = :Password";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':Login', $data['Login']);
+        $stmt->bindValue(':Password', $data['Password']);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -63,6 +89,24 @@ class UserDAO extends DAO
             $stmt->bindValue(':Password', $data['Password']);
             $stmt->bindValue(':UserGroupId', $data['UserGroupId']);
             $stmt->bindValue(':Id', $data['Id']);
+            if ($stmt->execute()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function updateToken($id, $token)
+    {
+        if (empty($id) || empty($token)) {
+            $errors['tokan'] = 'geen token of user aanwezig';
+        } else {
+            $sql = "UPDATE BAP_User SET 
+            LoginToken = :LoginToken
+        WHERE UserID = :Id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':LoginToken', $token);
+            $stmt->bindValue(':Id', $id);
             if ($stmt->execute()) {
                 return true;
             }

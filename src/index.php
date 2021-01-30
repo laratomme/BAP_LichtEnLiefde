@@ -28,6 +28,10 @@ $routes = array(
         'controller' => 'Contact',
         'action' => 'contact'
     ),
+    'login' => array(
+        'controller' => 'Login',
+        'action' => 'login'
+    ),
     'articles' => array(
         'controller' => 'Articles',
         'action' => 'articles'

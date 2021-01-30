@@ -11,6 +11,5 @@ class ContactController extends Controller
 
     public function contact()
     {
-        $this->set('title', 'Contact');
     }
 }

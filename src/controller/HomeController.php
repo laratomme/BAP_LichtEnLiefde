@@ -15,6 +15,5 @@ class HomeController extends Controller
     public function index()
     {
         $this->set('categories', $this->categoryDAO->readAllOnMainMenu());
-        $this->set('title', 'Overview');
     }
 }

@@ -36,8 +36,6 @@ class CategoriesController extends Controller
 
             $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
             $this->set('articles', $this->articleDAO->readAllByCategoryId($category['CategoryID']));
-
-            $this->set('title', $category['Name']);
         } else {
             header('Location: index.php?page=home');
             exit();
