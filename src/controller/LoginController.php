@@ -24,7 +24,12 @@ class LoginController extends Controller
 
             $user = $this->userDAO->readByLoginData($data);
             if ($user) {
-                $this->security->storeLoginData($user);
+                if (isset($_POST['remember'])) {
+                    $this->security->storeLoginData($user);
+                } else {
+                    $_SESSION["userData"] = $user;
+                }
+
                 header("Location: index.php?page=home");
                 exit();
             } else {

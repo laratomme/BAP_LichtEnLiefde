@@ -6,7 +6,6 @@ class ContactController extends Controller
 {
     function __construct()
     {
-        $this->categoryDAO = new CategoryDAO();
     }
 
     public function contact()

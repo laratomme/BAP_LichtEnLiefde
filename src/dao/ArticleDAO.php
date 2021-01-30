@@ -36,13 +36,19 @@ class ArticleDAO extends DAO
 
     public function readAllByCategoryId($id)
     {
-        $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon, ar.UserGroupID
+        $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
-            WHERE ar.CategoryID = :Id";
+            WHERE ar.CategoryID = :Id AND ar.UserGroupID is null";
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            $sql = $sql . " OR ar.UserGroupID = :UserGroupID";
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
+        }
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -66,14 +72,14 @@ class ArticleDAO extends DAO
                         ArticleTypeID = :ArticleTypeId,
                         CategoryID = :CategoryId,
                         UserGroupID = :UserGroupId
-                    WHERE ArticleID = :ID";
+                    WHERE ArticleID = :Id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Title', $data['Title']);
             $stmt->bindValue(':Description', $data['Description']);
-            $stmt->bindValue(':ArticleTypeID', $data['ArticleTypeId']);
-            $stmt->bindValue(':CategoryID', $data['CategoryId']);
-            $stmt->bindValue(':UserGroupID', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
-            $stmt->bindValue(':ID', $data['Id']);
+            $stmt->bindValue(':ArticleTypeId', $data['ArticleTypeId']);
+            $stmt->bindValue(':CategoryId', $data['CategoryId']);
+            $stmt->bindValue(':UserGroupId', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
+            $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {
                 return true;
             }
