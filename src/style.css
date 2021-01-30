@@ -1,2 +1,13 @@
 /* General styles */
+
 @import './css/normalize.css';
+@import './css/vars.css';
+@import './css/base.css';
+@import './css/helpers.css';
+@import './css/layout.css';
+@import './css/typography.css';
+
+/* Components */
+
+@import './css/components/card-contact.css';
+@import './css/components/card-category.css';

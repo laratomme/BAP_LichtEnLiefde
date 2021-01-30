@@ -1,0 +1,19 @@
+:root {
+    --colorWhite: #FCFDFC;
+    --colorBlack: #2D3436;
+    --colorGrey: #E5E5E5;
+    --colorDarkGrey: #3B3B40;
+    --colorBlue: #00499A;
+    --colorYellow: #FFC91E;
+    --font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --fontSmall: 1.000em;
+    /*18px*/
+    --fontRegular: 1.111em;
+    /*20px*/
+    --fontHeader2: 1.333em;
+    /*24px*/
+    --fontHeader3: 1.778em;
+    /*32px*/
+    --fontWeightRegular: 400;
+    --fontWeightBold: 700;
+}
