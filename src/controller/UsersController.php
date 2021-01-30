@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
+require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/UserDAO.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
 
@@ -8,52 +9,56 @@ class UsersController extends Controller
 {
     private $userDAO;
     private $usergroupDAO;
+    private $security;
 
     function __construct()
     {
         $this->userDAO = new UserDAO();
         $this->usergroupDAO = new UsergroupDAO();
+        $this->security = new Security();
     }
 
     public function users()
     {
-        if (!empty($_POST['action'])) {
-            $action = $_POST['action'];
+        if ($this->security->isAdmin()) {
+            if (!empty($_POST['action'])) {
+                $action = $_POST['action'];
 
-            $data = array();
-            $data['Id'] = $_POST['id'];
-            $data['FirstName'] = $_POST['firstname'];
-            $data['LastName'] = $_POST['lastname'];
-            $data['Email'] = $_POST['email'];
-            $data['Login'] = $_POST['login'];
-            $data['Password'] = $_POST['password'];
-            $data['UserGroupId'] = $_POST['usergroupid'];
+                $data = array();
+                $data['Id'] = $_POST['id'];
+                $data['FirstName'] = $_POST['firstname'];
+                $data['LastName'] = $_POST['lastname'];
+                $data['Email'] = $_POST['email'];
+                $data['Login'] = $_POST['login'];
+                $data['Password'] = $_POST['password'];
+                $data['UserGroupId'] = $_POST['usergroupid'];
 
-            switch ($action) {
-                case 'create':
-                    $id = $this->userDAO->create($data);
-                    if ($id) {
-                        header("Location: index.php?page=users&id=" . $id);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Gebruiker.');
-                    }
-                    break;
-                case 'update':
-                    if ($this->userDAO->update($data)) {
-                        header("Location: index.php?page=users&id=" . $data['Id']);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Gebruiker.');
-                    }
-                    break;
-                case 'delete':
-                    $this->userDAO->delete($data['Id']);
-                    $this->_handleLoad();
-                    break;
+                switch ($action) {
+                    case 'create':
+                        $id = $this->userDAO->create($data);
+                        if ($id) {
+                            header("Location: index.php?page=users&id=" . $id);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Gebruiker.');
+                        }
+                        break;
+                    case 'update':
+                        if ($this->userDAO->update($data)) {
+                            header("Location: index.php?page=users&id=" . $data['Id']);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Gebruiker.');
+                        }
+                        break;
+                    case 'delete':
+                        $this->userDAO->delete($data['Id']);
+                        $this->_handleLoad();
+                        break;
+                }
+            } else {
+                $this->_handleLoad();
             }
-        } else {
-            $this->_handleLoad();
         }
     }
 

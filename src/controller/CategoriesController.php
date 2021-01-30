@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/IconsController.php';
+require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/ArticleDAO.php';
 require_once __DIR__ . '/../dao/CategoryDAO.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
@@ -9,11 +10,12 @@ require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class CategoriesController extends Controller
 {
-    private $iconsController;
     private $articleDAO;
     private $categoryDAO;
     private $usergroupDAO;
     private $iconsetDAO;
+    private $iconsController;
+    private $security;
 
     function __construct()
     {
@@ -22,6 +24,7 @@ class CategoriesController extends Controller
         $this->usergroupDAO = new UsergroupDAO();
         $this->iconsetDAO = new IconSetDAO();
         $this->iconsController = new IconsController();
+        $this->security = new Security();
     }
 
     public function category()
@@ -44,50 +47,52 @@ class CategoriesController extends Controller
 
     public function categories()
     {
-        if (!empty($_POST['action'])) {
-            $action = $_POST['action'];
+        if ($this->security->isAdmin()) {
+            if (!empty($_POST['action'])) {
+                $action = $_POST['action'];
 
-            $data = array();
-            $data['Id'] = $_POST['id'];
-            $data['IconId'] = $_POST['iconid'];
-            $data['CategoryParentId'] = $_POST['categoryparentid'];
-            $data['UserGroupId'] = $_POST['usergroupid'];
-            $data['Name'] = $_POST['name'];
-            $data['Description'] = $_POST['description'];
-            $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
+                $data = array();
+                $data['Id'] = $_POST['id'];
+                $data['IconId'] = $_POST['iconid'];
+                $data['CategoryParentId'] = $_POST['categoryparentid'];
+                $data['UserGroupId'] = $_POST['usergroupid'];
+                $data['Name'] = $_POST['name'];
+                $data['Description'] = $_POST['description'];
+                $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
 
-            $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
-            $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
-            $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
+                $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
+                $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
+                $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
-            switch ($action) {
-                case 'create':
-                    $data['IconId'] = $this->iconsController->handleIcon($data, $action);
-                    $id = $this->categoryDAO->create($data);
-                    if ($id) {
-                        header("Location: index.php?page=categories&id=" . $id);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Category.');
-                    }
-                    break;
-                case 'update':
-                    if ($this->categoryDAO->update($data)) {
+                switch ($action) {
+                    case 'create':
+                        $data['IconId'] = $this->iconsController->handleIcon($data, $action);
+                        $id = $this->categoryDAO->create($data);
+                        if ($id) {
+                            header("Location: index.php?page=categories&id=" . $id);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Category.');
+                        }
+                        break;
+                    case 'update':
+                        if ($this->categoryDAO->update($data)) {
+                            $this->iconsController->handleIcon($data, $action);
+                            header("Location: index.php?page=categories&id=" . $data['Id']);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Category.');
+                        }
+                        break;
+                    case 'delete':
+                        $this->categoryDAO->delete($data['Id']);
                         $this->iconsController->handleIcon($data, $action);
-                        header("Location: index.php?page=categories&id=" . $data['Id']);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Category.');
-                    }
-                    break;
-                case 'delete':
-                    $this->categoryDAO->delete($data['Id']);
-                    $this->iconsController->handleIcon($data, $action);
-                    $this->_handleLoad();
-                    break;
+                        $this->_handleLoad();
+                        break;
+                }
+            } else {
+                $this->_handleLoad();
             }
-        } else {
-            $this->_handleLoad();
         }
     }
 

@@ -1,51 +1,56 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
+require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
 
 class UsergroupsController extends Controller
 {
     private $usergroupDAO;
+    private $security;
 
     function __construct()
     {
         $this->usergroupDAO = new UsergroupDAO();
+        $this->security = new Security();
     }
 
     public function usergroups()
     {
-        if (!empty($_POST['action'])) {
-            $action = $_POST['action'];
+        if ($this->security->isAdmin()) {
+            if (!empty($_POST['action'])) {
+                $action = $_POST['action'];
 
-            $data = array();
-            $data['Id'] = $_POST['id'];
-            $data['Name'] = $_POST['name'];
+                $data = array();
+                $data['Id'] = $_POST['id'];
+                $data['Name'] = $_POST['name'];
 
-            switch ($action) {
-                case 'create':
-                    $id = $this->usergroupDAO->create($data);
-                    if ($id) {
-                        header("Location: index.php?page=usergroups&id=" . $id);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Usergroup.');
-                    }
-                    break;
-                case 'update':
-                    if ($this->usergroupDAO->update($data)) {
-                        header("Location: index.php?page=usergroups&id=" . $data['id']);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Usergroup.');
-                    }
-                    break;
-                case 'delete':
-                    $this->usergroupDAO->delete($data['Id']);
-                    $this->_handleLoad();
-                    break;
+                switch ($action) {
+                    case 'create':
+                        $id = $this->usergroupDAO->create($data);
+                        if ($id) {
+                            header("Location: index.php?page=usergroups&id=" . $id);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Usergroup.');
+                        }
+                        break;
+                    case 'update':
+                        if ($this->usergroupDAO->update($data)) {
+                            header("Location: index.php?page=usergroups&id=" . $data['id']);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Usergroup.');
+                        }
+                        break;
+                    case 'delete':
+                        $this->usergroupDAO->delete($data['Id']);
+                        $this->_handleLoad();
+                        break;
+                }
+            } else {
+                $this->_handleLoad();
             }
-        } else {
-            $this->_handleLoad();
         }
     }
 

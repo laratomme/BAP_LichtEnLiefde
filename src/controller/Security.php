@@ -6,6 +6,7 @@ require_once __DIR__ . '/../dao/UserDAO.php';
 
 class Security
 {
+    private $adminID = -1;
     private $key = 'f6d30d47282fc4d57ed48442349f52cd31e711866ef000855a78dea28471a7b5';
     private $userDAO;
 
@@ -80,6 +81,21 @@ class Security
         $_SESSION['userData'] = null;
         unset($_COOKIE['userData']);
         setcookie("userData", "", time() - 3600);
+    }
+
+    public function isAdmin()
+    {
+        if (!isset($_SESSION["userData"]) || empty($_SESSION["userData"])) {
+            header("Location: index.php?page=home");
+            exit();
+        }
+
+        if (!isset($_SESSION['userData']['UserGroupID'])) {
+            header("Location: index.php?page=home");
+            exit();
+        }
+
+        return $_SESSION['userData']['UserGroupID'] === $this->adminID;
     }
 
     private function verify($data, $hash)

@@ -1,54 +1,59 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
+require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class IconSetsController extends Controller
 {
     private $iconSetDAO;
+    private $security;
 
     function __construct()
     {
         $this->iconSetDAO = new IconSetDAO();
+        $this->security = new Security();
     }
 
     public function iconsets()
     {
-        if (!empty($_POST['action'])) {
-            $action = $_POST['action'];
+        if ($this->security->isAdmin()) {
+            if (!empty($_POST['action'])) {
+                $action = $_POST['action'];
 
-            $data = array();
-            $data['Id'] = $_POST['id'];
-            $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
+                $data = array();
+                $data['Id'] = $_POST['id'];
+                $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
-            switch ($action) {
-                case 'create':
-                    $data['Icon'] = $this->_handleUpload($data['IconFile']);
-                    $id = $this->iconSetDAO->create($data);
-                    if ($id) {
-                        header("Location: index.php?page=iconsets&id=" . $id);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Icon Set.');
-                    }
-                    break;
-                case 'update':
-                    $data['Icon'] = $this->_handleUpload($data['IconFile']);
+                switch ($action) {
+                    case 'create':
+                        $data['Icon'] = $this->_handleUpload($data['IconFile']);
+                        $id = $this->iconSetDAO->create($data);
+                        if ($id) {
+                            header("Location: index.php?page=iconsets&id=" . $id);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Icon Set.');
+                        }
+                        break;
+                    case 'update':
+                        $data['Icon'] = $this->_handleUpload($data['IconFile']);
 
-                    if ($this->iconSetDAO->update($data)) {
-                        header("Location: index.php?page=iconsets&id=" . $data['Id']);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Icon Set.');
-                    }
-                    break;
-                case 'delete':
-                    $this->iconsets->delete($data['Id']);
-                    $this->_handleLoad();
-                    break;
+                        if ($this->iconSetDAO->update($data)) {
+                            header("Location: index.php?page=iconsets&id=" . $data['Id']);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Icon Set.');
+                        }
+                        break;
+                    case 'delete':
+                        $this->iconsets->delete($data['Id']);
+                        $this->_handleLoad();
+                        break;
+                }
+            } else {
+                $this->_handleLoad();
             }
-        } else {
-            $this->_handleLoad();
         }
     }
 

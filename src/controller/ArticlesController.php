@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
+require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/ArticleDAO.php';
 require_once __DIR__ . '/../dao/ArticleTypeDAO.php';
 require_once __DIR__ . '/../dao/CategoryDAO.php';
@@ -12,6 +13,7 @@ class ArticlesController extends Controller
     private $articleTypeDAO;
     private $categoryDAO;
     private $usergroupDAO;
+    private $security;
 
     function __construct()
     {
@@ -19,6 +21,7 @@ class ArticlesController extends Controller
         $this->articleTypeDAO = new ArticleTypeDAO();
         $this->categoryDAO = new CategoryDAO();
         $this->usergroupDAO = new UsergroupDAO();
+        $this->security = new Security();
     }
 
     public function article()
@@ -38,42 +41,44 @@ class ArticlesController extends Controller
 
     public function articles()
     {
-        if (!empty($_POST['action'])) {
-            $action = $_POST['action'];
+        if ($this->security->isAdmin()) {
+            if (!empty($_POST['action'])) {
+                $action = $_POST['action'];
 
-            $data = array();
-            $data['Id'] = $_POST['id'];
-            $data['ArticleTypeId'] = $_POST['articletypeid'];
-            $data['CategoryId'] = $_POST['categoryid'];
-            $data['UserGroupId'] = $_POST['usergroupid'];
-            $data['Title'] = $_POST['title'];
-            $data['Description'] = $_POST['description'];
+                $data = array();
+                $data['Id'] = $_POST['id'];
+                $data['ArticleTypeId'] = $_POST['articletypeid'];
+                $data['CategoryId'] = $_POST['categoryid'];
+                $data['UserGroupId'] = $_POST['usergroupid'];
+                $data['Title'] = $_POST['title'];
+                $data['Description'] = $_POST['description'];
 
-            switch ($action) {
-                case 'create':
-                    $id = $this->articleDAO->create($data);
-                    if ($id) {
-                        header("Location: index.php?page=articles&id=" . $id);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het Artikel.');
-                    }
-                    break;
-                case 'update':
-                    if ($this->articleDAO->update($data)) {
-                        header("Location: index.php?page=articles&id=" . $data['Id']);
-                        exit();
-                    } else {
-                        $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het Artikel.');
-                    }
-                    break;
-                case 'delete':
-                    $this->articleDAO->delete($data['Id']);
-                    $this->_handleLoad();
-                    break;
+                switch ($action) {
+                    case 'create':
+                        $id = $this->articleDAO->create($data);
+                        if ($id) {
+                            header("Location: index.php?page=articles&id=" . $id);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het Artikel.');
+                        }
+                        break;
+                    case 'update':
+                        if ($this->articleDAO->update($data)) {
+                            header("Location: index.php?page=articles&id=" . $data['Id']);
+                            exit();
+                        } else {
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het Artikel.');
+                        }
+                        break;
+                    case 'delete':
+                        $this->articleDAO->delete($data['Id']);
+                        $this->_handleLoad();
+                        break;
+                }
+            } else {
+                $this->_handleLoad();
             }
-        } else {
-            $this->_handleLoad();
         }
     }
 

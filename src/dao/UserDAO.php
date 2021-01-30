@@ -116,6 +116,9 @@ class UserDAO extends DAO
 
     public function delete($id)
     {
+        if ($id < 0) {
+            $_SESSION['error'] = "Je mag deze groep niet verwijderen, default";
+        }
         $sql = "DELETE FROM BAP_User WHERE UserID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
