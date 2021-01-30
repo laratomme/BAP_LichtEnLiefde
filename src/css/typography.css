@@ -10,3 +10,10 @@ h1 {
     font-weight: var(--fontWeightBold);
     line-height: 110%;
 }
+
+h2 {
+    font-size: var(--fontHeader2);
+    font-family: var(--font);
+    font-weight: var(--fontWeightBold);
+    line-height: 110%;
+}
