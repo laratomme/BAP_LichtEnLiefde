@@ -1,0 +1,12 @@
+.button-blue {
+    position: absolute;
+    width: 92px;
+    height: 30px;
+    background: #00499A;
+    box-shadow: 0px 10px 25px rgba(0, 73, 154, 0.25);
+    border-radius: 3px;
+}
+
+.button-blue a {
+    color: var(--colorWhite);
+}
