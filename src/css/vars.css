@@ -15,5 +15,6 @@
     --fontHeader3: 1.778em;
     /*32px*/
     --fontWeightRegular: 400;
+    --fontWeightSemiBold: 600;
     --fontWeightBold: 700;
 }

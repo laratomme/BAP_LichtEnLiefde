@@ -10,7 +10,7 @@
 }
 
 .card-contact p {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightSemiBold);
     color: var(--colorBlack);
 }
 

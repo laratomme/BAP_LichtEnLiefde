@@ -2,24 +2,15 @@
 <p>Vind informatie op het webplatform van Netwerk Licht en Liefde.</p>
 
 <div class="flex-cards">
-    <a href="">
-        <div class="card-category">
-            <div class="card-category--icon">Img Icoon</div>
-            <div class="card-category--label">Categorie naam</div>
-        </div>
-    </a>
-</div>
-
-
-<div>
     <?php foreach ($categories as $category) : ?>
         <a href="index.php?page=category&id=<?php echo $category['CategoryID'] ?>">
-            <div><?php echo $category['CategoryID'] ?> - <?php echo $category['Name'] ?></div>
-            <div>
-                <img src="<?php echo $category['Icon'] ?>" alt="Icoon">
-            </div>
-            <div>
-                <p>Bekijk Category</p>
+            <div class="card-category">
+                <div class="card-category--icon">
+                    <img src="<?php echo $category['Icon'] ?>" alt="Icoon naam">
+                </div>
+                <div class="card-category--label">
+                    <p><?php echo $category['Name'] ?></p>
+                </div>
             </div>
         </a>
     <?php endforeach ?>
