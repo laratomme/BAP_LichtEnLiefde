@@ -10,29 +10,58 @@
 
 <body>
 
-  <?php
-  if (!empty($_SESSION['error'])) {
-    echo '<div class="error box">' . $_SESSION['error'] . '</div>';
-  }
-  if (!empty($_SESSION['info'])) {
-    echo '<div class="info box">' . $_SESSION['info'] . '</div>';
-  }
-  ?>
+  <div class="layout">
 
-  <header>
-    <p>logo</p>
-    <nav></nav>
-  </header>
+    <?php
+    if (!empty($_SESSION['error'])) {
+      echo '<div class="error box">' . $_SESSION['error'] . '</div>';
+    }
+    if (!empty($_SESSION['info'])) {
+      echo '<div class="info box">' . $_SESSION['info'] . '</div>';
+    }
+    ?>
 
-  <div class="search">
+    <header>
+      <p>logo</p>
+      <nav></nav>
+    </header>
+
+    <div class="search">
+
+    </div>
+
+    <main class="main">
+      <?php echo $content; ?>
+    </main>
+
+    <footer class="footer">
+      <address>
+        <div class="address-item">
+          <p>Licht en Liefde</p>
+          <span class="vl"></span>
+        </div>
+
+        <div class="address-item">
+          <p>Oudenburgweg 40, 8490 Varsenare</p>
+          <span class="vl"></span>
+        </div>
+
+        <div class="address-item">
+          <p>+32 (0)50 40 60 50</p>
+          <span class="vl"></span>
+        </div>
+
+        <div class="address-item"> 
+          <a href="mailto:info@lichtenliefde.be">E-mail: info@lichtenliefde.be</a>
+        </div>
+
+      </address>
+    </footer>
 
   </div>
 
-  <main class="main">
-    <?php echo $content; ?>
-  </main>
-
   <?php echo $js; ?>
+
 </body>
 
 </html>
