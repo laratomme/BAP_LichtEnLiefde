@@ -1,0 +1,16 @@
+.header {
+    background-color: var(--colorWhite);
+    height: 50px;
+}
+
+.header-items {
+    display: flex;
+    flex-direction: row;
+    /*height: 50px;*/
+    margin: 0.556em;
+}
+
+.header-items a {
+    text-decoration: none;
+    color: var(--colorBlue);
+}
