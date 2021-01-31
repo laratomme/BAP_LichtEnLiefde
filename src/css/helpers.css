@@ -1,3 +1,10 @@
 .hidden {
     display: none;
 }
+
+.info-tekst {
+    display: flex;
+    justify-content: center;
+    font-size: var(--fontRegular);
+    font-weight: var(--fontWeightSemiBold);
+}

@@ -3,9 +3,7 @@
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
         <?php if (count($usergroups) == 0) { ?>
-            <div>
-                <p>Geen Usergroups toegevoegd.</p>
-            </div>
+            <p class="info-tekst">Geen Usergroups toegevoegd.</p>
         <?php } else { ?>
             <div>
                 <?php foreach ($usergroups as $usergroup) : ?>

@@ -3,9 +3,7 @@
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
         <?php if (count($categories) == 0) { ?>
-            <div>
-                <p>Geen Categories toegevoegd.</p>
-            </div>
+            <p class="info-tekst">Geen Categories toegevoegd.</p>
         <?php } else { ?>
             <div>
                 <?php foreach ($categories as $category) : ?>

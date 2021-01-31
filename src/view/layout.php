@@ -28,32 +28,43 @@
           <a class="button-link" href="index.php?page=contact">
             <div class="button-white">
               <p>Contact</p>
-              <img src="../../assets/img/icons/icon-contact-blue-24px.svg" alt="Telefoon in chatballon icoon">
+              <img src="../../assets/img/icons/icon-contact-blue.svg" alt="Telefoon in chatballon icoon">
             </div>
           </a>
-
-          <a class="button-link" href="index.php?page=login">
-            <div class="button-yellow">
-              <p>Login</p>
-              <img src="../../assets/img/icons/icon-login-black-24px.svg" alt="Slot login icoon">
-            </div>
-          </a>
+          <?php if (empty($_SESSION["userData"])) { ?>
+            <a class="button-link" href="index.php?page=login">
+              <div class="button-yellow">
+                <p>Login</p>
+                <img src="../../assets/img/icons/icon-login-black.svg" alt="Slot login icoon">
+              </div>
+            </a>
+          <?php } else { ?>
+            <a class="button-link" href="index.php?page=login&action=logout">
+              <div class="button-yellow">
+                <p>Logout</p>
+                <img src="../../assets/img/icons/icon-login-black.svg" alt="Slot login icoon">
+              </div>
+            </a>
+          <?php } ?>
 
         </div>
       </div>
 
       <div class="search"></div>
 
-      <nav class="beheerder-nav">
-        <ul class="nav-list">
-          <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>
-          <li><a class="nav-link" href="index.php?page=usergroups">Groepen</a></li>
-          <li><a class="nav-link" href="index.php?page=categories">Categorieën</a></li>
-          <li><a class="nav-link" href="index.php?page=articles">Artikels</a></li>
-          <li><a class="nav-link" href="index.php?page=articletypes">Artikel types</a></li>
-          <li><a class="nav-link" href="index.php?page=iconsets">Iconen</a></li>
-        </ul>
-      </nav>
+      <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>
+
+        <nav class="beheerder-nav">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>
+            <li><a class="nav-link" href="index.php?page=usergroups">Groepen</a></li>
+            <li><a class="nav-link" href="index.php?page=categories">Categorieën</a></li>
+            <li><a class="nav-link" href="index.php?page=articles">Artikels</a></li>
+            <li><a class="nav-link" href="index.php?page=articletypes">Artikel types</a></li>
+            <li><a class="nav-link" href="index.php?page=iconsets">Iconen</a></li>
+          </ul>
+        </nav>
+      <?php } ?>
 
     </header>
 

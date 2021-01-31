@@ -1,11 +1,9 @@
 <!-- Users -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-    <h1>Gebruikers</h1>
+    <h1 class="h1">Gebruikers</h1>
     <!-- List -->
     <?php if (count($users) == 0) { ?>
-        <div>
-            <p>Geen Users toegevoegd.</p>
-        </div>
+        <p class="info-tekst">Geen Users toegevoegd.</p>
     <?php } else { ?>
         <div class="grid-users">
             <div>
@@ -50,7 +48,7 @@
     </a>
 
 <?php } else { ?>
-    <h1>Gebruiker</h1>
+    <h1 class="h1">Gebruiker</h1>
     <a class="button-link" href="index.php?page=users">
         <div class="button-blue">
             <p>Terug</p>

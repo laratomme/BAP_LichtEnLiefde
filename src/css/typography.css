@@ -4,7 +4,7 @@ body {
     line-height: 150%;
 }
 
-h1 {
+.h1 {
     font-size: var(--fontHeader3);
     font-family: var(--font);
     font-weight: var(--fontWeightBold);

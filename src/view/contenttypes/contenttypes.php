@@ -3,9 +3,7 @@
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
         <?php if (count($contenttypes) == 0) { ?>
-            <div>
-                <p>Geen Content Types toegevoegd.</p>
-            </div>
+            <p class="info-tekst">Geen Content Types toegevoegd.</p>
         <?php } else { ?>
             <div>
                 <?php foreach ($contenttypes as $contenttype) : ?>

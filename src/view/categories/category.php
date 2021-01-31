@@ -2,15 +2,18 @@
 <?php if (!empty($children)) { ?>
     <div>
         <?php foreach ($children as $child) : ?>
-            <a href="index.php?page=category&id=<?php echo $child['CategoryID'] ?>">
-                <div><?php echo $child['CategoryID'] ?> - <?php echo $child['Name'] ?></div>
-                <div>
-                    <img src="<?php echo $child['Icon'] ?>" alt="Icoon">
-                </div>
-                <div>
-                    <p>Bekijk Category</p>
+            
+            <a class="cat-link" href="index.php?page=category&id=<?php echo $child['CategoryID'] ?>">
+                <div class="card-category">
+                    <div class="card-category--icon">
+                        <img src="<?php echo $child['Icon'] ?>" alt="Icoon naam">
+                    </div>
+                    <div class="card-category--label">
+                        <p><?php echo $child['Name'] ?></p>
+                    </div>
                 </div>
             </a>
+
         <?php endforeach ?>
     </div>
 <?php } ?>

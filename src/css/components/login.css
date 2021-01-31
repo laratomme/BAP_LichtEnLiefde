@@ -1,0 +1,48 @@
+.login-header {
+    color: var(--colorBlue);
+    text-align: center;
+}
+
+.login-sub {
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+}
+
+input[type=password] {
+    background: var(--colorWhite);
+    border: solid var(--colorBlue);
+    border-width: 0px 1.5px 1.5px 1.5px;
+    border-radius: 0px 0px 1px 1px;
+    padding: auto;
+    padding: 12px 10px;
+    color: var(--colorDarkGrey);
+}
+
+.login-grid-button {
+    align-items: flex-end;
+}
+
+.button-home img {
+    padding: 0 5px
+}
+
+.login-checkbox {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+input[type=checkbox] {
+    background: var(--colorWhite);
+    width: 20px;
+    height: 20px;
+}
+
+.button-submit--login {
+    margin-top: 0;
+}

@@ -3,9 +3,7 @@
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
         <?php if (count($iconsets) == 0) { ?>
-            <div>
-                <p>Geen IconSets toegevoegd.</p>
-            </div>
+            <p class="info-tekst">Geen IconSets toegevoegd.</p>
         <?php } else { ?>
             <div>
                 <?php foreach ($iconsets as $iconset) : ?>

@@ -3,9 +3,7 @@
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
         <?php if (count($articletypes) == 0) { ?>
-            <div>
-                <p>Geen Artikel Types toegevoegd.</p>
-            </div>
+            <p class="info-tekst">Geen Artikel Types toegevoegd.</p>
         <?php } else { ?>
             <div>
                 <?php foreach ($articletypes as $articletype) : ?>

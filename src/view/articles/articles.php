@@ -1,12 +1,10 @@
 <!-- Artikels -->
 <!-- https://xdsoft.net/jodit/ -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-    <h1>Artikels</h1>
+    <h1 class="h1">Artikels</h1>
     <!-- List -->
     <?php if (count($articles) == 0) { ?>
-        <div>
-            <p>Geen Artikels toegevoegd.</p>
-        </div>
+        <p class="info-tekst">Geen Artikels toegevoegd.</p>
     <?php } else { ?>
 
         <div class="grid-articles">
@@ -64,7 +62,7 @@
     </a>
 
 <?php } else { ?>
-    <h1>Artikel</h1>
+    <h1 class="h1">Artikel</h1>
     <a class="button-link" href="index.php?page=articles">
         <div class="button-blue">
             <p>Terug</p>
