@@ -43,7 +43,7 @@
 
     <?php } ?>
 
-    <a class="button-gebruiker-aanmaken button-link" href="index.php?page=users&action=create">
+    <a class="button-aanmaken button-link" href="index.php?page=users&action=create">
         <div class="button-blue">
             <p>Gebruiker aanmaken</p>
         </div>

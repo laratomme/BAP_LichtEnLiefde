@@ -26,10 +26,12 @@ class ArticleDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, ar.UserGroupID, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon 
+        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, cat.Name as CategoryName, ar.UserGroupID, ug.Name as UserGroupName, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon 
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
-            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID";
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
+            INNER JOIN BAP_Category cat on cat.CategoryID = ar.CategoryID
+            LEFT JOIN BAP_UserGroup ug on ug.UserGroupID = ar.UserGroupID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
