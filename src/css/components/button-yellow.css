@@ -1,19 +1,19 @@
-.button-blue {
+.button-yellow {
     width: fit-content;
     min-width: 92px;
     min-height: 30px;
     max-height: 40px;
     padding: 0.333em;
-    background: var(--colorBlue);
-    box-shadow: 0px 10px 25px rgba(0, 73, 154, 0.25);
+    background: var(--colorYellow);
+    box-shadow: 0px 12px 25px rgba(255, 201, 30, 0.25);
     border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--colorWhite);
+    color: var(--colorBlack);
 }
 
-.button-blue img {
+.button-yellow img {
     padding-bottom: 7px;
 }
 
