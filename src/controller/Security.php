@@ -56,7 +56,7 @@ class Security
         }
 
         // Refresh Token
-        $this->storeLoginData($info);
+        $this->storeLoginData($user);
         return $info;
     }
 
