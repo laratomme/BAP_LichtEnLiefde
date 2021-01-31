@@ -1,11 +1,12 @@
 .header {
     background-color: var(--colorWhite);
-    height: 50px;
+    /*height: 50px;*/
 }
 
 .header-items {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     /*height: 50px;*/
     margin: 0.556em;
 }
