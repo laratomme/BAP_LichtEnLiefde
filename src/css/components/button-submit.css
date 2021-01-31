@@ -1,0 +1,15 @@
+.button-submit {
+    margin-top: 25px;
+    border: 1px solid var(--colorBlue);
+}
+
+.button-submit-yellow {
+    margin-top: 25px;
+    border: 1px solid var(--colorYellow);
+    display: flex;
+    justify-self: flex-end;
+}
+
+.button-delete {
+    border: 1px solid var(--colorWhite);
+}

@@ -1,0 +1,51 @@
+.gebruiker-form {
+    display: flex;
+    justify-content: center;
+    margin-top: -40px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    min-width: 350px;
+}
+
+.form-grid-items {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=text] {
+    background: var(--colorWhite);
+    border: solid var(--colorBlue);
+    border-width: 0px 1.5px 1.5px 1.5px;
+    border-radius: 0px 0px 1px 1px;
+    padding: auto;
+    padding: 12px 10px;
+    color: var(--colorDarkGrey);
+}
+
+label {
+    background: var(--colorWhite);
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+    padding: auto;
+    padding: 12px 10px;
+    font-weight: var(--fontWeightSemiBold);
+    font-size: var(--fontRegular);
+}
+
+select {
+    padding: 12px 10px;
+    border: solid var(--colorBlue);
+    border-width: 0 1.5px 1.5px;
+    border-radius: 0 0 1px 1px;
+}
+
+.buttons-beheren {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
