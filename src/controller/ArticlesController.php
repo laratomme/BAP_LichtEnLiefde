@@ -52,6 +52,7 @@ class ArticlesController extends Controller
                 $data['UserGroupId'] = $_POST['usergroupid'];
                 $data['Title'] = $_POST['title'];
                 $data['Description'] = $_POST['description'];
+                $data['Content'] = $_POST['content'];
 
                 switch ($action) {
                     case 'create':

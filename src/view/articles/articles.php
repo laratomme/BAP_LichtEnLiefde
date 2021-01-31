@@ -1,4 +1,5 @@
 <!-- Artikels -->
+<!-- https://xdsoft.net/jodit/ -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
         <!-- List -->
@@ -79,6 +80,12 @@
                         <?php endforeach ?>
                     </select>
                 </div>
+                <div>
+                    <textarea id="area_editor" name="content"><?php if (!empty($article['Content'])) {
+                                                                    echo $article['Content'];
+                                                                } ?></textarea>
+                </div>
+
                 <?php if (empty($_GET['id'])) { ?>
                     <button type="submit" name="action" value="create">Artikel Toevoegen</button>
                 <?php } else { ?>
@@ -94,3 +101,29 @@
         </div>
     <?php } ?>
 </main>
+<link rel="stylesheet" href="../../css/jodit.min.css" />
+<script src="../../js/jodit.min.js"></script>
+<script>
+    var editor = new Jodit('#area_editor', {
+        language: 'nl',
+        textIcons: false,
+        toolbarButtonSize: 'small',
+        iframe: false,
+        iframeStyle: '*,.jodit-wysiwyg {color:red;}',
+        minHeight: 300,
+        maxHeight: 500,
+        defaultMode: Jodit.MODE_WYSIWYG,
+        observer: {
+            timeout: 100
+        },
+        uploader: {
+            // url: 'http://localhost:8888/upload.php',
+            "insertImageAsBase64URI": true
+        },
+        commandToHotkeys: {
+            'openreplacedialog': 'ctrl+p'
+        }
+        // buttons: ['symbol'],
+        // disablePlugins: 'hotkeys,mobile'
+    });
+</script>
