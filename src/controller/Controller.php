@@ -79,7 +79,7 @@ class Controller
       if (!isset($_COOKIE["uiData"]) || empty($_COOKIE["uiData"])) {
         $settings->initSettings();
       } else {
-        $settings->convertSettings();
+        $settings->refreshSettings();
       }
     }
   }

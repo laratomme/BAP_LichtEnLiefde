@@ -18,7 +18,7 @@ class SettingsController extends Controller
             $encoded = json_encode($data);
 
             $_SESSION["uiData"] = $data;
-            setcookie("uiData", $encoded);
+            setcookie("uiData", $encoded, time() + (86400 * 3650));
             // setcookie("auto", $encoded, time() + $expiration, "/~root/", "example.com", 1, 1);
         }
     }
@@ -31,7 +31,13 @@ class SettingsController extends Controller
         $_SESSION["uiData"] = $data;
     }
 
-    public function convertSettings()
+    public function refreshSettings()
+    {
+        $this->convertSettings();
+        setcookie("uiData", $_COOKIE["uiData"], time() + (86400 * 3650));
+    }
+
+    private function convertSettings()
     {
         if (!$cookie = @json_decode($_COOKIE["uiData"], true)) {
             return false;
