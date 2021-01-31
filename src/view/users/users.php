@@ -106,11 +106,11 @@
             </div>
 
             <?php if (empty($_GET['id'])) { ?>
-                <button class="button-yellow" type="submit" name="action" value="create">Gebruiker Toevoegen</button>
+                <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Gebruiker Toevoegen</button>
             <?php } else { ?>
-                <div>
+                <div class="buttons-beheren">
+                    <button class="button-white button-delete" type="submit" name="action" value="delete">Gebruiker Verwijderen</button>
                     <button class="button-blue button-submit" type="submit" name="action" value="update">Gebruiker Wijzigen</button>
-                    <button class="button-white" type="submit" name="action" value="delete">Gebruiker Verwijderen</button>
                 </div>
             <?php } ?>
 

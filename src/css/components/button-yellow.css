@@ -1,8 +1,7 @@
 .button-yellow {
     width: fit-content;
     min-width: 92px;
-    min-height: 30px;
-    max-height: 40px;
+    height: 40px;
     padding: 0.333em;
     background: var(--colorYellow);
     box-shadow: 0px 12px 25px rgba(255, 201, 30, 0.25);
@@ -11,6 +10,7 @@
     justify-content: center;
     align-items: center;
     color: var(--colorBlack);
+    font-weight: var(--fontWeightSemiBold);
 }
 
 .button-yellow img {

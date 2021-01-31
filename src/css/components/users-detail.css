@@ -37,6 +37,15 @@ label {
     font-size: var(--fontRegular);
 }
 
-.button-submit {
-    margin-top: 25px;
+select {
+    padding: 12px 10px;
+    border: solid var(--colorBlue);
+    border-width: 0 1.5px 1.5px;
+    border-radius: 0 0 1px 1px;
+}
+
+.buttons-beheren {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
