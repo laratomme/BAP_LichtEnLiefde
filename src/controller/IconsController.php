@@ -40,7 +40,7 @@ class IconsController extends Controller
                         $icon['Icon'] = $this->_handleUpload($data['IconFile'], $icon['Id']);
                     } else {
                         $iconSet = $this->iconSetDAO->readByID($data['IconSetId']);
-                        $icon['Icon'] = $iconSet['Icon']; 
+                        $icon['Icon'] = $iconSet['Icon'];
                     }
                     $this->iconDAO->update($icon);
                 }
@@ -56,14 +56,14 @@ class IconsController extends Controller
     {
         if (!empty($fileInfo)) {
             if (DIRECTORY_SEPARATOR == '/') {
-                $folder = dirname(__DIR__) . '/images/Icons/';
+                $folder = dirname(__DIR__) . '/assets/img/icons/';
             } else {
-                $folder = str_replace('\\', '/', dirname(__DIR__)) . '/images/Icons/';
+                $folder = str_replace('\\', '/', dirname(__DIR__)) . '/assets/img/icons/';
             }
 
             $ext = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
             $fileLoc = $folder . $id . '.' . $ext;
-            $file = 'images/Icons/' . $id . '.' . $ext;
+            $file = '/assets/img/icons/' . $id . '.' . $ext;
 
             if (!is_dir($folder)) {
                 mkdir($folder, 0777, true);

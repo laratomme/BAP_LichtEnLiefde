@@ -63,11 +63,13 @@ class CategoryDAO extends DAO
     public function readAllChildren($parentId)
     {
         $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.Name, ic.Icon
-        FROM BAP_Category cat
-        INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
-        WHERE cat.CategoryParentID = :ParentId AND cat.UserGroupID is null";
+            FROM BAP_Category cat
+            INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+            WHERE cat.CategoryParentID = :ParentId AND";
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $sql = $sql . " OR cat.UserGroupID = :UserGroupID";
+            $sql = $sql . " (cat.UserGroupID is null OR cat.UserGroupID = :UserGroupID)";
+        } else {
+            $sql = $sql . "cat.UserGroupID is null";
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':ParentId', $parentId);

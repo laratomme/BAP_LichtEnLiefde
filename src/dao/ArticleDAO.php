@@ -43,9 +43,11 @@ class ArticleDAO extends DAO
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
-            WHERE ar.CategoryID = :Id AND ar.UserGroupID is null";
+            WHERE ar.CategoryID = :Id AND";
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $sql = $sql . " OR ar.UserGroupID = :UserGroupID";
+            $sql = $sql . " (ar.UserGroupID is null OR ar.UserGroupID = :UserGroupID)";
+        } else {
+            $sql = $sql . " ar.UserGroupID is null";
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
