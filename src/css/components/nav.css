@@ -1,0 +1,32 @@
+.beheerder-nav {
+    background-color: var(--colorWhite);
+    filter: drop-shadow(0px 12px 25px rgba(186, 189, 191, 0.2));
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list a {
+    text-decoration: none;
+    font-size: var(--fontRegular);
+    font-weight: var(--fontWeightBold);
+    color: var(--colorBlue);
+    padding: 0 1em;
+}
+
+.nav-list a:hover {
+    text-decoration: underline;
+}
+
+.nav-list a:active {
+    color: var(--colorBlue);
+    text-decoration: underline;
+}

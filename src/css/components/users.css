@@ -1,0 +1,41 @@
+.grid-users {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 200px;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    background-color: var(--colorBlue);
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1.5px 1.5px 0px 0px;
+    color: var(--colorWhite);
+    font-size: var(--fontRegular);
+    font-weight: var(--fontWeightSemiBold);
+}
+
+.grid-users p {
+    padding-left: 0.556em;
+}
+
+.grid-users-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 200px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 0px 0px;
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 0px 0px 1.5px 1.5px;
+}
+
+.grid-users-data--item {
+    padding-left: .556em;
+}
+
+.button-gebruiker-aanmaken {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.222em;
+}
+
+.button-bewerken {
+    justify-self: center;
+    margin: 0.5em;
+}

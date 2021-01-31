@@ -23,15 +23,33 @@
 
     <header class="header">
       <div class="header-items container">
-        <img src="../../assets/img/logo-lichtenliefde-40px.png" alt="Logo Netwerk Licht en Liefde">
-        <div><a href="index.php?page=contact">Contact</a><img src="../../assets/img/icons/icon-contact-blue-24px.svg" alt="Telefoon in chatballon icoon"></div>
-        <div class="button-blue"><a href="index.php?page=login">Login</a><img src="../../assets/img/icons/icon-login-white-24px.svg" alt="Slot login icoon"></div>
+        <div> <img src="../../assets/img/logo-lichtenliefde-40px.png" alt="Logo Netwerk Licht en Liefde"></div>
+        <div>
+          <div><a href="index.php?page=contact">Contact</a><img src="../../assets/img/icons/icon-contact-blue-24px.svg" alt="Telefoon in chatballon icoon"></div>
+          <a class="button-link" href="index.php?page=login">
+            <div class="button-blue">
+              <p>Login</p>
+              <img src="../../assets/img/icons/icon-login-white-24px.svg" alt="Slot login icoon">
+            </div>
+          </a>
+        </div>
       </div>
+
+      <div class="search"></div>
+
+      <nav class="beheerder-nav">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>
+          <li><a class="nav-link" href="index.php?page=usergroups">Groepen</a></li>
+          <li><a class="nav-link" href="index.php?page=categories">Categorieën</a></li>
+          <li><a class="nav-link" href="index.php?page=contenttypes">Info Types</a></li>
+          <li><a class="nav-link" href="index.php?page=articles">Artikels</a></li>
+          <li><a class="nav-link" href="index.php?page=articletypes">Artikel types</a></li>
+          <li><a class="nav-link" href="index.php?page=iconsets">Iconen</a></li>
+        </ul>
+      </nav>
+
     </header>
-
-    <div class="search">
-
-    </div>
 
     <main class="main container">
       <?php echo $content; ?>
