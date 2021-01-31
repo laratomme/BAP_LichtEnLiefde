@@ -1,0 +1,15 @@
+.artikels-form {
+    display: flex;
+    justify-content: center;
+    margin-top: -40px;
+}
+
+.artikel-form-input {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.edit-area {
+    margin-top: 1.667em;
+    width: 1000px;
+}
