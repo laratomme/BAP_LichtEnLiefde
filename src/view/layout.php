@@ -23,15 +23,22 @@
 
     <header class="header">
       <div class="header-items container">
-        <div> <img src="../../assets/img/logo-lichtenliefde-40px.png" alt="Logo Netwerk Licht en Liefde"></div>
-        <div>
-          <div><a href="index.php?page=contact">Contact</a><img src="../../assets/img/icons/icon-contact-blue-24px.svg" alt="Telefoon in chatballon icoon"></div>
-          <a class="button-link" href="index.php?page=login">
-            <div class="button-blue">
-              <p>Login</p>
-              <img src="../../assets/img/icons/icon-login-white-24px.svg" alt="Slot login icoon">
+        <a class="logo" href="index.php?page=layout">Logo Licht en Liefde</a>
+        <div class="header-buttons">
+          <a class="button-link" href="index.php?page=contact">
+            <div class="button-white">
+              <p>Contact</p>
+              <img src="../../assets/img/icons/icon-contact-blue-24px.svg" alt="Telefoon in chatballon icoon">
             </div>
           </a>
+
+          <a class="button-link" href="index.php?page=login">
+            <div class="button-yellow">
+              <p>Login</p>
+              <img src="../../assets/img/icons/icon-login-black-24px.svg" alt="Slot login icoon">
+            </div>
+          </a>
+
         </div>
       </div>
 

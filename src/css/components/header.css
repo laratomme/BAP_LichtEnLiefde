@@ -1,5 +1,5 @@
 .header {
-    background-color: var(--colorWhite);
+    background-color: white;
     /*height: 50px;*/
 }
 
@@ -14,4 +14,13 @@
 .header-items a {
     text-decoration: none;
     color: var(--colorBlue);
+    margin: 0.278em;
+}
+
+.header-buttons {
+    display: flex;
+}
+
+.logo {
+    align-self: center;
 }

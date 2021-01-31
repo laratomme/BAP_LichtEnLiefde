@@ -101,8 +101,10 @@
         </div>
     <?php } ?>
 </main>
-<link rel="stylesheet" href="../../css/jodit.min.css" />
-<script src="../../js/jodit.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.css"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.js"></script>
+<!-- <link rel="stylesheet" href="../../css/jodit.min.css" />
+<script src="../../js/jodit.min.js"></script> -->
 <script>
     var editor = new Jodit('#area_editor', {
         language: 'nl',
