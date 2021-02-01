@@ -9,7 +9,6 @@
             <div class="grid-groups">
                 <div>
                     <p>Groep naam</p>
-
                 </div>
                 <div>
                 </div>
@@ -40,12 +39,13 @@
         </a>
 
     <?php } else { ?>
-        <h1 class="h1">Gebruikers Groep</h1>
         <a class="button-link" href="index.php?page=usergroups">
-            <div class="button-blue">
-                <p>Terug</p>
+            <div class="button-blue button-back">
+                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <p>Groepen</p>
             </div>
         </a>
+        <h1 class="h1">Gebruikers Groep</h1>
         <!-- Detail -->
         <div class="groups-form">
             <form class="form-grid" action="index.php?page=usergroups" method="post">
@@ -53,7 +53,7 @@
                                                             echo $usergroup['UserGroupID'];
                                                         } ?>" />
                 <div class="form-grid-items">
-                    <label for="name">Naam</label>
+                    <label for="name">Groep naam</label>
                     <input id="name" type="text" name="name" placeholder="Groep Naam" value="<?php if (!empty($usergroup['Name'])) {
                                                                                                         echo $usergroup['Name'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />

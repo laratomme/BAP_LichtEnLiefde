@@ -1,7 +1,5 @@
 .gebruiker-form {
-    display: flex;
-    justify-content: center;
-    margin-top: -40px;
+    flex-direction: column;
 }
 
 .form-grid {
@@ -18,6 +16,16 @@
 }
 
 input[type=text] {
+    background: var(--colorWhite);
+    border: solid var(--colorBlue);
+    border-width: 0px 1.5px 1.5px 1.5px;
+    border-radius: 0px 0px 1px 1px;
+    padding: auto;
+    padding: 12px 10px;
+    color: var(--colorDarkGrey);
+}
+
+input[type=email] {
     background: var(--colorWhite);
     border: solid var(--colorBlue);
     border-width: 0px 1.5px 1.5px 1.5px;
@@ -48,4 +56,9 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.beheren-flex {
+    display: flex;
+    justify-content: center;
 }

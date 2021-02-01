@@ -2,9 +2,9 @@
     <p class="info-tekst">U bent nu uitgelogd.</p>
 <?php } else { ?>
     <a class="button-link" href="index.php?page=index">
-        <div class="button-blue button-home">
+        <div class="button-blue button-back">
             <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-            <p>Homegpage</p>
+            <p>Homepage</p>
         </div>
     </a>
     <h1 class=" h1 login-header">Login</h1>
@@ -14,7 +14,7 @@
         <form class="form-grid" action="index.php?page=login" method="post">
             <div class="form-grid-items">
                 <label for="login">E-mailadres</label>
-                <input id="login" type="text" name="login" placeholder="Login" minlength="3" maxlength="64" required />
+                <input id="login" type="email" name="login" placeholder="E-mailadres" minlength="3" maxlength="64" required />
             </div>
             <div class="form-grid-items">
                 <label for="password">Wachtwoord</label>
