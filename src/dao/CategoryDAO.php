@@ -37,7 +37,7 @@ class CategoryDAO extends DAO
 
     public function readAllExceptId($id)
     {
-        $sql = "SELECT CategoryID, Name FROM BAP_Category";
+        $sql = "SELECT CategoryID, Name, CategoryParentID FROM BAP_Category";
         if (!empty($id)) {
             $sql = $sql . " WHERE CategoryID != :Id";
         }

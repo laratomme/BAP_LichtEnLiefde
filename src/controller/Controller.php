@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/SettingsController.php';
+require_once __DIR__ . '/BreadCrumb.php';
+require_once __DIR__ . '/Settings.php';
 require_once __DIR__ . '/Security.php';
 
 class Controller
@@ -27,14 +28,19 @@ class Controller
       $this->set('js', '<script src="script.js"></script>'); // regular script
       $this->set('css', '<link href="style.css" rel="stylesheet">'); // regular css tag
     }
+
+    $this->fetchBreadCrumb();
+
     $this->createViewVarWithContent();
     $this->renderInLayout();
+
     if (!empty($_SESSION['info'])) {
       unset($_SESSION['info']);
     }
     if (!empty($_SESSION['error'])) {
       unset($_SESSION['error']);
     }
+
     $this->checkLogin();
     $this->checkSettings();
   }
@@ -75,12 +81,18 @@ class Controller
   private function checkSettings()
   {
     if (empty($_SESSION['uiData'])) {
-      $settings = new SettingsController();
+      $settings = new Settings();
       if (!isset($_COOKIE["uiData"]) || empty($_COOKIE["uiData"])) {
         $settings->initSettings();
       } else {
         $settings->refreshSettings();
       }
     }
+  }
+
+  private function fetchBreadCrumb()
+  {
+    $crumbs = new BreadCrumb();
+    $this->set('crumbs', $crumbs->generateBreadCrumb($this->route));
   }
 }

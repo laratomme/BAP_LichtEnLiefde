@@ -1,8 +1,6 @@
 <?php
 
-require_once __DIR__ . '/Controller.php';
-
-class SettingsController extends Controller
+class Settings
 {
     function __construct()
     {

@@ -68,6 +68,22 @@
 
     </header>
 
+    <?php if (!empty($crumbs)) { ?>
+      <div>
+        <?php foreach ($crumbs as $crumb) : ?>
+
+          <a href="<?php if (!empty($crumb['id'])) {
+                      echo "index.php?page=" . $crumb['page'] . "&id=" . $crumb['id'];
+                    } else {
+                      echo "index.php?page=" . $crumb['page'];
+                    } ?>">
+            <?php echo $crumb['name']; ?>
+          </a>
+
+        <?php endforeach ?>
+      </div>
+    <?php } ?>
+
     <main class="main container">
       <?php echo $content; ?>
     </main>

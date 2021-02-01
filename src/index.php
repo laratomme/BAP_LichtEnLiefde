@@ -14,55 +14,63 @@ if (file_exists("../.env")) {
 $routes = array(
     'home' => array(
         'controller' => 'Home',
-        'action' => 'index'
+        'action' => 'index',
+        'name' => 'Home'
     ),
     'article' => array(
         'controller' => 'Articles',
-        'action' => 'article'
+        'action' => 'article',
+        'name' => 'Artikel'
     ),
     'category' => array(
         'controller' => 'Categories',
-        'action' => 'category'
+        'action' => 'category',
+        'name' => 'Category'
     ),
     'contact' => array(
         'controller' => 'Contact',
-        'action' => 'contact'
+        'action' => 'contact',
+        'name' => 'Contact'
     ),
     'login' => array(
         'controller' => 'Login',
-        'action' => 'login'
+        'action' => 'login',
+        'name' => 'Login'
     ),
     'settings' => array(
         'controller' => 'Settings',
-        'action' => 'settings'
+        'action' => 'settings',
+        'name' => 'Instellingen'
     ),
     'articles' => array(
         'controller' => 'Articles',
-        'action' => 'articles'
+        'action' => 'articles',
+        'name' => 'Artikels'
     ),
     'articletypes' => array(
         'controller' => 'Articletypes',
-        'action' => 'articletypes'
+        'action' => 'articletypes',
+        'name' => 'Artikel Types'
     ),
     'categories' => array(
         'controller' => 'Categories',
-        'action' => 'categories'
-    ),
-    'contenttypes' => array(
-        'controller' => 'ContentTypes',
-        'action' => 'contenttypes'
+        'action' => 'categories',
+        'name' => 'Categories'
     ),
     'iconsets' => array(
         'controller' => 'IconSets',
-        'action' => 'iconsets'
+        'action' => 'iconsets',
+        'name' => 'Icoon Set'
     ),
     'users' => array(
         'controller' => 'Users',
-        'action' => 'users'
+        'action' => 'users',
+        'name' => 'Gebruikers'
     ),
     'usergroups' => array(
         'controller' => 'Usergroups',
-        'action' => 'usergroups'
+        'action' => 'usergroups',
+        'name' => 'Gebruiker Groepen'
     )
 );
 
