@@ -1,29 +1,51 @@
 <!-- Usergroups -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
+        <h1 class="h1">Gebruikers Groepen</h1>
         <!-- List -->
         <?php if (count($usergroups) == 0) { ?>
-            <p class="info-tekst">Geen Usergroups toegevoegd.</p>
+            <p class="info-tekst">Geen Gebruikers Groepen toegevoegd.</p>
         <?php } else { ?>
-            <div>
-                <?php foreach ($usergroups as $usergroup) : ?>
-                    <div><?php echo $usergroup['UserGroupID'] ?> - <?php echo $usergroup['Name'] ?></div>
-                    <div>
-                        <a href="index.php?page=usergroups&id=<?php echo $usergroup['UserGroupID'] ?>">
-                            <p>Bekijk Usergroup</p>
-                        </a>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        <?php } ?>
-        <div>
-            <a href="index.php?page=usergroups&action=create">
+            <div class="grid-groups">
                 <div>
-                    <p>Usergroup aanmaken</p>
+                    <p>Groep naam</p>
+
                 </div>
-            </a>
-        </div>
+                <div>
+                </div>
+            </div>
+
+            <?php foreach ($usergroups as $usergroup) : ?>
+
+                <div class="grid-groups-data">
+                    <div class="grid-groups-data--item">
+                        <p><?php echo $usergroup['Name'] ?></p>
+                    </div>
+
+                    <a class="button-link button-bewerken" href="index.php?page=usergroups&id=<?php echo $usergroup['UserGroupID'] ?>">
+                        <div class="button-yellow">
+                            <p>Bekijk Usergroup</p>
+                        </div>
+                    </a>
+                </div>
+
+            <?php endforeach ?>
+
+        <?php } ?>
+
+        <a class="button-aanmaken button-link" href="index.php?page=usergroups&action=create">
+            <div class="button-blue">
+                <p>Gebruikers Groep aanmaken</p>
+            </div>
+        </a>
+
     <?php } else { ?>
+        <h1 class="h1">Gebruikers Groep</h1>
+        <a class="button-link"  href="index.php?page=usergroups">
+            <div class="button-blue">
+                <p>Terug</p>
+            </div>
+        </a>
         <!-- Detail -->
         <div>
             <form action="index.php?page=usergroups" method="post">
@@ -42,11 +64,7 @@
                     <button type="submit" name="action" value="update">Usergroup Wijzigen</button>
                     <button type="submit" name="action" value="delete">Usergroup Verwijderen</button>
                 <?php } ?>
-                <a href="index.php?page=usergroups">
-                    <div>
-                        <p>Terug</p>
-                    </div>
-                </a>
+
             </form>
         </div>
     <?php } ?>

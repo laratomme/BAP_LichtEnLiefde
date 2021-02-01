@@ -8,7 +8,7 @@
     flex-direction: row;
     justify-content: space-between;
     /*height: 50px;*/
-    margin: 0.556em;
+    padding: 0.556em;
 }
 
 .header-items a {

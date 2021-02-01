@@ -3,7 +3,7 @@
     <h1 class="h1">Gebruikers</h1>
     <!-- List -->
     <?php if (count($users) == 0) { ?>
-        <p class="info-tekst">Geen Users toegevoegd.</p>
+        <p class="info-tekst">Geen Gebruikers toegevoegd.</p>
     <?php } else { ?>
         <div class="grid-users">
             <div>
