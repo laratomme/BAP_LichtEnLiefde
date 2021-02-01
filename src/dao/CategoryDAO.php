@@ -69,7 +69,7 @@ class CategoryDAO extends DAO
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
             $sql = $sql . " (cat.UserGroupID is null OR cat.UserGroupID = :UserGroupID)";
         } else {
-            $sql = $sql . "cat.UserGroupID is null";
+            $sql = $sql . " cat.UserGroupID is null";
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':ParentId', $parentId);

@@ -4,7 +4,7 @@
         <h1 class="h1">Gebruikers Groepen</h1>
         <!-- List -->
         <?php if (count($usergroups) == 0) { ?>
-            <p class="info-tekst">Geen Gebruikers Groepen toegevoegd.</p>
+            <p class="info-tekst">Geen groepen toegevoegd.</p>
         <?php } else { ?>
             <div class="grid-groups">
                 <div>
@@ -24,7 +24,7 @@
 
                     <a class="button-link button-bewerken" href="index.php?page=usergroups&id=<?php echo $usergroup['UserGroupID'] ?>">
                         <div class="button-yellow">
-                            <p>Bekijk Usergroup</p>
+                            <p>Bekijk groep</p>
                         </div>
                     </a>
                 </div>
@@ -35,34 +35,36 @@
 
         <a class="button-aanmaken button-link" href="index.php?page=usergroups&action=create">
             <div class="button-blue">
-                <p>Gebruikers Groep aanmaken</p>
+                <p>Groep aanmaken</p>
             </div>
         </a>
 
     <?php } else { ?>
         <h1 class="h1">Gebruikers Groep</h1>
-        <a class="button-link"  href="index.php?page=usergroups">
+        <a class="button-link" href="index.php?page=usergroups">
             <div class="button-blue">
                 <p>Terug</p>
             </div>
         </a>
         <!-- Detail -->
-        <div>
-            <form action="index.php?page=usergroups" method="post">
+        <div class="groups-form">
+            <form class="form-grid" action="index.php?page=usergroups" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($usergroup['UserGroupID'])) {
                                                             echo $usergroup['UserGroupID'];
                                                         } ?>" />
-                <div>
+                <div class="form-grid-items">
                     <label for="name">Naam</label>
-                    <input id="name" type="text" name="name" placeholder="Usergroup Naam" value="<?php if (!empty($usergroup['Name'])) {
+                    <input id="name" type="text" name="name" placeholder="Groep Naam" value="<?php if (!empty($usergroup['Name'])) {
                                                                                                         echo $usergroup['Name'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />
                 </div>
                 <?php if (empty($_GET['id'])) { ?>
-                    <button type="submit" name="action" value="create">Usergroup Toevoegen</button>
+                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Groep Toevoegen</button>
                 <?php } else { ?>
-                    <button type="submit" name="action" value="update">Usergroup Wijzigen</button>
-                    <button type="submit" name="action" value="delete">Usergroup Verwijderen</button>
+                    <div class="buttons-beheren">
+                        <button class="button-white button-delete" type="submit" name="action" value="delete">Groep Verwijderen</button>
+                        <button class="button-blue button-submit" type="submit" name="action" value="update">Groep Wijzigen</button>
+                    </div>
                 <?php } ?>
 
             </form>
