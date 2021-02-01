@@ -1,0 +1,31 @@
+.grid-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 200px;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    background-color: var(--colorBlue);
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1.5px 1.5px 0px 0px;
+    color: var(--colorWhite);
+    font-size: var(--fontRegular);
+    font-weight: var(--fontWeightSemiBold);
+}
+
+.grid-categories p {
+    padding-left: 0.556em;
+}
+
+.grid-categories-data {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 200px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 0px 0px;
+    border: solid var(--colorBlue);
+    border-radius: 0px 0px 1.5px 1.5px;
+    border-width: 0px 1.5px 1.5px 1.5px;
+}
+
+.grid-categories-data--item {
+    padding-left: .556em;
+}
