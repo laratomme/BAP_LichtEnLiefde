@@ -1,10 +1,10 @@
 <!-- Artikels -->
 <!-- https://xdsoft.net/jodit/ -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-    <h1 class="h1">Artikels</h1>
+    <h1 class="h1">Inhoud lijst</h1>
     <!-- List -->
     <?php if (count($articles) == 0) { ?>
-        <p class="info-tekst">Geen Artikels toegevoegd.</p>
+        <p class="info-tekst">Geen inhoud toegevoegd.</p>
     <?php } else { ?>
 
         <div class="grid-articles">
@@ -15,13 +15,13 @@
                 <p>Beschrijving</p>
             </div>
             <div>
-                <p>Artikel Type</p>
+                <p>Inhoud Type</p>
             </div>
             <div>
                 <p>Categorie</p>
             </div>
             <div>
-                <p>Gebruikers groep</p>
+                <p>Gebruikergroep</p>
             </div>
         </div>
 
@@ -57,17 +57,20 @@
 
     <a class="button-aanmaken button-link" href="index.php?page=articles&action=create">
         <div class="button-blue">
-            <p>Artikel aanmaken</p>
+            <p>Inhoud aanmaken</p>
         </div>
     </a>
 
 <?php } else { ?>
-    <h1 class="h1">Artikel</h1>
     <a class="button-link" href="index.php?page=articles">
-        <div class="button-blue">
-            <p>Terug</p>
+        <div class="button-blue button-back">
+            <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+            <p>Inhoud lijst</p>
         </div>
     </a>
+    <h1 class="h1">Inhoud</h1>
+
+
     <!-- Detail -->
     <div class="artikels-form">
         <form action="index.php?page=articles" method="post">
@@ -83,15 +86,15 @@
                                                                                             } ?>" minlength="3" maxlength="64" required />
                 </div>
                 <div class="form-grid-items">
-                    <label for="description">Omschrijving</label>
-                    <input id="description" type="text" name="description" placeholder="Omschrijving" value="<?php if (!empty($article['Description'])) {
+                    <label for="description">Beschrijving</label>
+                    <input id="description" type="text" name="description" placeholder="Beschrijving" value="<?php if (!empty($article['Description'])) {
                                                                                                                     echo $article['Description'];
                                                                                                                 } ?>" minlength="3" maxlength="256" />
                 </div>
                 <div class="form-grid-items">
-                    <label for="articletypeid">Artikel Type</label>
+                    <label for="articletypeid">Inhoud Type</label>
                     <select id="articletypeid" name="articletypeid">
-                        <option value> -- Kies een Artikel Type -- </option>
+                        <option value> -- Kies een Inhoud Type -- </option>
                         <?php foreach ($articletypes as $articletype) : ?>
                             <option value="<?php echo $articletype['ArticleTypeID']; ?>" <?php if (!empty($article['ArticleTypeID'])) {
                                                                                                 echo $articletype['ArticleTypeID'] === $article['ArticleTypeID'] ? "selected" : "";
@@ -100,9 +103,9 @@
                     </select>
                 </div>
                 <div class="form-grid-items">
-                    <label for="categoryid">Category</label>
+                    <label for="categoryid">Categorie</label>
                     <select id="categoryid" name="categoryid">
-                        <option value> -- Kies een Category -- </option>
+                        <option value> -- Kies een Categorie -- </option>
                         <?php foreach ($categories as $category) : ?>
                             <option value="<?php echo $category['CategoryID']; ?>" <?php if (!empty($article['CategoryID'])) {
                                                                                         echo $category['CategoryID'] === $article['CategoryID'] ? "selected" : "";
@@ -131,16 +134,14 @@
 
             <div class="form-grid">
                 <?php if (empty($_GET['id'])) { ?>
-                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Artikel Toevoegen</button>
+                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Inhoud Toevoegen</button>
                 <?php } else { ?>
                     <div class="buttons-beheren">
-                        <button class="button-white button-delete" type="submit" name="action" value="delete">Artikel Verwijderen</button>
-                        <button class="button-blue button-submit" type="submit" name="action" value="update">Artikel Wijzigen</button>
+                        <button class="button-white button-delete" type="submit" name="action" value="delete">Inhoud Verwijderen</button>
+                        <button class="button-blue button-submit" type="submit" name="action" value="update">Inhoud Wijzigen</button>
                     </div>
                 <?php } ?>
-
             </div>
-
         </form>
     </div>
 <?php } ?>
