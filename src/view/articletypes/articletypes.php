@@ -44,67 +44,73 @@
         </a>
 
     <?php } else { ?>
+        <a class="button-link" href="index.php?page=articletypes">
+            <div class="button-blue button-back">
+                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <p>Inhoud types</p>
+            </div>
+        </a>
+
         <!-- Detail -->
-        <div>
-            <form enctype="multipart/form-data" action="index.php?page=articletypes" method="post">
+        <h1 class="h1">Inhoud type</h1>
+        <div class="type-form">
+            <form class="form-grid" enctype="multipart/form-data" action="index.php?page=articletypes" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($articletype['ArticleTypeID'])) {
                                                             echo $articletype['ArticleTypeID'];
                                                         } ?>" />
                 <input type="hidden" name="iconid" value="<?php if (!empty($articletype['IconID'])) {
                                                                 echo $articletype['IconID'];
                                                             } ?>" />
-                <div>
+                <div class="form-grid-items">
                     <label for="name">Naam</label>
-                    <input id="name" type="text" name="name" placeholder="Artikel Type Naam" value="<?php if (!empty($articletype['Name'])) {
+                    <input id="name" type="text" name="name" placeholder="Type naam" value="<?php if (!empty($articletype['Name'])) {
                                                                                                         echo $articletype['Name'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />
                 </div>
-                <div>
+                <div class="form-grid-items">
                     <label for="description">Beschrijving</label>
-                    <input id="description" type="text" name="description" placeholder="Artikel Type Beschrijving" value="<?php if (!empty($articletype['Description'])) {
+                    <input id="description" type="text" name="description" placeholder="Beschrijving" value="<?php if (!empty($articletype['Description'])) {
                                                                                                                                 echo $articletype['Description'];
                                                                                                                             } ?>" minlength="3" maxlength="128" />
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($articletype['Icon'])) { ?>
-                    <div>
-                        <label for="icon">Huidig Icoon</label>
+                    <div class="form-grid-items form-icon-upload">
+                        <label class="form-icon-upload-label" for="icon">Huidig Icoon</label>
                         <img src="<?php echo $articletype['Icon'] ?>" alt="Icoon">
                     </div>
 
-                    <div>
-                        <label for="updateicon">Icoon Aanpassen:</label>
+                    <div class="form-grid-items form-icon-upload">
+                        <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
                         <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
                 <?php } ?>
 
-                <div>
+                <div class="form-grid-items">
                     <label for="iconsetid">Icoon Kiezen:</label>
                     <select id="iconsetid" name="iconsetid">
-                        <option value> -- None chosen -- </option>
+                        <option value> -- Geen icoon -- </option>
                         <?php foreach ($iconsets as $iconset) : ?>
                             <option value="<?php echo $iconset['IconSetID']; ?>"><?php echo $iconset['Icon'] ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
 
-                <div>
-                    <label for="iconfile">Icoon Uploaden:</label>
+                <div class="form-grid-items form-icon-upload">
+                    <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
                     <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>
 
                 <?php if (empty($_GET['id'])) { ?>
-                    <button type="submit" name="action" value="create">Artikel Type Toevoegen</button>
+                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Type Toevoegen</button>
                 <?php } else { ?>
-                    <button type="submit" name="action" value="update">Artikel Type Wijzigen</button>
-                    <button type="submit" name="action" value="delete">Artikel Type Verwijderen</button>
-                <?php } ?>
-                <a href="index.php?page=articletypes">
-                    <div>
-                        <p>Terug</p>
+                    <div class="buttons-beheren">
+                        <button class="button-white button-delete" type="submit" name="action" value="delete">Type Verwijderen</button>
+                        <button class="button-blue button-submit" type="submit" name="action" value="update">Type Wijzigen</button>
                     </div>
-                </a>
+                <?php } ?>
             </form>
         </div>
+
     <?php } ?>
 </main>

@@ -1,0 +1,16 @@
+.type-form {
+    display: flex;
+    justify-content: center;
+}
+
+.type-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+}
+
+.type-checkbox-label {
+    border: none;
+}

@@ -76,7 +76,7 @@
                                                             } ?>" />
                 <div class="form-grid-items">
                     <label for="name">Naam</label>
-                    <input id="name" type="text" name="name" placeholder="Categorie Naam" value="<?php if (!empty($category['Name'])) {
+                    <input id="name" type="text" name="name" placeholder="Categorie naam" value="<?php if (!empty($category['Name'])) {
                                                                                                         echo $category['Name'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />
                 </div>

@@ -54,7 +54,7 @@
                                                         } ?>" />
                 <div class="form-grid-items">
                     <label for="name">Groep naam</label>
-                    <input id="name" type="text" name="name" placeholder="Groep Naam" value="<?php if (!empty($usergroup['Name'])) {
+                    <input id="name" type="text" name="name" placeholder="Groep naam" value="<?php if (!empty($usergroup['Name'])) {
                                                                                                         echo $usergroup['Name'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />
                 </div>
