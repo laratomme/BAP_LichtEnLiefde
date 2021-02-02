@@ -26,3 +26,7 @@
     display: flex;
     align-items: center;
 }
+
+.inhoud-item-label img {
+    margin-left: 5px;
+}
