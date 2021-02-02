@@ -1,29 +1,48 @@
 <!-- Article Types -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
+        <h1 class="h1 header-beheren">Inhoud types</h1>
         <!-- List -->
         <?php if (count($articletypes) == 0) { ?>
-            <p class="info-tekst">Geen Artikel Types toegevoegd.</p>
+            <p class="info-tekst">Geen Inhoud types toegevoegd.</p>
         <?php } else { ?>
-            <div>
-                <?php foreach ($articletypes as $articletype) : ?>
-                    <div><?php echo $articletype['ArticleTypeID'] ?> - <?php echo $articletype['Name'] ?> - <?php echo $articletype['Description'] ?></div>
-                    <div><?php echo $articletype['IconID'] ?></div>
-                    <div>
-                        <a href="index.php?page=articletypes&id=<?php echo $articletype['ArticleTypeID'] ?>">
-                            <p>Bekijk Artikel Type</p>
-                        </a>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        <?php } ?>
-        <div>
-            <a href="index.php?page=articletypes&action=create">
+
+            <div class="grid-types">
                 <div>
-                    <p>Artikel Type aanmaken</p>
+                    <p>Naam</p>
                 </div>
-            </a>
-        </div>
+                <div>
+                    <p>Beschrijving</p>
+                </div>
+                <div></div>
+            </div>
+
+            <?php foreach ($articletypes as $articletype) : ?>
+                <div class="grid-types-data">
+                    <div>
+                        <p class="grid-types-data--item"><?php echo $articletype['Name'] ?></p>
+                    </div>
+                    <div>
+                        <p class="grid-types-data--item"><?php echo $articletype['Description'] ?></p>
+                    </div>
+
+                    <a class="button-link button-bewerken" href="index.php?page=articletypes&id=<?php echo $articletype['ArticleTypeID'] ?>">
+                        <div class="button-yellow">
+                            <p>Bewerken</p>
+                        </div>
+                    </a>
+                </div>
+
+            <?php endforeach ?>
+
+        <?php } ?>
+
+        <a class="button-link button-aanmaken" href="index.php?page=articletypes&action=create">
+            <div class="button-blue">
+                <p>Type aanmaken</p>
+            </div>
+        </a>
+
     <?php } else { ?>
         <!-- Detail -->
         <div>
