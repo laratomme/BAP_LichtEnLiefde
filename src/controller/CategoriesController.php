@@ -87,35 +87,73 @@ class CategoriesController extends Controller
                     case 'delete':
                         $this->categoryDAO->delete($data['Id']);
                         $this->iconsController->handleIcon($data, $action);
-                        $this->_handleLoad();
+                        $this->_handleLoadList();
                         break;
                 }
+            } else if (!empty($_GET['action'])) {
+                switch ($_GET['action']) {
+                    case 'create':
+                        $this->_handleLoadSubData();
+                        $category = null;
+                        if (!empty($_GET['parentid'])) {
+                            $category['CategoryParentID'] = (int)$_GET['parentid'];
+                            $category['OnMainMenu'] = false;
+                        }
+                        $this->set('category', $category);
+                        break;
+                    case 'delete':
+                        if (!empty($_GET['id'])) {
+                            $this->categoryDAO->delete($_GET['id']);
+                            if (!empty($_GET['parentid'])) {
+                                header('Location: index.php?page=category&id=' . $_GET['parentid']);
+                            } else {
+                                header('Location: index.php?page=home');
+                            }
+                            exit();
+                        }
+                        break;
+                    default:
+                        $_SESSION['error'] = "Actie is niet geimplementeerd";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        exit();
+                        break;
+                }
+            } else if (empty($_GET['id'])) {
+                $this->_handleLoadList();
             } else {
-                $this->_handleLoad();
+                $this->_handleLoadDetail();
             }
         }
     }
 
-    private function _handleLoad()
+    private function _handleLoadList()
     {
-        if (empty($_GET['action']) && empty($_GET['id'])) {
-            // List
-            $this->set('categories', $this->categoryDAO->readAll());
-        } else {
-            // Detail
-            $this->set('usergroups', $this->usergroupDAO->readAll());
-            $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
-            $this->set('iconsets', $this->iconsetDAO->readAll());
+        $this->set('categories', $this->categoryDAO->readAll());
+    }
 
-            if (!empty($_GET['id'])) {
-                if (!$category = $this->categoryDAO->readById($_GET['id'])) {
-                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
-                }
-                $this->set('category', $category);
-            } else {
-                $this->set('category', null);
+    private function _handleLoadDetail()
+    {
+        $this->_handleLoadSubData();
+
+        if (!empty($_GET['id'])) {
+            if (!$category = $this->categoryDAO->readById($_GET['id'])) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
             }
+            $this->set('category', $category);
+        } else {
+            $this->set('category', null);
         }
+    }
+
+    private function _handleLoadSubData()
+    {
+        $this->set('iconsets', $this->iconsetDAO->readAll());
+        $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
+
+        if (!$usergroups = $this->usergroupDAO->readAll()) {
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroups.');
+        }
+        $this->set('usergroups', $usergroups);
     }
 
     private function _handleError($Message)

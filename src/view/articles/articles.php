@@ -95,33 +95,39 @@
                     <label for="articletypeid">Inhoud Type</label>
                     <select id="articletypeid" name="articletypeid">
                         <option value> -- Kies een Inhoud Type -- </option>
-                        <?php foreach ($articletypes as $articletype) : ?>
-                            <option value="<?php echo $articletype['ArticleTypeID']; ?>" <?php if (!empty($article['ArticleTypeID'])) {
-                                                                                                echo $articletype['ArticleTypeID'] === $article['ArticleTypeID'] ? "selected" : "";
-                                                                                            } ?>><?php echo $articletype['Name'] ?></option>
-                        <?php endforeach ?>
+                        <?php if (count($articletypes) > 0) { ?>
+                            <?php foreach ($articletypes as $articletype) : ?>
+                                <option value="<?php echo $articletype['ArticleTypeID']; ?>" <?php if (!empty($article['ArticleTypeID'])) {
+                                                                                                    echo $articletype['ArticleTypeID'] === $article['ArticleTypeID'] ? "selected" : "";
+                                                                                                } ?>><?php echo $articletype['Name'] ?></option>
+                            <?php endforeach ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-grid-items">
                     <label for="categoryid">Categorie</label>
                     <select id="categoryid" name="categoryid">
                         <option value> -- Kies een Categorie -- </option>
-                        <?php foreach ($categories as $category) : ?>
-                            <option value="<?php echo $category['CategoryID']; ?>" <?php if (!empty($article['CategoryID'])) {
-                                                                                        echo $category['CategoryID'] === $article['CategoryID'] ? "selected" : "";
-                                                                                    } ?>><?php echo $category['Name'] ?></option>
-                        <?php endforeach ?>
+                        <?php if (count($categories) > 0) { ?>
+                            <?php foreach ($categories as $category) : ?>
+                                <option value="<?php echo $category['CategoryID']; ?>" <?php if (!empty($article['CategoryID'])) {
+                                                                                            echo $category['CategoryID'] === $article['CategoryID'] ? "selected" : "";
+                                                                                        } ?>><?php echo $category['Name'] ?></option>
+                            <?php endforeach ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-grid-items">
                     <label for="usergroupid">Gebruikergroep</label>
                     <select id="usergroupid" name="usergroupid">
                         <option value>Iedereen</option>
-                        <?php foreach ($usergroups as $usergroup) : ?>
-                            <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($article['UserGroupID'])) {
-                                                                                            echo $usergroup['UserGroupID'] === $article['UserGroupID'] ? "selected" : "";
-                                                                                        } ?>><?php echo $usergroup['Name'] ?></option>
-                        <?php endforeach ?>
+                        <?php if (count($usergroups) > 0) { ?>
+                            <?php foreach ($usergroups as $usergroup) : ?>
+                                <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($article['UserGroupID'])) {
+                                                                                                echo $usergroup['UserGroupID'] === $article['UserGroupID'] ? "selected" : "";
+                                                                                            } ?>><?php echo $usergroup['Name'] ?></option>
+                            <?php endforeach ?>
+                        <?php } ?>
                     </select>
                 </div>
             </div>

@@ -74,43 +74,75 @@ class ArticlesController extends Controller
                         break;
                     case 'delete':
                         $this->articleDAO->delete($data['Id']);
-                        $this->_handleLoad();
+                        $this->_handleLoadList();
                         break;
                 }
+            } else if (!empty($_GET['action'])) {
+                switch ($_GET['action']) {
+                    case 'create':
+                        $this->_handleLoadSubData();
+                        $article = null;
+                        if (!empty($_GET['categoryid'])) {
+                            $article['CategoryID'] = (int)$_GET['categoryid'];
+                        }
+                        $this->set('article', $article);
+                        break;
+                    case 'delete':
+                        if (!empty($_GET['id'])) {
+                            $this->articleDAO->delete($_GET['id']);
+                            header('Location: index.php?page=category&id=' . $_GET['categoryid']);
+                            exit();
+                        }
+                        break;
+                    default:
+                        $_SESSION['error'] = "Actie is niet geimplementeerd";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        exit();
+                        break;
+                }
+            } else if (empty($_GET['id'])) {
+                $this->_handleLoadList();
             } else {
-                $this->_handleLoad();
+                $this->_handleLoadDetail();
             }
         }
     }
 
-    private function _handleLoad()
+    private function _handleLoadList()
     {
-        if (empty($_GET['action']) && empty($_GET['id'])) {
-            // List
-            $this->set('articles', $this->articleDAO->readAll());
+        $this->set('articles', $this->articleDAO->readAll());
+    }
+
+    private function _handleLoadDetail()
+    {
+        $this->_handleLoadSubData();
+
+        if (!empty($_GET['id'])) {
+            if (!$article = $this->articleDAO->readById($_GET['id'])) {
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Artikel.');
+            }
+            $this->set('article', $article);
         } else {
-            // Detail
-            if (!$articletypes = $this->articleTypeDAO->readAll()) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Artikel Types.');
-            }
-            $this->set('articletypes', $articletypes);
-
-            if (!$categories = $this->categoryDAO->readAll()) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Categories.');
-            }
-            $this->set('categories', $categories);
-
-            $this->set('usergroups', $this->usergroupDAO->readAll());
-
-            if (!empty($_GET['id'])) {
-                if (!$article = $this->articleDAO->readById($_GET['id'])) {
-                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Artikel.');
-                }
-                $this->set('article', $article);
-            } else {
-                $this->set('article', null);
-            }
+            $this->set('article', null);
         }
+    }
+
+    private function _handleLoadSubData()
+    {
+        if (!$articletypes = $this->articleTypeDAO->readAll()) {
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Artikel Types.');
+        }
+        $this->set('articletypes', $articletypes);
+
+        if (!$categories = $this->categoryDAO->readAll()) {
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Categories.');
+        }
+        $this->set('categories', $categories);
+
+        if (!$usergroups = $this->usergroupDAO->readAll()) {
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroups.');
+        }
+        $this->set('usergroups', $usergroups);
     }
 
     private function _handleError($Message)

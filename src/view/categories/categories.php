@@ -95,22 +95,26 @@
                     <label for="categoryparentid">Bovenliggende categorie</label>
                     <select id="categoryparentid" name="categoryparentid">
                         <option value> -- Geen bovenliggende categorie -- </option>
-                        <?php foreach ($parents as $parent) : ?>
-                            <option value="<?php echo $parent['CategoryID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
-                                                                                        echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
-                                                                                    } ?>><?php echo $parent['Name'] ?></option>
-                        <?php endforeach ?>
+                        <?php if (count($parents) > 0) { ?>
+                            <?php foreach ($parents as $parent) : ?>
+                                <option value="<?php echo $parent['CategoryID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
+                                                                                            echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
+                                                                                        } ?>><?php echo $parent['Name'] ?></option>
+                            <?php endforeach ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-grid-items">
                     <label for="usergroupid">Gebruikergroep</label>
                     <select id="usergroupid" name="usergroupid">
                         <option value> -- Users -- </option>
-                        <?php foreach ($usergroups as $usergroup) : ?>
-                            <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($category['UserGroupID'])) {
-                                                                                            echo $usergroup['UserGroupID'] === $category['UserGroupID'] ? "selected" : "";
-                                                                                        } ?>><?php echo $usergroup['Name'] ?></option>
-                        <?php endforeach ?>
+                        <?php if (count($usergroups) > 0) { ?>
+                            <?php foreach ($usergroups as $usergroup) : ?>
+                                <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($category['UserGroupID'])) {
+                                                                                                echo $usergroup['UserGroupID'] === $category['UserGroupID'] ? "selected" : "";
+                                                                                            } ?>><?php echo $usergroup['Name'] ?></option>
+                            <?php endforeach ?>
+                        <?php } ?>
                     </select>
                 </div>
 

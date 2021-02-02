@@ -54,8 +54,16 @@ class CategoryDAO extends DAO
         $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
-            WHERE OnMainMenu = 1";
+            WHERE OnMainMenu = 1 AND";
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            $sql = $sql . " (cat.UserGroupID is null OR cat.UserGroupID = :UserGroupID)";
+        } else {
+            $sql = $sql . " cat.UserGroupID is null";
+        }
         $stmt = $this->pdo->prepare($sql);
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
+        }
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
