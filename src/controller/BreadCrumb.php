@@ -57,7 +57,7 @@ class BreadCrumb
             }
         }
 
-        array_push($crumb, array('id' => null, 'page' => 'home', 'name' => 'home'));
+        array_push($crumb, array('id' => null, 'page' => 'home', 'name' => 'Home'));
         return array_reverse($crumb);
     }
 }

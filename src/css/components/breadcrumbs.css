@@ -1,0 +1,35 @@
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    padding: .9em .6em 0;
+}
+
+.breadcrumbs p {
+    margin: 0;
+    padding-right: .4em;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: var(--colorBlack);
+    font-size: var(--fontSmall);
+    padding-right: .4em;
+}
+
+.breadcrumbs a::after {
+    content: '>';
+}
+
+.breadcrumbs a:first-child {
+    padding: 0 0 0 .4em;
+}
+
+.breadcrumbs a:last-child {
+    font-weight: var(--fontWeightBold);
+}
+
+.breadcrumbs a:last-child::after {
+    content: '';
+}

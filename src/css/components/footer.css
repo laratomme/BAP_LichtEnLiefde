@@ -3,7 +3,7 @@ footer {
     justify-content: center;
     background-color: var(--colorBlue);
     font-weight: var(--fontWeightSemiBold);
-    margin-top: 2.222em;
+    margin-top: 1.222em;
     bottom: 0px;
     width: 100%;
     flex-shrink: 1;

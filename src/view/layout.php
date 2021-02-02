@@ -84,7 +84,8 @@
     </header>
 
     <?php if (!empty($crumbs)) { ?>
-      <div>
+      <div class="breadcrumbs container">
+        <p>U bevindt zich op</p>
         <?php foreach ($crumbs as $crumb) : ?>
 
           <a href="<?php if (!empty($crumb['id'])) {
