@@ -21,7 +21,9 @@
         <?php } ?>
     </div>
 <?php } ?>
+<h1><?php echo $category['Name'] ?></h1>
 <?php if (!empty($children)) { ?>
+    <h2 class="header-grey-cat">Categorieën</h2>
     <div>
         <?php foreach ($children as $child) : ?>
 
@@ -51,17 +53,43 @@
         </a>
     </div>
 <?php } ?>
+
 <?php if (!empty($articles)) { ?>
-    <div>
+    <h2 class="header-grey-inhoud">Inhoud</h2>
+    <div class="inhoud-lijst">
         <?php foreach ($articles as $article) : ?>
-            <a href="index.php?page=article&id=<?php echo $article['ArticleID'] ?>">
-                <div><?php echo $article['ArticleID'] ?> - <?php echo $article['Title'] ?></div>
-                <div><?php echo $article['ArticleTypeName'] ?></div>
+            <div class="inhoud-lijst-lijn"></div>
+            <a class="inhoud-item" href="index.php?page=article&id=<?php echo $article['ArticleID'] ?>">
                 <div>
+                    <p><?php echo $article['Title'] ?></p>
+                </div>
+                <div class="inhoud-item-label">
+                    <p><?php echo $article['ArticleTypeName'] ?></p>
                     <img src="<?php echo $article['Icon'] ?>" alt="Icoon">
                 </div>
+            </a>
+            <div class="inhoud-lijst-lijn"></div>
+
+            <div class="inhoud-lijst-lijn"></div>
+            <a class="inhoud-item" href="index.php?page=article&id=<?php echo $article['ArticleID'] ?>">
                 <div>
-                    <p>Bekijk Article</p>
+                    <p><?php echo $article['Title'] ?></p>
+                </div>
+                <div class="inhoud-item-label">
+                    <p><?php echo $article['ArticleTypeName'] ?></p>
+                    <img src="<?php echo $article['Icon'] ?>" alt="Icoon">
+                </div>
+            </a>
+            <div class="inhoud-lijst-lijn"></div>
+
+            <div class="inhoud-lijst-lijn"></div>
+            <a class="inhoud-item" href="index.php?page=article&id=<?php echo $article['ArticleID'] ?>">
+                <div>
+                    <p><?php echo $article['Title'] ?></p>
+                </div>
+                <div class="inhoud-item-label">
+                    <p><?php echo $article['ArticleTypeName'] ?></p>
+                    <img src="<?php echo $article['Icon'] ?>" alt="Icoon">
                 </div>
             </a>
         <?php endforeach ?>

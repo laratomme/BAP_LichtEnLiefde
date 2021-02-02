@@ -1,0 +1,28 @@
+.inhoud-lijst {
+    display: flex;
+    flex-direction: column;
+}
+
+.inhoud-lijst p {
+    font-weight: var(--fontWeightSemiBold);
+    font-size: var(--fontSmall);
+    color: var(--colorBlack);
+}
+
+.inhoud-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--colorBlack);
+}
+
+.inhoud-lijst-lijn {
+    border-top: 2.5px solid var(--colorDarkGrey);
+    border-radius: 1px;
+}
+
+.inhoud-item-label {
+    display: flex;
+    align-items: center;
+}
