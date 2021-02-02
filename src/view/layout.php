@@ -23,7 +23,9 @@
 
     <header class="header">
       <div class="header-items container">
-        <a class="logo" href="index.php?page=layout">Logo Licht en Liefde</a>
+        <a class="logo-lichtenliefde" href="index.php?page=layout">
+          <img src="../../assets/img/logolichtenliefde.svg" alt="Home Licht en Liefde Platform">
+        </a>
         <div class="header-buttons">
           <a class="button-link" href="index.php?page=contact">
             <div class="button-white">
@@ -33,16 +35,16 @@
           </a>
           <?php if (empty($_SESSION["userData"])) { ?>
             <a class="button-link" href="index.php?page=login">
-              <div class="button-yellow">
+              <div class="button-blue">
                 <p>Login</p>
-                <img src="../../assets/img/icons/icon-login-black.svg" alt="Slot login icoon">
+                <img src="../../assets/img/icons/icon-login-white.svg" alt="Gesloten slot login icoon">
               </div>
             </a>
           <?php } else { ?>
             <a class="button-link" href="index.php?page=login&action=logout">
-              <div class="button-yellow">
+              <div class="button-blue">
                 <p>Logout</p>
-                <img src="../../assets/img/icons/icon-login-black.svg" alt="Slot login icoon">
+                <img src="../../assets/img/icons/icon-logout-white.svg" alt="Open slot logout icoon">
               </div>
             </a>
           <?php } ?>
@@ -50,7 +52,21 @@
         </div>
       </div>
 
-      <div class="search"></div>
+      <div class="search">
+
+        <div class="search-container">
+          <a class="settings" href="index.php?page=settings">
+            <img src="../../assets/img/icons/icon-settings-white.svg" alt="Wit icoon instellingen">
+            <p class="hidden">Instellingen</p>
+          </a>
+
+          <div class="search-wrap">
+            <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar...">
+            <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/icon-zoeken-zwart.svg" alt="Zwart vergrootglas zoek icoon"></button>
+          </div>
+        </div>
+
+      </div>
 
       <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>
 

@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/BreadCrumb.php';
-require_once __DIR__ . '/Settings.php';
+require_once __DIR__ . '/SettingsController.php';
 require_once __DIR__ . '/Security.php';
 
 class Controller
@@ -81,7 +81,7 @@ class Controller
   private function checkSettings()
   {
     if (empty($_SESSION['uiData'])) {
-      $settings = new Settings();
+      $settings = new SettingsController();
       if (!isset($_COOKIE["uiData"]) || empty($_COOKIE["uiData"])) {
         $settings->initSettings();
       } else {

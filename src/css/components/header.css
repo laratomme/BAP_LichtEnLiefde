@@ -7,8 +7,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     /*height: 50px;*/
-    padding: 0.556em;
+    padding: 0.2em;
 }
 
 .header-items a {
@@ -21,6 +22,10 @@
     display: flex;
 }
 
-.logo {
+.logo-lichtenliefde {
     align-self: center;
+}
+
+.logo-lichtenliefde img {
+    width: 100%;
 }
