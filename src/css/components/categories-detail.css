@@ -1,3 +1,28 @@
 .categorie-form {
-    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.cat-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+}
+
+.cat-checkbox-label {
+    border: none;
+}
+
+.form-icon-upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+}
+
+.form-icon-upload-label {
+    border: none;
 }

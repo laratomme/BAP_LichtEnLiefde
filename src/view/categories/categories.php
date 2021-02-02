@@ -64,8 +64,9 @@
             </div>
         </a>
         <!-- Detail -->
+
+        <h1 class="h1">Categorie</h1>
         <div class="categorie-form">
-            <h1 class="h1">Categorie</h1>
             <form class="form-grid" enctype="multipart/form-data" action="index.php?page=categories" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($category['CategoryID'])) {
                                                             echo $category['CategoryID'];
@@ -85,8 +86,8 @@
                                                                                                                     echo $category['Description'];
                                                                                                                 } ?>" minlength="3" maxlength="256" />
                 </div>
-                <div class="form-grid-items">
-                    <label for="onmainmenu">Zichtbaar op hoofdmenu:</label>
+                <div class="form-grid-items cat-checkbox">
+                    <label class="cat-checkbox-label" for="onmainmenu">Zichtbaar op hoofdmenu:</label>
                     <input id="onmainmenu" type="checkbox" name="onmainmenu" <?php if (!empty($category['OnMainMenu'])) {
                                                                                     echo "checked";
                                                                                 } ?> />
@@ -107,7 +108,7 @@
                 <div class="form-grid-items">
                     <label for="usergroupid">Gebruikergroep</label>
                     <select id="usergroupid" name="usergroupid">
-                        <option value> -- Users -- </option>
+                        <option value> -- Geen gebruikergroep -- </option>
                         <?php if (count($usergroups) > 0) { ?>
                             <?php foreach ($usergroups as $usergroup) : ?>
                                 <option value="<?php echo $usergroup['UserGroupID']; ?>" <?php if (!empty($category['UserGroupID'])) {
@@ -119,13 +120,13 @@
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>
-                    <div class="form-grid-items">
-                        <label for="icon">Huidig Icoon</label>
+                    <div class="form-grid-items form-icon-upload">
+                        <label class="form-icon-upload-label" for="icon">Huidig Icoon</label>
                         <img src="<?php echo $category['Icon'] ?>" alt="Icoon">
                     </div>
 
-                    <div class="form-grid-items">
-                        <label for="updateicon">Icoon Aanpassen:</label>
+                    <div class="form-grid-items form-icon-upload">
+                        <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
                         <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
                 <?php } ?>
@@ -133,26 +134,28 @@
                 <div class="form-grid-items">
                     <label for="iconsetid">Icoon Kiezen:</label>
                     <select id="iconsetid" name="iconsetid">
-                        <option value> -- None chosen -- </option>
+                        <option value> -- Geen icoon -- </option>
                         <?php foreach ($iconsets as $iconset) : ?>
                             <option value="<?php echo $iconset['IconSetID']; ?>"><?php echo $iconset['Icon'] ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
 
-                <div class="form-grid-items">
-                    <label for="iconfile">Icoon Uploaden:</label>
+                <div class="form-grid-items form-icon-upload">
+                    <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
                     <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>
 
                 <?php if (empty($_GET['id'])) { ?>
-                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Category Toevoegen</button>
+                    <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Categorie Toevoegen</button>
                 <?php } else { ?>
-                    <button class="button-white button-delete" type="submit" name="action" value="delete">Category Verwijderen</button>
-                    <button class="button-blue button-submit" type="submit" name="action" value="update">Category Wijzigen</button>
+                    <div class="buttons-beheren">
+                        <button class="button-white button-delete" type="submit" name="action" value="delete">Categorie Verwijderen</button>
+                        <button class="button-blue button-submit" type="submit" name="action" value="update">Categorie Wijzigen</button>
+                    </div>
                 <?php } ?>
-
             </form>
         </div>
+
     <?php } ?>
 </main>
