@@ -57,11 +57,6 @@ $routes = array(
         'action' => 'categories',
         'name' => 'Categories'
     ),
-    'iconsets' => array(
-        'controller' => 'IconSets',
-        'action' => 'iconsets',
-        'name' => 'Icoon Set'
-    ),
     'users' => array(
         'controller' => 'Users',
         'action' => 'users',

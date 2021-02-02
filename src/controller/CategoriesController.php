@@ -1,20 +1,18 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
-require_once __DIR__ . '/IconsController.php';
+require_once __DIR__ . '/Icons.php';
 require_once __DIR__ . '/Security.php';
 require_once __DIR__ . '/../dao/ArticleDAO.php';
 require_once __DIR__ . '/../dao/CategoryDAO.php';
 require_once __DIR__ . '/../dao/UsergroupDAO.php';
-require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class CategoriesController extends Controller
 {
     private $articleDAO;
     private $categoryDAO;
     private $usergroupDAO;
-    private $iconsetDAO;
-    private $iconsController;
+    private $icons;
     private $security;
 
     function __construct()
@@ -22,8 +20,7 @@ class CategoriesController extends Controller
         $this->articleDAO = new ArticleDAO();
         $this->categoryDAO = new CategoryDAO();
         $this->usergroupDAO = new UsergroupDAO();
-        $this->iconsetDAO = new IconSetDAO();
-        $this->iconsController = new IconsController();
+        $this->icons = new Icons();
         $this->security = new Security();
     }
 
@@ -61,12 +58,12 @@ class CategoriesController extends Controller
                 $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
 
                 $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
-                $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
+                $data['DefaultIcon'] = empty($_POST['defaulticon']) ? null : $_POST['defaulticon'];
                 $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
                 switch ($action) {
                     case 'create':
-                        $data['IconId'] = $this->iconsController->handleIcon($data, $action);
+                        $data['IconId'] = $this->icons->handleIcon($data, $action);
                         $id = $this->categoryDAO->create($data);
                         if ($id) {
                             header("Location: index.php?page=categories&id=" . $id);
@@ -77,7 +74,7 @@ class CategoriesController extends Controller
                         break;
                     case 'update':
                         if ($this->categoryDAO->update($data)) {
-                            $this->iconsController->handleIcon($data, $action);
+                            $this->icons->handleIcon($data, $action);
                             header("Location: index.php?page=categories&id=" . $data['Id']);
                             exit();
                         } else {
@@ -86,7 +83,7 @@ class CategoriesController extends Controller
                         break;
                     case 'delete':
                         $this->categoryDAO->delete($data['Id']);
-                        $this->iconsController->handleIcon($data, $action);
+                        $this->icons->handleIcon($data, $action);
                         $this->_handleLoadList();
                         break;
                 }
@@ -147,7 +144,6 @@ class CategoriesController extends Controller
 
     private function _handleLoadSubData()
     {
-        $this->set('iconsets', $this->iconsetDAO->readAll());
         $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
 
         if (!$usergroups = $this->usergroupDAO->readAll()) {

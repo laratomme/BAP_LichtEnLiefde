@@ -64,14 +64,14 @@
                 <div class="form-grid-items">
                     <label for="name">Naam</label>
                     <input id="name" type="text" name="name" placeholder="Type naam" value="<?php if (!empty($articletype['Name'])) {
-                                                                                                        echo $articletype['Name'];
-                                                                                                    } ?>" minlength="3" maxlength="64" required />
+                                                                                                echo $articletype['Name'];
+                                                                                            } ?>" minlength="3" maxlength="64" required />
                 </div>
                 <div class="form-grid-items">
                     <label for="description">Beschrijving</label>
                     <input id="description" type="text" name="description" placeholder="Beschrijving" value="<?php if (!empty($articletype['Description'])) {
-                                                                                                                                echo $articletype['Description'];
-                                                                                                                            } ?>" minlength="3" maxlength="128" />
+                                                                                                                    echo $articletype['Description'];
+                                                                                                                } ?>" minlength="3" maxlength="128" />
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($articletype['Icon'])) { ?>
@@ -86,14 +86,27 @@
                     </div>
                 <?php } ?>
 
-                <div class="form-grid-items">
-                    <label for="iconsetid">Icoon Kiezen:</label>
-                    <select id="iconsetid" name="iconsetid">
-                        <option value> -- Geen icoon -- </option>
-                        <?php foreach ($iconsets as $iconset) : ?>
-                            <option value="<?php echo $iconset['IconSetID']; ?>"><?php echo $iconset['Icon'] ?></option>
-                        <?php endforeach ?>
-                    </select>
+                <div class="form-grid-items default-iconen">
+                    <div class="icoon-kiezen-p">
+                        <p>Default iconen:</p>
+                    </div>
+
+                    <div class="icons-flex">
+                        <label class="form-icon-label" for="iconinfo">
+                            <input type="radio" id="iconinfo" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
+                            <img src="../../assets/img/icons/icon-info-black.svg">
+                        </label>
+
+                        <label class="form-icon-label" for="iconinfo2">
+                            <input type="radio" id="iconinfo2" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
+                            <img src="../../assets/img/icons/icon-info-black.svg">
+                        </label>
+
+                        <label class="form-icon-label" for="iconinfo3">
+                            <input type="radio" id="iconinfo3" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
+                            <img src="../../assets/img/icons/icon-info-black.svg">
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-grid-items form-icon-upload">

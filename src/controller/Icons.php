@@ -1,25 +1,21 @@
 <?php
 
-require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../dao/IconDAO.php';
-require_once __DIR__ . '/../dao/IconSetDAO.php';
 
-class IconsController extends Controller
+class Icons
 {
     private $iconDAO;
-    private $iconSetDAO;
 
     function __construct()
     {
         $this->iconDAO = new IconDAO();
-        $this->iconSetDAO = new IconSetDAO();
     }
 
     public function handleIcon($data, $action)
     {
         $icon = array();
         $icon['Id'] = $data['IconId'];
-        $icon['IsCustom'] = empty($data['IconSetId']) ? 1 : 0;
+        $icon['IsCustom'] = empty($data['DefaultIcon']) ? 1 : 0;
         $icon['Icon'] = !empty($data['IconFile']) ? $data['IconFile'] : null;
 
         $id = null;
@@ -29,8 +25,7 @@ class IconsController extends Controller
                     $nextId = $this->iconDAO->getNextId();
                     $icon['Icon'] = $this->_handleUpload($data['IconFile'], $nextId['ID']);
                 } else {
-                    $iconSet = $this->iconSetDAO->readByID($data['IconSetId']);
-                    $icon['Icon'] = $iconSet['Icon'];
+                    $icon['Icon'] = $data['DefaultIcon'];
                 }
                 $id = $this->iconDAO->create($icon);
                 break;
@@ -38,9 +33,8 @@ class IconsController extends Controller
                 if ($data['UpdateIcon']) {
                     if ($icon['IsCustom']) {
                         $icon['Icon'] = $this->_handleUpload($data['IconFile'], $icon['Id']);
-                    } else {
-                        $iconSet = $this->iconSetDAO->readByID($data['IconSetId']);
-                        $icon['Icon'] = $iconSet['Icon'];
+                    } else {                   
+                        $icon['Icon'] = $data['DefaultIcon'];
                     }
                     $this->iconDAO->update($icon);
                 }

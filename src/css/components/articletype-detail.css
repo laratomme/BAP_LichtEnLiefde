@@ -14,3 +14,43 @@
 .type-checkbox-label {
     border: none;
 }
+
+.form-icon-label {
+    border: none;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio]+img {
+    cursor: pointer;
+    width: 50px;
+}
+
+[type=radio]:checked+img {
+    outline: 2px solid var(--colorBlue);
+}
+
+.icoon-kiezen-p {
+    padding: 12px 10px;
+    font-weight: var(--fontWeightSemiBold);
+    font-size: var(--fontRegular);
+}
+
+.icoon-kiezen-p p {
+    margin: 0;
+}
+
+.icons-flex {
+    display: flex;
+}
+
+.default-iconen {
+    background: var(--colorWhite);
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+}

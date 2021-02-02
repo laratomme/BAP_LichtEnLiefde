@@ -1,23 +1,20 @@
 <?php
 
 require_once __DIR__ . '/Controller.php';
+require_once __DIR__ . '/Icons.php';
 require_once __DIR__ . '/Security.php';
-require_once __DIR__ . '/IconsController.php';
 require_once __DIR__ . '/../dao/ArticleTypeDAO.php';
-require_once __DIR__ . '/../dao/IconSetDAO.php';
 
 class ArticleTypesController extends Controller
 {
     private $articletypeDAO;
-    private $iconsetDAO;
-    private $iconsController;
+    private $icons;
     private $security;
 
     function __construct()
     {
         $this->articletypeDAO = new ArticleTypeDAO();
-        $this->iconsetDAO = new IconSetDAO();
-        $this->iconsController = new IconsController();
+        $this->icons = new Icons();
         $this->security = new Security();
     }
 
@@ -34,12 +31,12 @@ class ArticleTypesController extends Controller
                 $data['Description'] = $_POST['description'];
 
                 $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
-                $data['IconSetId'] = empty($_POST['iconsetid']) ? null : $_POST['iconsetid'];
+                $data['DefaultIcon'] = empty($_POST['defaulticon']) ? null : $_POST['defaulticon'];
                 $data['IconFile'] = empty($_FILES['iconfile']) ? null : $_FILES['iconfile'];
 
                 switch ($action) {
                     case 'create':
-                        $data['IconId'] = $this->iconsController->handleIcon($data, $action);
+                        $data['IconId'] = $this->icons->handleIcon($data, $action);
                         $id = $this->articletypeDAO->create($data);
                         if ($id) {
                             header("Location: index.php?page=articletypes&id=" . $id);
@@ -50,7 +47,7 @@ class ArticleTypesController extends Controller
                         break;
                     case 'update':
                         if ($this->articletypeDAO->update($data)) {
-                            $this->iconsController->handleIcon($data, $action);
+                            $this->icons->handleIcon($data, $action);
                             header("Location: index.php?page=articletypes&id=" . $data['Id']);
                             exit();
                         } else {
@@ -59,7 +56,7 @@ class ArticleTypesController extends Controller
                         break;
                     case 'delete':
                         $this->articletypeDAO->delete($data['Id']);
-                        $this->iconsController->handleIcon($data, $action);
+                        $this->icons->handleIcon($data, $action);
                         $this->_handleLoad();
                         break;
                 }
@@ -76,8 +73,6 @@ class ArticleTypesController extends Controller
             $this->set('articletypes', $this->articletypeDAO->readAll());
         } else {
             // Detail
-            $this->set('iconsets', $this->iconsetDAO->readAll());
-
             if (!empty($_GET['id'])) {
                 if (!$articletype = $this->articletypeDAO->readById($_GET['id'])) {
                     $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
