@@ -7,10 +7,14 @@
     margin: .6em;
     display: grid;
     filter: drop-shadow(0px 10px 25px rgba(0, 73, 154, 0.25));
+    @media (min-width: 834px) {
+        height: 280px;
+        width: 250px;
+    }
 }
 
 .card-contact p {
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightBold);
     color: var(--colorBlack);
 }
 
@@ -22,6 +26,10 @@
     justify-content: center;
     align-items: center;
     align-self: end;
+    @media (min-width: 834px) {
+        width: 250px;
+        height: 80px;
+    }
 }
 
 .flex-icon {
@@ -33,4 +41,11 @@
 
 .card-icon {
     height: 82px;
+    @media (min-width: 834px) {
+        height: 165px;
+    }
+}
+
+.flex-cards a {
+    text-decoration: none;
 }
