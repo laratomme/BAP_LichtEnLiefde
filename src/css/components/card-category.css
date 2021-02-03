@@ -27,6 +27,7 @@
     @media (min-width: 834px) {
         height: 96px;
         width: 250px;
+        padding: 4px;
     }
 }
 

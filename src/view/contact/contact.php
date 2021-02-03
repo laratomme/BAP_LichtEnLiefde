@@ -1,4 +1,4 @@
-<h1>Contact</h1>
+<h1 class="h1">Contact</h1>
 <p>Heb je een vraag of een probleem, neem dan contact op met Netwerk Licht en Liefde.</p>
 
 <h2 class="header-grey-contactform">Contact formulier</h2>

@@ -8,6 +8,9 @@ footer {
     width: 100%;
     flex-shrink: 1;
     justify-content: center;
+    @media (min-width: 834px) {
+        margin-top: 2em;
+    }
 }
 
 address {

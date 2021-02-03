@@ -43,6 +43,13 @@ h2 {
     padding: 0 0 4px 0;
     background-position: 0 19px;
     background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+    @media (min-width: 834px) {
+        background-size: 6.2em 1em;
+        background-position: 0 28px;
+    }
+    @media (min-width: 1280px) {
+        background-position: 0 41px;
+    }
 }
 
 .header-grey-inhoud {
@@ -51,6 +58,12 @@ h2 {
     padding: 0 0 4px 0;
     background-position: 0 19px;
     background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+    @media (min-width: 834px) {
+        background-position: 0 28px;
+    }
+    @media (min-width: 1280px) {
+        background-position: 0 41px;
+    }
 }
 
 .header-grey-contactform {
@@ -59,6 +72,12 @@ h2 {
     padding: 0 0 4px 0;
     background-position: 0 19px;
     background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+    @media (min-width: 834px) {
+        background-position: 0 28px;
+    }
+    @media (min-width: 1280px) {
+        background-position: 0 41px;
+    }
 }
 
 .header-grey-contactgeg {
@@ -67,4 +86,10 @@ h2 {
     padding: 0 0 4px 0;
     background-position: 0 19px;
     background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+    @media (min-width: 834px) {
+        background-position: 0 28px;
+    }
+    @media (min-width: 1280px) {
+        background-position: 0 41px;
+    }
 }
