@@ -8,12 +8,13 @@ class ArticleDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_Article (Title, Description, Content, ArticleTypeID, CategoryID, UserGroupID) 
-                VALUES (:Title, :Description, :Content, :ArticleTypeID, :CategoryID, :UserGroupID)";
+            $sql = "INSERT INTO BAP_Article (Title, Description, Content, ExternalUrl, ArticleTypeID, CategoryID, UserGroupID) 
+                VALUES (:Title, :Description, :Content, :ExternalUrl, :ArticleTypeID, :CategoryID, :UserGroupID)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Title', $data['Title']);
             $stmt->bindValue(':Description', $data['Description']);
-            $stmt->bindValue(':Content', $data['Content']);
+            $stmt->bindValue(':Content', !empty($data['Content']) ? $data['Content'] : null);
+            $stmt->bindValue(':ExternalUrl', !empty($data['ExternalUrl']) ? $data['ExternalUrl'] : null);
             $stmt->bindValue(':ArticleTypeID', $data['ArticleTypeId']);
             $stmt->bindValue(':CategoryID', $data['CategoryId']);
             $stmt->bindValue(':UserGroupID', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
@@ -26,7 +27,7 @@ class ArticleDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, cat.Name as CategoryName, ar.UserGroupID, ug.Name as UserGroupName, ar.Title, ar.Description, art.Name as ArticleTypeName, ic.Icon 
+        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, cat.Name as CategoryName, ar.UserGroupID, ug.Name as UserGroupName, ar.Title, ar.Description, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon 
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
@@ -39,7 +40,7 @@ class ArticleDAO extends DAO
 
     public function readAllByCategoryId($id)
     {
-        $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, ar.Content, art.Name as ArticleTypeName, ic.Icon
+        $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, ar.Content, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
@@ -74,7 +75,8 @@ class ArticleDAO extends DAO
             $sql = "UPDATE BAP_Article SET 
                         Title = :Title, 
                         Description = :Description,
-                        Content = :Content, 
+                        Content = :Content,
+                        ExternalUrl = :ExternalUrl,
                         ArticleTypeID = :ArticleTypeId,
                         CategoryID = :CategoryId,
                         UserGroupID = :UserGroupId
@@ -82,7 +84,8 @@ class ArticleDAO extends DAO
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Title', $data['Title']);
             $stmt->bindValue(':Description', $data['Description']);
-            $stmt->bindValue(':Content', $data['Content']);
+            $stmt->bindValue(':Content', !empty($data['Content']) ? $data['Content'] : null);
+            $stmt->bindValue(':ExternalUrl', !empty($data['ExternalUrl']) ? $data['ExternalUrl'] : null);
             $stmt->bindValue(':ArticleTypeId', $data['ArticleTypeId']);
             $stmt->bindValue(':CategoryId', $data['CategoryId']);
             $stmt->bindValue(':UserGroupId', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
@@ -109,7 +112,7 @@ class ArticleDAO extends DAO
         if (empty($data['Title'])) {
             $errors['Title'] = 'Gelieve een titel in te geven';
         }
-        if (empty($data['Content'])) {
+        if (empty($data['Content']) && empty($data['ExternalUrl'])) {
             $errors['Content'] = 'Gelieve een inhoud in te geven';
         }
         if (empty($data['ArticleTypeId'])) {

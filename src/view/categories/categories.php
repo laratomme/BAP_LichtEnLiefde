@@ -118,6 +118,12 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="form-grid-items">
+                    <label for="externalurl">Externe Link</label>
+                    <input id="externalurl" type="text" name="externalurl" placeholder="Url" value="<?php if (!empty($category['ExternalUrl'])) {
+                                                                                                                    echo $category['ExternalUrl'];
+                                                                                                                } ?>" minlength="3" maxlength="256" />
+                </div>
 
                 <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>
                     <div class="form-grid-items form-icon-upload">

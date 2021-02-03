@@ -3,7 +3,13 @@
 
 <div class="flex-cards">
     <?php foreach ($categories as $category) : ?>
-        <a class="cat-link" href="index.php?page=category&id=<?php echo $category['CategoryID'] ?>">
+        <a class="cat-link" href="<?php if (empty($category['ExternalUrl'])) { ?>
+                index.php?page=category&id=<?php echo $category['CategoryID'] ?>
+                <?php } else { ?>
+                    <?php echo $category['ExternalUrl']; ?>
+                    <?php } ?>" <?php if (!empty($category['ExternalUrl'])) {
+                                    echo "target=\"_blank\"";
+                                } ?>>
             <div class="card-category">
                 <div class="card-category--icon">
                     <img src="<?php echo $category['Icon'] ?>" alt="Icoon">

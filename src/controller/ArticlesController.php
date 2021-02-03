@@ -53,6 +53,7 @@ class ArticlesController extends Controller
                 $data['Title'] = $_POST['title'];
                 $data['Description'] = $_POST['description'];
                 $data['Content'] = $_POST['content'];
+                $data['ExternalUrl'] =  !empty($_POST['externalurl']) ? $this->_fixUrl($_POST['externalurl']) : null;
 
                 switch ($action) {
                     case 'create':
@@ -150,5 +151,11 @@ class ArticlesController extends Controller
         $_SESSION['error'] = $Message;
         header('Location: index.php?page=articles');
         exit();
+    }
+
+    private function _fixUrl($url, $scheme = 'http://')
+    {
+        return parse_url($url, PHP_URL_SCHEME) === null ?
+            $scheme . $url : $url;
     }
 }

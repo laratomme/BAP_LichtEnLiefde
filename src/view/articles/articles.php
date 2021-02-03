@@ -43,7 +43,6 @@
                     <p class="grid-articles-data--item"><?php echo $article['UserGroupName'] ?></p>
                 </div>
 
-
                 <a class="button-bewerken button-link" href="index.php?page=articles&id=<?php echo $article['ArticleID'] ?>">
                     <div class="button-yellow">
                         <p>Bewerken</p>
@@ -129,6 +128,12 @@
                             <?php endforeach ?>
                         <?php } ?>
                     </select>
+                </div>
+                <div class="form-grid-items">
+                    <label for="externalurl">Externe Link</label>
+                    <input id="externalurl" type="text" name="externalurl" placeholder="Externe Url" value="<?php if (!empty($article['ExternalUrl'])) {
+                                                                                                                    echo $article['ExternalUrl'];
+                                                                                                                } ?>" minlength="3" maxlength="256" />
                 </div>
             </div>
 

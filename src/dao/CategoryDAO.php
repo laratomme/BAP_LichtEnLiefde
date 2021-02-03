@@ -8,12 +8,13 @@ class CategoryDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_Category (Name, Description, OnMainMenu, CategoryParentID, UserGroupID, IconID) 
-                VALUES (:Name, :Description, :OnMainMenu, :CategoryParentID, :UserGroupID, :IconID)";
+            $sql = "INSERT INTO BAP_Category (Name, Description, OnMainMenu, ExternalUrl, CategoryParentID, UserGroupID, IconID) 
+                VALUES (:Name, :Description, :OnMainMenu, :ExternalUrl, :CategoryParentID, :UserGroupID, :IconID)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
             $stmt->bindValue(':Description', $data['Description']);
             $stmt->bindValue(':OnMainMenu', $data['OnMainMenu']);
+            $stmt->bindValue(':ExternalUrl', !empty($data['ExternalUrl']) ? $data['ExternalUrl'] : null);
             $stmt->bindValue(':CategoryParentID', !empty($data['CategoryParentId']) ? $data['CategoryParentId'] : null);
             $stmt->bindValue(':UserGroupID', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
             $stmt->bindValue(':IconID', $data['IconId']);
@@ -26,7 +27,7 @@ class CategoryDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, catPar.Name as CategoryParentName, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.IconID, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, catPar.Name as CategoryParentName, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID";
@@ -51,7 +52,7 @@ class CategoryDAO extends DAO
 
     public function readAllOnMainMenu()
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.ExternalUrl, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             WHERE OnMainMenu = 1 AND";
@@ -70,7 +71,7 @@ class CategoryDAO extends DAO
 
     public function readAllChildren($parentId)
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.Name, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.Name, cat.ExternalUrl, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             WHERE cat.CategoryParentID = :ParentId AND";
@@ -90,7 +91,7 @@ class CategoryDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.IconID, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             WHERE CategoryID = :Id";
@@ -108,6 +109,7 @@ class CategoryDAO extends DAO
                 Name = :Name,
                 Description = :Description,
                 OnMainMenu = :OnMainMenu,
+                Externalurl = :ExternalUrl,
                 CategoryParentID = :CategoryParentID,
                 UserGroupID = :UserGroupID,
                 IconID = :IconID
@@ -116,6 +118,7 @@ class CategoryDAO extends DAO
             $stmt->bindValue(':Name', $data['Name']);
             $stmt->bindValue(':Description', $data['Description']);
             $stmt->bindValue(':OnMainMenu', $data['OnMainMenu']);
+            $stmt->bindValue(':ExternalUrl', !empty($data['ExternalUrl']) ? $data['ExternalUrl'] : null);
             $stmt->bindValue(':CategoryParentID', !empty($data['CategoryParentId']) ? $data['CategoryParentId'] : null);
             $stmt->bindValue(':UserGroupID', !empty($data['UserGroupId']) ? $data['UserGroupId'] : null);
             $stmt->bindValue(':IconID', $data['IconId']);

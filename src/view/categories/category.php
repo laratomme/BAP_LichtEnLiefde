@@ -27,7 +27,13 @@
     <div>
         <?php foreach ($children as $child) : ?>
 
-            <a class="cat-link" href="index.php?page=category&id=<?php echo $child['CategoryID'] ?>">
+            <a class="cat-link" href="<?php if (empty($child['ExternalUrl'])) { ?>
+                    index.php?page=category&id=<?php echo $child['CategoryID'] ?>
+                    <?php } else { ?>
+                        <?php echo $child['ExternalUrl']; ?>
+                        <?php } ?>" <?php if (!empty($child['ExternalUrl'])) {
+                                        echo "target=\"_blank\"";
+                                    } ?>>
                 <div class="card-category">
                     <div class="card-category--icon">
                         <img src="<?php echo $child['Icon'] ?>" alt="Icoon naam">
@@ -58,7 +64,13 @@
     <h2 class="header-grey-inhoud">Inhoud</h2>
     <div class="inhoud-lijst">
         <?php foreach ($articles as $article) : ?>
-            <a class="inhoud-item" href="index.php?page=article&id=<?php echo $article['ArticleID'] ?>">
+            <a class="inhoud-item" href="<?php if (empty($article['ExternalUrl'])) { ?>
+                        index.php?page=article&id=<?php echo $article['ArticleID'] ?>
+                    <?php } else { ?>
+                        <?php echo $article['ExternalUrl']; ?>
+                    <?php } ?>" <?php if (!empty($article['ExternalUrl'])) {
+                                    echo "target=\"_blank\"";
+                                } ?>>
                 <div>
                     <p><?php echo $article['Title'] ?></p>
                 </div>
