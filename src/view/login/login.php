@@ -11,7 +11,7 @@
     <p class="login-sub">Enkel voor de <strong>beheerder</strong> of <strong>professionals</strong>.</p>
 
     <div class="login-form">
-        <form class="form-grid" action="index.php?page=login" method="post">
+        <form class="form-grid login-grid" action="index.php?page=login" method="post">
             <div class="form-grid-items">
                 <label for="login">E-mailadres *</label>
                 <input id="login" type="email" name="login" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required />

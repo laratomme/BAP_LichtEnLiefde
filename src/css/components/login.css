@@ -12,6 +12,14 @@
     justify-content: center;
 }
 
+.login-grid {
+    width: -webkit-fill-available;
+    width: 100%;
+    max-width: 350px;
+    min-width: -webkit-fill-available;
+    min-width: fit-content;
+}
+
 input[type=password] {
     background: var(--colorWhite);
     border: solid var(--colorBlue);
@@ -35,6 +43,7 @@ input[type=password] {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-left: 0;
 }
 
 input[type=checkbox] {
