@@ -10,10 +10,18 @@
     /*18px*/
     --fontRegular: 1.111em;
     /*20px*/
+    --fontRegularTablet: 1.222em;
+    /*22px*/
     --fontHeader2: 1.333em;
     /*24px*/
     --fontHeader3: 1.778em;
     /*32px*/
+    --fontHeader2Tablet: 1.889em;
+    /*34px*/
+    --fontHeaderTablet: 2.444em;
+    /*44px*/
+    --fontHeaderDekstop: 3em;
+    /*54px*/
     --fontWeightRegular: 400;
     --fontWeightSemiBold: 600;
     --fontWeightBold: 700;

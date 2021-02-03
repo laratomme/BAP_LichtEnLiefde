@@ -7,4 +7,10 @@
     justify-content: center;
     font-size: var(--fontRegular);
     font-weight: var(--fontWeightSemiBold);
+    @media (min-width: 834px) {
+        font-size: var(--fontRegularTablet);
+    }
+    @media (min-width: 1280px) {
+        font-size: var(--fontHeader2);
+    }
 }

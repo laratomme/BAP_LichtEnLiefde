@@ -2,6 +2,12 @@ body {
     font-size: var(--fontSmall);
     font-family: var(--font);
     line-height: 150%;
+    @media (min-width: 834px) {
+        font-size: var(--fontRegular);
+    }
+    @media (min-width: 1280px) {
+        font-size: var(--fontRegularTablet);
+    }
 }
 
 .h1 {
@@ -10,6 +16,12 @@ body {
     font-weight: var(--fontWeightBold);
     line-height: 110%;
     margin: .4em 0;
+    @media (min-width: 834px) {
+        font-size: var(--fontHeaderTablet);
+    }
+    @media (min-width: 1280px) {
+        font-size: var(--fontHeaderDekstop);
+    }
 }
 
 h2 {
@@ -17,6 +29,12 @@ h2 {
     font-family: var(--font);
     font-weight: var(--fontWeightBold);
     line-height: 110%;
+    @media (min-width: 834px) {
+        font-size: var(--fontHeader2Tablet);
+    }
+    @media (min-width: 1280px) {
+        font-size: var(--fontHeaderTablet);
+    }
 }
 
 .header-grey-cat {
