@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-grid-items">
                     <label for="email">Email</label>
-                    <input id="email" type="email" name="email" placeholder="Email" value="<?php if (!empty($user['Email'])) {
+                    <input id="email" type="email" name="email" placeholder="voorbeeld@email.com" value="<?php if (!empty($user['Email'])) {
                                                                                                 echo $user['Email'];
                                                                                             } ?>" minlength="3" maxlength="228" required />
                 </div>

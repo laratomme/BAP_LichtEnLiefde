@@ -13,11 +13,11 @@
     <div class="login-form">
         <form class="form-grid" action="index.php?page=login" method="post">
             <div class="form-grid-items">
-                <label for="login">E-mailadres</label>
-                <input id="login" type="email" name="login" placeholder="E-mailadres" minlength="3" maxlength="64" required />
+                <label for="login">E-mailadres *</label>
+                <input id="login" type="email" name="login" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required />
             </div>
             <div class="form-grid-items">
-                <label for="password">Wachtwoord</label>
+                <label for="password">Wachtwoord *</label>
                 <input id="password" type="password" name="password" placeholder="Wachtwoord" minlength="3" maxlength="64" required />
             </div>
             <div class="form-grid-items login-checkbox">

@@ -1,0 +1,86 @@
+.span-required {
+    font-weight: var(--fontWeightSemiBold);
+}
+
+.button-contact {
+    display: flex;
+    justify-content: flex-end;
+}
+
+input[type=tel] {
+    background: var(--colorWhite);
+    border: solid var(--colorBlue);
+    border-width: 0px 1.5px 1.5px 1.5px;
+    border-radius: 0px 0px 1px 1px;
+    padding: auto;
+    padding: 12px 10px;
+    color: var(--colorDarkGrey);
+}
+
+textarea {
+    background: var(--colorWhite);
+    border: solid var(--colorBlue);
+    border-width: 0px 1.5px 1.5px 1.5px;
+    border-radius: 0px 0px 1px 1px;
+    padding: auto;
+    padding: 12px 10px;
+    color: var(--colorDarkGrey);
+}
+
+.button-contact-yellow {
+    border: none;
+}
+
+.form-grid-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    width: -webkit-fill-available;
+    width: 100%;
+    min-width: 275px;
+    max-width: 645px;
+    /*border: solid 1.5px var(--colorBlue);
+    padding: 30px;*/
+}
+
+.contactgegevens-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contactcard {
+    max-width: 284px;
+    max-height: 236px;
+    background: var(--colorWhite);
+    box-shadow: 0px 12px 25px rgba(186, 189, 191, 0.2);
+    border-radius: 1px;
+    margin: auto;
+    margin-bottom: .6em;
+    flex-direction: column;
+    align-items: flex-start;
+    width: -webkit-fill-available;
+    width: 100%;
+}
+
+.contactcard a {
+    color: var(--colorBlack);
+    margin: 0;
+}
+
+.contactcard-text {
+    color: var(--colorBlack);
+    margin: 0;
+}
+
+.contactcard-titel {
+    font-weight: var(--fontWeightSemiBold);
+    color: var(--colorBlack);
+    margin: 0;
+}
+
+.contactcard-titel--blue {
+    font-weight: var(--fontWeightSemiBold);
+    color: var(--colorBlue);
+    margin: 0;
+}

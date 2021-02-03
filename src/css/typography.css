@@ -34,3 +34,19 @@ h2 {
     background-position: 0 19px;
     background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
 }
+
+.header-grey-contactform {
+    background-repeat: no-repeat;
+    background-size: 9.2em 0.5em;
+    padding: 0 0 4px 0;
+    background-position: 0 19px;
+    background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+}
+
+.header-grey-contactgeg {
+    background-repeat: no-repeat;
+    background-size: 13.7em 0.5em;
+    padding: 0 0 4px 0;
+    background-position: 0 19px;
+    background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+}
