@@ -1,5 +1,5 @@
 .settings-flex {
-    max-width: 450px;
+    max-width: 480px;
     margin: 0 auto;
 }
 
@@ -8,31 +8,18 @@
     grid-gap: 15px;
     width: -webkit-fill-available;
     width: 100%;
-    max-width: 450px;
-}
-
-.settings-fieldset {
-    display: flex;
-    border: none;
-    padding-left: 0;
+    max-width: 480px;
 }
 
 .settings-input {
     margin-right: .65em;
 }
 
-.settings-fieldset legend {
+.settings-h2 {
     padding: 0 0 10px 0;
-    margin-bottom: 1em;
+    margin: 0 0 1em 0;
     font-size: var(--fontRegular);
     font-weight: var(--fontWeightSemiBold);
-}
-
-.settings-fieldset label {
-    background: var(--colorWhite);
-    border: 2.5px solid var(--colorBlack);
-    border-radius: 2px;
-    padding: 25px;
 }
 
 .settings-button {
@@ -53,10 +40,39 @@ label .label-kleur {
     margin: 15px 0;
 }
 
-.settings-input:checked~label {
-    color: red;
+.settings-radios {
+    margin-bottom: 1em;
 }
 
-.settings-input:checked {
-    background-color: yellow;
+.settings-radios .radio {
+    background-color: var(--colorWhite);
+    background: #FCFDFC;
+    border: 2.5px solid var(--colorBlack);
+    border-radius: 2px;
+    display: inline;
+    cursor: pointer;
+    padding: 20px;
+    @media (min-width: 834px) {
+        padding: 20px 40px;
+    }
+    @media (min-width: 1280px) {
+        margin-right: 1em;
+    }
+}
+
+.settings-radios input[type=radio] {
+    display: none;
+}
+
+.settings-radios input[type=radio]:checked+.radio {
+    background-color: var(--colorBlue);
+    border: 2.5px solid var(--colorBlue);
+    color: var(--colorWhite);
+    text-decoration: underline;
+    border-radius: 2px;
+    box-shadow: inset 0px 0px 0px 3px var(--colorWhite), 0px 0px 0 1px var(--colorBlue);
+}
+
+.settings-radios label {
+    transition: all 0.3s;
 }
