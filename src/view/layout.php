@@ -53,11 +53,10 @@
       </div>
 
       <div class="search">
-
         <div class="search-container">
-          <a class="settings" href="index.php?page=settings">
+          <a class="settings-link" href="index.php?page=settings">
             <img src="../../assets/img/icons/icon-settings-white.svg" alt="Wit icoon instellingen">
-            <p class="hidden">Instellingen</p>
+            <p class="settings-p">Instellingen</p>
           </a>
 
           <div class="search-wrap">
@@ -65,7 +64,6 @@
             <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/icon-zoeken-zwart.svg" alt="Zwart vergrootglas zoek icoon"></button>
           </div>
         </div>
-
       </div>
 
       <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>

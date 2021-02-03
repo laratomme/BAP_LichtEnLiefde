@@ -26,6 +26,10 @@
     width: -webkit-fill-available;
     width: 100%;
     width: -moz-available;
+    height: fit-content;
+    @media (min-width: 834px) {
+        width: 80%;
+    }
 }
 
 .search-wrap button {
@@ -54,14 +58,20 @@
     }
 }
 
-.settings {
+.settings-link {
     margin-right: 0.278em;
     padding: 0.556em;
-    height: max-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
-.settings img {
+.settings-link img {
     height: 30px;
+    @media (min-width: 834px) {
+        margin-right: .5em
+    }
 }
 
 .search-container {
@@ -70,4 +80,14 @@
     width: 100vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.settings-p {
+    display: none;
+    @media (min-width: 834px) {
+        display: inline;
+        color: var(--colorWhite);
+        text-decoration: none;
+    }
 }
