@@ -11,8 +11,12 @@
     align-items: center;
     color: var(--colorBlue);
     font-weight: var(--fontWeightSemiBold);
+    @media (min-width: 834px) {
+        padding: .7em;
+        height: 50px;
+    }
 }
 
 .button-white img {
-    padding: 0px 0px 7px 5px;
+    padding-left: 5px;
 }

@@ -49,6 +49,9 @@
     align-items: center;
     color: var(--colorBlack);
     font-weight: var(--fontWeightSemiBold);
+    @media (min-width: 834px) {
+        padding: .8em;
+    }
 }
 
 .settings {
