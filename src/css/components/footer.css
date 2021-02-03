@@ -18,10 +18,12 @@ address {
     color: var(--colorWhite);
     text-align: start;
     display: flex;
-    /*justify-content: center;*/
     justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
+    @media (min-width: 834px) {
+        justify-content: center;
+    }
 }
 
 .address-item {
@@ -32,7 +34,7 @@ address {
 
 .address-item p,
 .address-item a {
-    padding: 1.667em;
+    padding: .7em;
 }
 
 address a {
@@ -42,6 +44,9 @@ address a {
 
 .vl {
     height: 20px;
-    border-left: 2px solid #FFC91E;
+    border-left: 2px solid var(--colorYellow);
     display: none;
+    @media (min-width: 1280px) {
+        display: inline;
+    }
 }
