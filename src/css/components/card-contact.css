@@ -52,12 +52,14 @@
     text-decoration: none;
 }
 
-.card-contact:hover {
+.card-contact:hover,
+.card-contact:focus {
     background-color: var(--colorYellow);
     text-decoration: underline;
 }
 
-.card-contact:hover .card-contact--yellow {
+.card-contact:hover .card-contact--yellow,
+.card-contact:focus .card-contact--yellow {
     border-top: solid 4px var(--colorBlack);
 }
 

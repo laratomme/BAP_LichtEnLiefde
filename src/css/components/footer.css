@@ -45,6 +45,12 @@ address a {
     color: var(--colorWhite);
 }
 
+address a:hover,
+address a:focus {
+    text-decoration: underline;
+    color: var(--colorWhite);
+}
+
 .vl {
     height: 20px;
     border-left: 2px solid var(--colorYellow);

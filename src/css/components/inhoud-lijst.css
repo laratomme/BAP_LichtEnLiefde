@@ -20,7 +20,8 @@
     transition-duration: 0.3s;
 }
 
-.inhoud-item:hover {
+.inhoud-item:hover,
+.inhoud-item:focus {
     background-color: var(--colorYellow);
     text-decoration: underline;
 }

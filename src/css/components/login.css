@@ -34,8 +34,18 @@ input[type=password] {
     align-items: flex-end;
 }
 
+.button-back {
+    transition-duration: 0.1s;
+}
+
 .button-back img {
     padding: 0 5px
+}
+
+.button-back:hover img,
+.button-back:focus img {
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-5px);
 }
 
 .login-checkbox {

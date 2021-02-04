@@ -5,12 +5,17 @@
     padding: 0.333em;
     background: var(--colorWhite);
     box-shadow: 0px 10px 25px rgba(0, 73, 154, 0.25);
+    border: 2.5px solid var(--colorWhite);
     border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--colorBlue);
     font-weight: var(--fontWeightSemiBold);
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-property: border;
+    transition-property: border;
     @media (min-width: 834px) {
         padding: .7em;
         height: 50px;
@@ -19,4 +24,15 @@
 
 .button-white img {
     padding-left: 5px;
+}
+
+.button-white:hover,
+.button-white:focus {
+    border: 2.5px solid var(--colorBlue);
+    text-decoration: underline;
+}
+
+.button-white:active {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }

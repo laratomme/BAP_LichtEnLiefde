@@ -93,6 +93,7 @@
                     } ?>">
             <?php echo $crumb['name']; ?>
           </a>
+          <span>,</span>
 
         <?php endforeach ?>
       </div>

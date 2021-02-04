@@ -20,7 +20,7 @@
                 <label for="password">Wachtwoord *</label>
                 <input id="password" type="password" name="password" placeholder="Wachtwoord" minlength="3" maxlength="64" required />
             </div>
-            <div class="form-grid-items login-checkbox">
+            <div class="login-checkbox">
                 <label class="login-checkbox" for="remember">Onthoud login</label>
                 <input id="remember" type="checkbox" name="remember" />
             </div>
