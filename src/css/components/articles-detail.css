@@ -12,3 +12,12 @@
     margin-top: 1.667em;
     width: 1000px;
 }
+
+.beheer-art-flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.beheer-art-flex a {
+    margin: 15px 10px 0 0;
+}
