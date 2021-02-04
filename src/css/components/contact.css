@@ -61,6 +61,8 @@ textarea {
     align-items: flex-start;
     width: -webkit-fill-available;
     width: 100%;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
 
 .contactcard a {
@@ -83,4 +85,17 @@ textarea {
     font-weight: var(--fontWeightSemiBold);
     color: var(--colorBlue);
     margin: 0;
+}
+
+.contactcard:hover {
+    background-color: var(--colorYellow);
+}
+
+.contactcard:hover a {
+    text-decoration: underline;
+}
+
+.contactcard:active {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
