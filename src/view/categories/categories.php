@@ -89,8 +89,8 @@
                                                                                                                     echo $category['Description'];
                                                                                                                 } ?>" minlength="3" maxlength="256" />
                 </div>
-                <div class="form-grid-items cat-checkbox">
-                    <label class="cat-checkbox-label" for="onmainmenu">Zichtbaar op hoofdmenu:</label>
+                <div class="form-icon-upload">
+                    <label class="form-icon-upload-label" for="onmainmenu">Zichtbaar op hoofdmenu:</label>
                     <input id="onmainmenu" type="checkbox" name="onmainmenu" <?php if (!empty($category['OnMainMenu'])) {
                                                                                     echo "checked";
                                                                                 } ?> />
@@ -129,12 +129,12 @@
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>
-                    <div class="form-grid-items form-icon-upload">
-                        <label class="form-icon-upload-label" for="icon">Huidig Icoon</label>
+                    <div class="form-icon-upload">
+                        <label class="form-icon-upload-label" for="icon">Huidig Icoon:</label>
                         <img src="<?php echo $category['Icon'] ?>" alt="Icoon">
                     </div>
 
-                    <div class="form-grid-items form-icon-upload">
+                    <div class="form-icon-upload">
                         <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
                         <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
 
-                <div class="form-grid-items form-icon-upload">
+                <div class="form-icon-upload">
                     <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
                     <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>

@@ -23,6 +23,10 @@
     border-radius: 1px 1px 0px 0px;
 }
 
+.form-icon-upload input [type="checkbox"] {
+    margin: auto 0;
+}
+
 .form-icon-upload-label {
     border: none;
 }

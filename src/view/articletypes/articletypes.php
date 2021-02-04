@@ -78,12 +78,12 @@
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($articletype['Icon'])) { ?>
-                    <div class="form-grid-items form-icon-upload">
+                    <div class="form-icon-upload">
                         <label class="form-icon-upload-label" for="icon">Huidig Icoon</label>
                         <img src="<?php echo $articletype['Icon'] ?>" alt="Icoon">
                     </div>
 
-                    <div class="form-grid-items form-icon-upload">
+                    <div class="form-icon-upload">
                         <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
                         <input id="updateicon" type="checkbox" name="updateicon" />
                     </div>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                <div class="form-grid-items form-icon-upload">
+                <div class="form-icon-upload">
                     <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
                     <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
                 </div>
