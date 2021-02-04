@@ -1,0 +1,8 @@
+.beheer-cat-flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.beheer-cat-flex a {
+    margin: 15px 10px 0 0;
+}
