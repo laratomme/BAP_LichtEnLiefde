@@ -5,6 +5,8 @@
     text-align: center;
     margin: .6em;
     filter: drop-shadow(0px 10px 25px rgba(0, 73, 154, 0.25));
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
     @media (min-width: 834px) {
         width: 250px;
         height: 280px;
@@ -34,7 +36,7 @@
 .card-category--icon {
     background-color: var(--colorBlue);
     color: var(--colorWhite);
-    border: 2.5px solid #FCFDFC;
+    border: 2.5px solid var(--colorWhite);
     border-radius: 0px 0px 1px 1px;
     width: 155px;
     height: 117px;
@@ -56,4 +58,27 @@
 
 .cat-link {
     text-decoration: none;
+}
+
+.card-category:hover {
+    filter: drop-shadow(0px 12px 25px rgba(255, 201, 30, 0.25));
+    color: var(--colorBlack);
+    /*border: 2.5px solid var(--colorBlack);*/
+}
+
+.card-category:hover .card-category--label {
+    background-color: var(--colorYellow);
+    border: 2.5px solid var(--colorBlack);
+    color: var(--colorBlack);
+    text-decoration: underline;
+}
+
+.card-category:hover .card-category--icon {
+    background-color: var(--colorYellow);
+    border: 2.5px solid var(--colorBlack);
+}
+
+.card-category:active {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
