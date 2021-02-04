@@ -73,8 +73,8 @@
             <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>
             <li><a class="nav-link" href="index.php?page=usergroups">Groepen</a></li>
             <li><a class="nav-link" href="index.php?page=categories">Categorieën</a></li>
-            <li><a class="nav-link" href="index.php?page=articles">Artikels</a></li>
-            <li><a class="nav-link" href="index.php?page=articletypes">Artikel types</a></li>
+            <li><a class="nav-link" href="index.php?page=articles">Inhoud</a></li>
+            <li><a class="nav-link" href="index.php?page=articletypes">Inhoud types</a></li>
           </ul>
         </nav>
       <?php } ?>

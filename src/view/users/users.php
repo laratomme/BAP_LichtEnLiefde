@@ -1,6 +1,6 @@
 <!-- Users -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-    <h1 class="h1 header-beheren">Gebruikers</h1>
+    <h1 class="beheer-h1">Gebruikers</h1>
     <!-- List -->
     <?php if (count($users) == 0) { ?>
         <p class="info-tekst">Geen Gebruikers toegevoegd.</p>
@@ -48,16 +48,18 @@
     </a>
 
 <?php } else { ?>
-    <a class="button-link" href="index.php?page=users">
-        <div class="button-blue button-back">
-            <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-            <p>Gebruikers</p>
-        </div>
-    </a>
+    <div class="beheer-header-grid">
+        <a class="button-link" href="index.php?page=users">
+            <div class="button-blue button-back">
+                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <p>Gebruikers</p>
+            </div>
+        </a>
+        <h1 class="beheer-h1">Gebruiker</h1>
+    </div>
     <div class="beheren-flex">
         <!-- Detail -->
         <div class="gebruiker-form">
-            <h1 class="h1">Gebruiker</h1>
             <form class="form-grid" action="index.php?page=users" method="post">
 
                 <input type="hidden" name="id" value="<?php if (!empty($user['UserID'])) {
@@ -79,8 +81,8 @@
                 <div class="form-grid-items">
                     <label for="email">Email</label>
                     <input id="email" type="email" name="email" placeholder="voorbeeld@email.com" value="<?php if (!empty($user['Email'])) {
-                                                                                                echo $user['Email'];
-                                                                                            } ?>" minlength="3" maxlength="228" required />
+                                                                                                                echo $user['Email'];
+                                                                                                            } ?>" minlength="3" maxlength="228" required />
                 </div>
                 <div class="form-grid-items">
                     <label for="login">Login</label>

@@ -1,7 +1,7 @@
 <!-- Artikels -->
 <!-- https://xdsoft.net/jodit/ -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-    <h1 class="h1">Inhoud lijst</h1>
+    <h1 class="beheer-h1">Inhoud lijst</h1>
     <!-- List -->
     <?php if (count($articles) == 0) { ?>
         <p class="info-tekst">Geen inhoud toegevoegd.</p>
@@ -61,14 +61,15 @@
     </a>
 
 <?php } else { ?>
-    <a class="button-link" href="index.php?page=articles">
-        <div class="button-blue button-back">
-            <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-            <p>Inhoud lijst</p>
-        </div>
-    </a>
-    <h1 class="h1">Inhoud</h1>
-
+    <div class="beheer-header-grid">
+        <a class="button-link" href="index.php?page=articles">
+            <div class="button-blue button-back">
+                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <p>Inhoud lijst</p>
+            </div>
+        </a>
+        <h1 class="beheer-h1">Inhoud</h1>
+    </div>
 
     <!-- Detail -->
     <div class="artikels-form">
@@ -132,8 +133,8 @@
                 <div class="form-grid-items">
                     <label for="externalurl">Externe Link</label>
                     <input id="externalurl" type="text" name="externalurl" placeholder="Externe Url" value="<?php if (!empty($article['ExternalUrl'])) {
-                                                                                                                    echo $article['ExternalUrl'];
-                                                                                                                } ?>" minlength="3" maxlength="256" />
+                                                                                                                echo $article['ExternalUrl'];
+                                                                                                            } ?>" minlength="3" maxlength="256" />
                 </div>
             </div>
 

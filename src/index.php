@@ -20,12 +20,12 @@ $routes = array(
     'article' => array(
         'controller' => 'Articles',
         'action' => 'article',
-        'name' => 'Artikel'
+        'name' => 'Inhoud'
     ),
     'category' => array(
         'controller' => 'Categories',
         'action' => 'category',
-        'name' => 'Category'
+        'name' => 'Categorie'
     ),
     'contact' => array(
         'controller' => 'Contact',
@@ -45,17 +45,17 @@ $routes = array(
     'articles' => array(
         'controller' => 'Articles',
         'action' => 'articles',
-        'name' => 'Artikels'
+        'name' => 'Inhoud'
     ),
     'articletypes' => array(
         'controller' => 'Articletypes',
         'action' => 'articletypes',
-        'name' => 'Artikel Types'
+        'name' => 'Inhoud Types'
     ),
     'categories' => array(
         'controller' => 'Categories',
         'action' => 'categories',
-        'name' => 'Categories'
+        'name' => 'Categorieën'
     ),
     'users' => array(
         'controller' => 'Users',

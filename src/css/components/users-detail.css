@@ -1,3 +1,11 @@
+.beheer-header-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    margin: 20px 0 40px 0;
+}
+
 .gebruiker-form {
     flex-direction: column;
 }

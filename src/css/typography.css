@@ -24,6 +24,14 @@ body {
     }
 }
 
+.beheer-h1 {
+    font-size: var(--fontHeader3);
+    font-family: var(--font);
+    font-weight: var(--fontWeightBold);
+    line-height: 110%;
+    margin: .4em 0;
+}
+
 h2 {
     font-size: var(--fontHeader2);
     font-family: var(--font);

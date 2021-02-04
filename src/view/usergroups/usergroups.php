@@ -1,7 +1,7 @@
 <!-- Usergroups -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-        <h1 class="h1">Gebruikers Groepen</h1>
+        <h1 class="beheer-h1">Gebruikers Groepen</h1>
         <!-- List -->
         <?php if (count($usergroups) == 0) { ?>
             <p class="info-tekst">Geen groepen toegevoegd.</p>
@@ -39,13 +39,16 @@
         </a>
 
     <?php } else { ?>
-        <a class="button-link" href="index.php?page=usergroups">
-            <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-                <p>Groepen</p>
-            </div>
-        </a>
-        <h1 class="h1">Gebruikers Groep</h1>
+        <div class="beheer-header-grid">
+            <a class="button-link" href="index.php?page=usergroups">
+                <div class="button-blue button-back">
+                    <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                    <p>Groepen</p>
+                </div>
+            </a>
+            <h1 class="beheer-h1">Gebruikers Groep</h1>
+        </div>
+
         <!-- Detail -->
         <div class="groups-form">
             <form class="form-grid" action="index.php?page=usergroups" method="post">
@@ -55,8 +58,8 @@
                 <div class="form-grid-items">
                     <label for="name">Groep naam</label>
                     <input id="name" type="text" name="name" placeholder="Groep naam" value="<?php if (!empty($usergroup['Name'])) {
-                                                                                                        echo $usergroup['Name'];
-                                                                                                    } ?>" minlength="3" maxlength="64" required />
+                                                                                                    echo $usergroup['Name'];
+                                                                                                } ?>" minlength="3" maxlength="64" required />
                 </div>
                 <?php if (empty($_GET['id'])) { ?>
                     <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Groep Toevoegen</button>

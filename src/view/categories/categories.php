@@ -1,7 +1,7 @@
 <!-- Categories -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-        <h1 class="h1 header-beheren">Categorieën</h1>
+        <h1 class="beheer-h1">Categorieën</h1>
         <!-- List -->
         <?php if (count($categories) == 0) { ?>
             <p class="info-tekst">Geen Categorieën toegevoegd.</p>
@@ -57,15 +57,18 @@
         </a>
 
     <?php } else { ?>
-        <a class="button-link" href="index.php?page=categories">
-            <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-                <p>Categorieën</p>
-            </div>
-        </a>
-        <!-- Detail -->
 
-        <h1 class="h1">Categorie</h1>
+        <div class="beheer-header-grid">
+            <a class="button-link" href="index.php?page=categories">
+                <div class="button-blue button-back">
+                    <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                    <p>Categorieën</p>
+                </div>
+            </a>
+            <h1 class="beheer-h1">Categorie</h1>
+        </div>
+
+        <!-- Detail -->
         <div class="categorie-form">
             <form class="form-grid" enctype="multipart/form-data" action="index.php?page=categories" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($category['CategoryID'])) {
@@ -121,8 +124,8 @@
                 <div class="form-grid-items">
                     <label for="externalurl">Externe Link</label>
                     <input id="externalurl" type="text" name="externalurl" placeholder="Url" value="<?php if (!empty($category['ExternalUrl'])) {
-                                                                                                                    echo $category['ExternalUrl'];
-                                                                                                                } ?>" minlength="3" maxlength="256" />
+                                                                                                        echo $category['ExternalUrl'];
+                                                                                                    } ?>" minlength="3" maxlength="256" />
                 </div>
 
                 <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>

@@ -1,7 +1,7 @@
 <!-- Article Types -->
 <main>
     <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
-        <h1 class="h1 header-beheren">Inhoud types</h1>
+        <h1 class="beheer-h1">Inhoud types</h1>
         <!-- List -->
         <?php if (count($articletypes) == 0) { ?>
             <p class="info-tekst">Geen Inhoud types toegevoegd.</p>
@@ -44,15 +44,18 @@
         </a>
 
     <?php } else { ?>
-        <a class="button-link" href="index.php?page=articletypes">
-            <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
-                <p>Inhoud types</p>
-            </div>
-        </a>
+        <div class="beheer-header-grid">
+            <a class="button-link" href="index.php?page=articletypes">
+                <div class="button-blue button-back">
+                    <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                    <p>Inhoud types</p>
+                </div>
+            </a>
+            <h1 class="beheer-h1">Inhoud type</h1>
+        </div>
 
         <!-- Detail -->
-        <h1 class="h1">Inhoud type</h1>
+
         <div class="type-form">
             <form class="form-grid" enctype="multipart/form-data" action="index.php?page=articletypes" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($articletype['ArticleTypeID'])) {
