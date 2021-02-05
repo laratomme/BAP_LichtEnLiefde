@@ -1,5 +1,7 @@
 <?php
 
+// Genomen van https://github.com/PHPMailer/PHPMailer
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
