@@ -14,7 +14,11 @@
                                     } ?>>
                 <div class="card-category">
                     <div class="card-category--icon">
-                        <img src="<?php echo $child['Icon'] ?>" alt="Icoon naam">
+                        <?php if (strpos($child['Icon'], '.svg') !== false) { ?>
+                            <?php echo file_get_contents(__DIR__ . '/' . $child['Icon']); ?>
+                        <?php } else { ?>
+                            <img src="<?php echo $child['Icon'] ?>" alt="Icoon">
+                        <?php } ?>
                     </div>
                     <div class="card-category--label">
                         <p><?php echo $child['Name'] ?></p>
