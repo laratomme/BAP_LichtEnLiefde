@@ -10,7 +10,7 @@
         <a class="button-aanmaken button-link" href="index.php?page=articles&id=<?php echo $article['ArticleID'] ?>">
             <div class="button-blue">
                 <p>Inhoud bewerken</p>
-                <img src="../../assets/img/icons/icon-edit-white.svg" alt="Icoon bewerken folder met potlood">
+                <img src="../../assets/img/icons/Icon-edit-white.svg" alt="Icoon bewerken folder met potlood">
             </div>
         </a>
         <a class="button-aanmaken button-link" href="index.php?page=articles&action=delete&id=<?php echo $article['ArticleID']; ?>&categoryid=<?php echo $article['CategoryID']; ?>">
