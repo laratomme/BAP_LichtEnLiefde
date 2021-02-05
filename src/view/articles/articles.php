@@ -4,7 +4,10 @@
     <h1 class="beheer-h1">Inhoud lijst</h1>
     <!-- List -->
     <?php if (count($articles) == 0) { ?>
-        <p class="info-tekst">Geen inhoud toegevoegd.</p>
+        <div class="info-box">
+            <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+            <p>Geen inhoud toegevoegd.</p>
+        </div>
     <?php } else { ?>
 
         <div class="grid-articles">

@@ -33,7 +33,7 @@ class LoginController extends Controller
                 header("Location: index.php?page=home");
                 exit();
             } else {
-                $_SESSION['error'] = "Gebruikernaam of Wachtwoord is verkeerd.";
+                $_SESSION['error'] = "Het E-mailadres of Wachtwoord is verkeerd ingegeven.";
             }
         } else {
             if (!empty($_GET['action']) && $_GET['action'] == 'logout') {

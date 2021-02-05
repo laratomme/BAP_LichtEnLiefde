@@ -13,6 +13,10 @@
 }
 
 .login-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
     width: -webkit-fill-available;
     width: 100%;
     max-width: 350px;
@@ -64,4 +68,26 @@ input[type=checkbox] {
 
 .button-submit--login {
     margin-top: 0;
+}
+
+input+span {
+    position: relative;
+}
+
+input+span::after {
+    position: absolute;
+    right: -35px;
+    top: -35px;
+}
+
+input:invalid {
+    border: 2.5px solid var(--colorError);
+}
+
+input:invalid+span::after {
+    content: url(../../assets/img/icons/Icon-Error-Red.svg);
+}
+
+input:valid+span::after {
+    content: url(../../assets/img/icons/Icon-Succes-Blue.svg);
 }

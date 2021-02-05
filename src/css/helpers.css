@@ -2,15 +2,29 @@
     display: none;
 }
 
-.info-tekst {
+.error-box,
+.info-box {
     display: flex;
     justify-content: center;
+    align-self: center;
+    width: fit-content;
     font-size: var(--fontRegular);
     font-weight: var(--fontWeightSemiBold);
-    @media (min-width: 834px) {
-        font-size: var(--fontRegularTablet);
-    }
-    @media (min-width: 1280px) {
-        font-size: var(--fontHeader2);
-    }
+    text-align: center;
+    border-radius: 1px;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.error-box img,
+.info-box img {
+    padding-right: 5px;
+}
+
+.info-box {
+    border: 2px solid var(--colorInfo);
+}
+
+.error-box {
+    border: 2px solid var(--colorError);
 }

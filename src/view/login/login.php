@@ -1,5 +1,9 @@
 <?php if (!empty($_GET['action']) && $_GET['action'] == 'logout') { ?>
-    <p class="info-tekst">U bent nu uitgelogd.</p>
+    <div class="info-box">
+        <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+        <p>U bent nu uitgelogd.</p>
+    </div>
+
 <?php } else { ?>
     <a class="button-link" href="index.php?page=index">
         <div class="button-blue button-back">
@@ -11,14 +15,16 @@
     <p class="login-sub">Enkel voor de <strong>beheerder</strong> of <strong>professionals</strong>.</p>
 
     <div class="login-form">
-        <form class="form-grid login-grid" action="index.php?page=login" method="post">
+        <form class="login-grid" action="index.php?page=login" method="post">
             <div class="form-grid-items">
                 <label for="login">E-mailadres *</label>
                 <input id="login" type="email" name="login" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required />
+                <span></span>
             </div>
             <div class="form-grid-items">
                 <label for="password">Wachtwoord *</label>
                 <input id="password" type="password" name="password" placeholder="Wachtwoord" minlength="3" maxlength="64" required />
+                <span></span>
             </div>
             <div class="login-checkbox">
                 <label class="login-checkbox" for="remember">Onthoud login</label>

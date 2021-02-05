@@ -3,7 +3,10 @@
     <h1 class="beheer-h1">Gebruikers</h1>
     <!-- List -->
     <?php if (count($users) == 0) { ?>
-        <p class="info-tekst">Geen Gebruikers toegevoegd.</p>
+        <div class="info-box">
+            <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+            <p>Geen Gebruikers toegevoegd.</p>
+        </div>
     <?php } else { ?>
         <div class="grid-users">
             <div>

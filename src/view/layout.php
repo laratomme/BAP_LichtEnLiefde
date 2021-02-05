@@ -12,15 +12,6 @@
 
   <div class="layout">
 
-    <?php
-    if (!empty($_SESSION['error'])) {
-      echo '<div class="error box">' . $_SESSION['error'] . '</div>';
-    }
-    if (!empty($_SESSION['info'])) {
-      echo '<div class="info box">' . $_SESSION['info'] . '</div>';
-    }
-    ?>
-
     <header class="header">
       <div class="header-items container">
         <a class="logo-lichtenliefde" href="index.php?page=layout">
@@ -80,6 +71,15 @@
       <?php } ?>
 
     </header>
+
+    <?php
+    if (!empty($_SESSION['error'])) {
+      echo '<div class="error-box"> <img src="../../assets/img/icons/Icon-Error-Red.svg" alt="Rood error icoon">' . $_SESSION['error'] . '</div>';
+    }
+    if (!empty($_SESSION['info'])) {
+      echo '<div class="info-box"> <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">' . $_SESSION['info'] . '</div>';
+    }
+    ?>
 
     <?php if (!empty($crumbs)) { ?>
       <div class="breadcrumbs container">
