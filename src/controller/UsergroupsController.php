@@ -32,7 +32,7 @@ class UsergroupsController extends Controller
                             header("Location: index.php?page=usergroups&id=" . $id);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Usergroup.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de gebruiker groep.');
                         }
                         break;
                     case 'update':
@@ -40,7 +40,7 @@ class UsergroupsController extends Controller
                             header("Location: index.php?page=usergroups&id=" . $data['id']);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Usergroup.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de gebruiker groep.');
                         }
                         break;
                     case 'delete':
@@ -63,7 +63,7 @@ class UsergroupsController extends Controller
             // Detail
             if (!empty($_GET['id'])) {
                 if (!$usergroup = $this->usergroupDAO->readById($_GET['id'])) {
-                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroup.');
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de gebruiker groep.');
                 }
                 $this->set('usergroup', $usergroup);
             } else {

@@ -47,7 +47,8 @@ class ContactController extends Controller
             $mail->addReplyTo($data['Email'], $data['FirstName'] . ' ' . $data['LastName']);
 
             //Set who the message is to be sent to
-            $mail->addAddress('soilin.sly@gmail.com', 'Pieter Jan');
+            //Hier emailadres van correspondent Licht en Liefde
+            $mail->addAddress('lara.tomme@gmail.com', 'Lara Tomme');
 
             $mail->Subject = 'Vraag voor Licht en Liefde';
 
@@ -66,7 +67,7 @@ class ContactController extends Controller
             if (!$mail->send()) {
                 $_SESSION['error'] = $mail->ErrorInfo;
             } else {
-                $_SESSION['info'] = 'Mail verzonden';
+                $_SESSION['info'] = 'Mail verzonden. Binnenkort ontvang je een antwoord op je vraag.';
             }
         }
     }

@@ -28,7 +28,7 @@ class CategoriesController extends Controller
     {
         if (!empty($_GET['id'])) {
             if (!$category = $this->categoryDAO->readById($_GET['id'])) {
-                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de Category.';
+                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de categorie.';
                 header('Location: index.php?page=home');
                 exit();
             }
@@ -70,7 +70,7 @@ class CategoriesController extends Controller
                             header("Location: index.php?page=categories&id=" . $id);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Category.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de categorie.');
                         }
                         break;
                     case 'update':
@@ -79,7 +79,7 @@ class CategoriesController extends Controller
                             header("Location: index.php?page=categories&id=" . $data['Id']);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Category.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de categorie.');
                         }
                         break;
                     case 'delete':
@@ -135,7 +135,7 @@ class CategoriesController extends Controller
 
         if (!empty($_GET['id'])) {
             if (!$category = $this->categoryDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van Category.');
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van categorie.');
             }
             $this->set('category', $category);
         } else {
@@ -148,7 +148,7 @@ class CategoriesController extends Controller
         $this->set('parents', $this->categoryDAO->readAllExceptId(!empty($_GET['id']) ? $_GET['id'] : null));
 
         if (!$usergroups = $this->usergroupDAO->readAll()) {
-            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroups.');
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de gebruiker groepen.');
         }
         $this->set('usergroups', $usergroups);
     }

@@ -28,7 +28,7 @@ class ArticlesController extends Controller
     {
         if (!empty($_GET['id'])) {
             if (!$article = $this->articleDAO->readById($_GET['id'])) {
-                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van het Artikel.';
+                $_SESSION['error'] = 'Er is een fout gebeurd tijdens het ophalen van de inhoud.';
                 header('Location: index.php?page=home');
                 exit();
             }
@@ -62,7 +62,7 @@ class ArticlesController extends Controller
                             header("Location: index.php?page=articles&id=" . $id);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het Artikel.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de inhoud.');
                         }
                         break;
                     case 'update':
@@ -70,7 +70,7 @@ class ArticlesController extends Controller
                             header("Location: index.php?page=articles&id=" . $data['Id']);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het Artikel.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de inhoud.');
                         }
                         break;
                     case 'delete':
@@ -120,7 +120,7 @@ class ArticlesController extends Controller
 
         if (!empty($_GET['id'])) {
             if (!$article = $this->articleDAO->readById($_GET['id'])) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Artikel.');
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de inhoud.');
             }
             $this->set('article', $article);
         } else {
@@ -131,17 +131,17 @@ class ArticlesController extends Controller
     private function _handleLoadSubData()
     {
         if (!$articletypes = $this->articleTypeDAO->readAll()) {
-            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Artikel Types.');
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de inhoud types.');
         }
         $this->set('articletypes', $articletypes);
 
         if (!$categories = $this->categoryDAO->readAll()) {
-            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Categories.');
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de categorieën.');
         }
         $this->set('categories', $categories);
 
         if (!$usergroups = $this->usergroupDAO->readAll()) {
-            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Usergroups.');
+            $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de gebruiker groepen.');
         }
         $this->set('usergroups', $usergroups);
     }

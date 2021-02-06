@@ -42,7 +42,7 @@ class ArticleTypesController extends Controller
                             header("Location: index.php?page=articletypes&id=" . $id);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het Artikel Type.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van het inhoud type.');
                         }
                         break;
                     case 'update':
@@ -51,7 +51,7 @@ class ArticleTypesController extends Controller
                             header("Location: index.php?page=articletypes&id=" . $data['Id']);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het Artikel Type.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van het inhoud type.');
                         }
                         break;
                     case 'delete':
@@ -75,7 +75,7 @@ class ArticleTypesController extends Controller
             // Detail
             if (!empty($_GET['id'])) {
                 if (!$articletype = $this->articletypeDAO->readById($_GET['id'])) {
-                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het Article Type.');
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van het inhoud type.');
                 }
                 $this->set('articletype', $articletype);
             } else {

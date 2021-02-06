@@ -40,7 +40,7 @@ class UsersController extends Controller
                             header("Location: index.php?page=users&id=" . $id);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de Gebruiker.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanmaken van de gebruiker.');
                         }
                         break;
                     case 'update':
@@ -48,7 +48,7 @@ class UsersController extends Controller
                             header("Location: index.php?page=users&id=" . $data['Id']);
                             exit();
                         } else {
-                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de Gebruiker.');
+                            $this->_handleError('Er is een fout gebeurd tijdens het aanpassen van de gebruiker.');
                         }
                         break;
                     case 'delete':
@@ -71,13 +71,13 @@ class UsersController extends Controller
         } else {
             // Detail
             if (!$usergroups = $this->usergroupDAO->readAll()) {
-                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker Groepen.');
+                $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de gebruiker groepen.');
             }
             $this->set('usergroups', $usergroups);
 
             if (!empty($_GET['id'])) {
                 if (!$user = $this->userDAO->readById($_GET['id'])) {
-                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de Gebruiker.');
+                    $this->_handleError('Er is een fout gebeurd tijdens het ophalen van de gebruiker.');
                 }
                 $this->set('user', $user);
             } else {
