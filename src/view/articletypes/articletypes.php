@@ -97,19 +97,34 @@
                 </div>
 
                 <div class="icons-flex">
-                    <label class="form-icon-label" for="iconinfo">
-                        <input type="radio" id="iconinfo" name="defaulticon" value="../../assets/img/icons/category-info.svg">
-                        <img src="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault">
+                        <input type="radio" id="icondefault" name="defaulticon" value="../../assets/img/icons/type-cursus.svg">
+                        <img src="../../assets/img/icons/type-cursus.svg">
                     </label>
 
-                    <label class="form-icon-label" for="iconinfo2">
-                        <input type="radio" id="iconinfo2" name="defaulticon" value="../../assets/img/icons/category-info.svg">
-                        <img src="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault2">
+                        <input type="radio" id="icondefault2" name="defaulticon" value="../../assets/img/icons/type-file.svg">
+                        <img src="../../assets/img/icons/type-file.svg">
                     </label>
 
-                    <label class="form-icon-label" for="iconinfo3">
-                        <input type="radio" id="iconinfo3" name="defaulticon" value="../../assets/img/icons/category-info.svg">
-                        <img src="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault3">
+                        <input type="radio" id="icondefault3" name="defaulticon" value="../../assets/img/icons/type-instructions.svg">
+                        <img src="../../assets/img/icons/type-instructions.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault4">
+                        <input type="radio" id="icondefault4" name="defaulticon" value="../../assets/img/icons/type-link.svg">
+                        <img src="../../assets/img/icons/type-link.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault5">
+                        <input type="radio" id="icondefault5" name="defaulticon" value="../../assets/img/icons/type-sound.svg">
+                        <img src="../../assets/img/icons/type-sound.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault6">
+                        <input type="radio" id="icondefault6" name="defaulticon" value="../../assets/img/icons/type-video.svg">
+                        <img src="../../assets/img/icons/type-video.svg">
                     </label>
                 </div>
             </div>

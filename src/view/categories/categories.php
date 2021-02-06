@@ -148,18 +148,38 @@
                 </div>
 
                 <div class="icons-flex">
-                    <label class="form-icon-label" for="iconinfo">
-                        <input type="radio" id="iconinfo" name="defaulticon" value="../../assets/img/icons/category-info.svg">
-                        <img src="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault">
+                        <input type="radio" id="icondefault" name="defaulticon" value="../../assets/img/icons/category-binder.svg">
+                        <img src="../../assets/img/icons/category-binder.svg">
                     </label>
 
-                    <label class="form-icon-label" for="iconinfo2">
-                        <input type="radio" id="iconinfo2" name="defaulticon" value="../../assets/img/icons/category-info.svg">
-                        <img src="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault2">
+                        <input type="radio" id="icondefault2" name="defaulticon" value="../../assets/img/icons/category-book.svg">
+                        <img src="../../assets/img/icons/category-book.svg">
                     </label>
 
-                    <label class="form-icon-label" for="iconinfo3">
-                        <input type="radio" id="iconinfo3" name="defaulticon" value="../../assets/img/icons/category-info.svg">
+                    <label class="form-icon-label" for="icondefault3">
+                        <input type="radio" id="icondefault3" name="defaulticon" value="../../assets/img/icons/category-clipboard.svg">
+                        <img src="../../assets/img/icons/category-clipboard.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault4">
+                        <input type="radio" id="icondefault4" name="defaulticon" value="../../assets/img/icons/category-folder.svg">
+                        <img src="../../assets/img/icons/category-folder.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault5">
+                        <input type="radio" id="icondefault5" name="defaulticon" value="../../assets/img/icons/category-pc.svg">
+                        <img src="../../assets/img/icons/category-pc.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault6">
+                        <input type="radio" id="icondefault6" name="defaulticon" value="../../assets/img/icons/category-person.svg">
+                        <img src="../../assets/img/icons/category-person.svg">
+                    </label>
+
+                    <label class="form-icon-label" for="icondefault7">
+                        <input type="radio" id="icondefault7" name="defaulticon" value="../../assets/img/icons/category-info.svg">
                         <img src="../../assets/img/icons/category-info.svg">
                     </label>
                 </div>
