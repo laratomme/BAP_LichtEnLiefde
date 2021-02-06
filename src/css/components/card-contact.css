@@ -20,6 +20,16 @@
     color: var(--colorBlack);
 }
 
+.card-contact svg {
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
+}
+
+.card-contact path {
+    fill: var(--colorWhite);
+}
+
 .card-contact--yellow {
     background-color: var(--colorYellow);
     height: 60px;
@@ -61,6 +71,15 @@
 .card-contact:hover .card-contact--yellow,
 .card-contact:focus .card-contact--yellow {
     border-top: solid 4px var(--colorBlack);
+}
+
+.card-contact-a:hover .card-contact path,
+.card-contact-a:focus .card-contact path {
+    fill: var(--colorBlack);
+}
+
+.card-contact:hover .flex-icon path {
+    fill: var(--colorBlack);
 }
 
 .card-contact:active {

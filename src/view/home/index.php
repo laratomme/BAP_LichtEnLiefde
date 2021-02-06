@@ -32,14 +32,18 @@
 <div class="flex-cards">
     <a href="index.php?page=contact" class="card-contact-a">
         <div class="card-contact">
-            <div class="flex-icon"><img class="card-icon" src="../../assets/img/icons/contact.svg" alt="wit icoon van telefoon en mail"></div>
+            <div class="flex-icon">
+                <?php echo file_get_contents(__DIR__ . '/../../assets/img/icons/contact.svg'); ?>
+            </div>
             <div class="card-contact--yellow">
                 <p>Contact formulier</p>
             </div>
         </div>
     </a>
     <div class="card-contact card-contact-chat">
-        <div class="flex-icon"><img class="card-icon" src="../../assets/img/icons/chat.svg" alt="wit icoon van twee tekstbubbels met vraagteken en informatie teken"></div>
+        <div class="flex-icon">
+            <?php echo file_get_contents(__DIR__ . '/../../assets/img/icons/chat.svg'); ?>
+        </div>
         <div class="card-contact--yellow">
             <p>Chat</p>
         </div>
