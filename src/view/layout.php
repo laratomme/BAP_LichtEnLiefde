@@ -51,10 +51,12 @@
             <p class="settings-p">Instellingen</p>
           </a>
 
-          <div class="search-wrap">
-            <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar...">
+          <form action="index.php?page=search" method="POST" class="search-wrap">
+            <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar..." value="<?php if (!empty($_POST['search'])) {
+                                                                                                                                                                echo $_POST['search'];
+                                                                                                                                                              } ?>">
             <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/search.svg" alt="Zwart vergrootglas zoek icoon"></button>
-          </div>
+          </form>
         </div>
       </div>
 

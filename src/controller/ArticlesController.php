@@ -109,6 +109,15 @@ class ArticlesController extends Controller
         }
     }
 
+    public function search()
+    {
+        $articles = null;
+        if (!empty($_POST['search'])) {
+            $articles = $this->articleDAO->readByFilter($_POST['search']);
+        }
+        $this->set('articles', $articles);
+    }
+
     private function _handleLoadList()
     {
         $this->set('articles', $this->articleDAO->readAll());
