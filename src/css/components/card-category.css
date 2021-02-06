@@ -61,6 +61,11 @@
     object-fit: contain;
 }
 
+
+/*.card-category--icon path {
+    stroke: var(--colorWhite);
+}*/
+
 .cat-link {
     text-decoration: none;
 }
@@ -84,6 +89,12 @@
     background-color: var(--colorYellow);
     border: 2.5px solid var(--colorBlack);
 }
+
+
+/*.card-category:hover .card-category--icon path,
+.card-category:focus .card-category--icon path {
+    stroke: var(--colorBlack);
+}*/
 
 .card-category:active {
     -webkit-transform: scale(0.9);
