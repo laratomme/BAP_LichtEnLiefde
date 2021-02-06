@@ -13,6 +13,7 @@
   <div class="layout">
 
     <header class="header">
+      <a class="skip-link" href='#main'>Naar de hoofdinhoud</a>
       <div class="header-items container">
         <a class="logo-lichtenliefde" href="index.php?page=layout">
           <img src="../../assets/img/logolichtenliefde.svg" alt="Home Licht en Liefde Platform">
@@ -99,7 +100,7 @@
       </div>
     <?php } ?>
 
-    <main class="main container">
+    <main class="main container" id="main">
       <?php echo $content; ?>
     </main>
 
