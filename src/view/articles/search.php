@@ -1,6 +1,6 @@
 <!-- Zoek Artikels -->
 <?php if (!empty($articles)) { ?>
-    <h2 class="header-grey-inhoud">Zoekresultaten</h2>
+    <h1 class="h2 header-grey-zoek">Zoekresultaten</h1>
     <div class="inhoud-lijst">
         <?php foreach ($articles as $article) : ?>
             <a class="inhoud-item" href="<?php if (empty($article['ExternalUrl'])) { ?>
@@ -24,6 +24,6 @@
 <?php } else { ?>
     <div class="info-box">
         <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">
-        <p>Geen resultaten gevonden.</p>
+        <p>Geen zoekresultaten gevonden.</p>
     </div>
 <?php } ?>

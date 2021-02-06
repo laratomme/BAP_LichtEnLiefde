@@ -101,3 +101,17 @@ h2 {
         background-position: 0 41px;
     }
 }
+
+.header-grey-zoek {
+    background-repeat: no-repeat;
+    background-size: 7.8em 0.5em;
+    padding: 0 0 13px;
+    background-position: 0 23px;
+    background-image: linear-gradient(0, var(--colorGrey), var(--colorGrey));
+    @media (min-width: 834px) {
+        background-position: 0 25px;
+    }
+    @media (min-width: 1280px) {
+        background-position: 0 28px;
+    }
+}
