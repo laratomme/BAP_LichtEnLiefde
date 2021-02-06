@@ -21,21 +21,21 @@
           <a class="button-link" href="index.php?page=contact">
             <div class="button-white">
               <p>Contact</p>
-              <img src="../../assets/img/icons/icon-contact-blue.svg" alt="Telefoon in chatballon icoon">
+              <img src="../../assets/img/icons/contact-small.svg" alt="Telefoon in chatballon icoon">
             </div>
           </a>
           <?php if (empty($_SESSION["userData"])) { ?>
             <a class="button-link" href="index.php?page=login">
               <div class="button-blue">
                 <p>Login</p>
-                <img src="../../assets/img/icons/icon-login-white.svg" alt="Gesloten slot login icoon">
+                <img src="../../assets/img/icons/login.svg" alt="Gesloten slot login icoon">
               </div>
             </a>
           <?php } else { ?>
             <a class="button-link" href="index.php?page=login&action=logout">
               <div class="button-blue">
                 <p>Logout</p>
-                <img src="../../assets/img/icons/icon-logout-white.svg" alt="Open slot logout icoon">
+                <img src="../../assets/img/icons/logout.svg" alt="Open slot logout icoon">
               </div>
             </a>
           <?php } ?>
@@ -46,13 +46,13 @@
       <div class="search">
         <div class="search-container">
           <a class="settings-link" href="index.php?page=settings">
-            <img src="../../assets/img/icons/icon-settings-white.svg" alt="Wit icoon instellingen">
+            <img src="../../assets/img/icons/settings.svg" alt="Wit icoon instellingen">
             <p class="settings-p">Instellingen</p>
           </a>
 
           <div class="search-wrap">
             <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar...">
-            <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/icon-zoeken-zwart.svg" alt="Zwart vergrootglas zoek icoon"></button>
+            <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/search.svg" alt="Zwart vergrootglas zoek icoon"></button>
           </div>
         </div>
       </div>
@@ -74,10 +74,10 @@
 
     <?php
     if (!empty($_SESSION['error'])) {
-      echo '<div class="error-box"> <img src="../../assets/img/icons/Icon-Error-Red.svg" alt="Rood error icoon">' . $_SESSION['error'] . '</div>';
+      echo '<div class="error-box"> <img src="../../assets/img/icons/error-red.svg" alt="Rood error icoon">' . $_SESSION['error'] . '</div>';
     }
     if (!empty($_SESSION['info'])) {
-      echo '<div class="info-box"> <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">' . $_SESSION['info'] . '</div>';
+      echo '<div class="info-box"> <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">' . $_SESSION['info'] . '</div>';
     }
     ?>
 

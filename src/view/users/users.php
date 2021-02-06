@@ -4,7 +4,7 @@
     <!-- List -->
     <?php if (count($users) == 0) { ?>
         <div class="info-box">
-            <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+            <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">
             <p>Geen Gebruikers toegevoegd.</p>
         </div>
     <?php } else { ?>
@@ -54,7 +54,7 @@
     <div class="beheer-header-grid">
         <a class="button-link" href="index.php?page=users">
             <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
                 <p>Gebruikers</p>
             </div>
         </a>

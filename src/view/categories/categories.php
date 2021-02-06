@@ -4,7 +4,7 @@
     <!-- List -->
     <?php if (count($categories) == 0) { ?>
         <div class="info-box">
-            <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+            <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">
             <p>Geen Categorieën toegevoegd.</p>
         </div>
     <?php } else { ?>
@@ -63,7 +63,7 @@
     <div class="beheer-header-grid">
         <a class="button-link" href="index.php?page=categories">
             <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
                 <p>Categorieën</p>
             </div>
         </a>
@@ -149,18 +149,18 @@
 
                 <div class="icons-flex">
                     <label class="form-icon-label" for="iconinfo">
-                        <input type="radio" id="iconinfo" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
-                        <img src="../../assets/img/icons/icon-info-black.svg">
+                        <input type="radio" id="iconinfo" name="defaulticon" value="../../assets/img/icons/category-info.svg">
+                        <img src="../../assets/img/icons/category-info.svg">
                     </label>
 
                     <label class="form-icon-label" for="iconinfo2">
-                        <input type="radio" id="iconinfo2" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
-                        <img src="../../assets/img/icons/icon-info-black.svg">
+                        <input type="radio" id="iconinfo2" name="defaulticon" value="../../assets/img/icons/category-info.svg">
+                        <img src="../../assets/img/icons/category-info.svg">
                     </label>
 
                     <label class="form-icon-label" for="iconinfo3">
-                        <input type="radio" id="iconinfo3" name="defaulticon" value="../../assets/img/icons/icon-info-black.svg">
-                        <img src="../../assets/img/icons/icon-info-black.svg">
+                        <input type="radio" id="iconinfo3" name="defaulticon" value="../../assets/img/icons/category-info.svg">
+                        <img src="../../assets/img/icons/category-info.svg">
                     </label>
                 </div>
             </div>

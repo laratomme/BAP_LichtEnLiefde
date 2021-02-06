@@ -85,9 +85,9 @@ input:invalid {
 }
 
 input:invalid+span::after {
-    content: url(../../assets/img/icons/Icon-Error-Red.svg);
+    content: url(../../assets/img/icons/error-red.svg);
 }
 
 input:valid+span::after {
-    content: url(../../assets/img/icons/Icon-Succes-Blue.svg);
+    content: url(../../assets/img/icons/succes-blue.svg);
 }

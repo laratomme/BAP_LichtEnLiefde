@@ -36,20 +36,20 @@
         <a class="button-aanmaken button-link" href="index.php?page=categories&id=<?php echo $category['CategoryID'] ?>">
             <div class="button-blue">
                 <p>Categorie bewerken</p>
-                <img src="../../assets/img/icons/icon-edit-white.svg" alt="Icoon bewerken folder met potlood">
+                <img src="../../assets/img/icons/edit.svg" alt="Icoon bewerken folder met potlood">
             </div>
         </a>
         <a class="button-aanmaken button-link" href="index.php?page=categories&action=create&parentid=<?php echo $category['CategoryID'] ?>">
             <div class="button-blue">
                 <p>Sub-Categorie aanmaken</p>
-                <img src="../../assets/img/icons/icon-add-cat-white.svg" alt="Icoon toevoegen folder met plusteken">
+                <img src="../../assets/img/icons/add-category.svg" alt="Icoon toevoegen folder met plusteken">
             </div>
         </a>
         <?php if (empty($children) && empty($articles)) { ?>
             <a class="button-aanmaken button-link" href="index.php?page=categories&action=delete&id=<?php echo $category['CategoryID'] ?>&parentid=<?php echo $category['CategoryParentID'] ?>">
                 <div class="button-blue">
                     <p>Categorie verwijderen</p>
-                    <img src="../../assets/img/icons/icon-delete-cat-white.svg" alt="Icoon verwijderen folder met kruis">
+                    <img src="../../assets/img/icons/delete-category.svg" alt="Icoon verwijderen folder met kruis">
                 </div>
             </a>
         <?php } ?>
@@ -87,7 +87,7 @@
         <a class="button-aanmaken button-link" href="index.php?page=articles&action=create&categoryid=<?php echo $category['CategoryID'] ?>">
             <div class="button-blue">
                 <p>Inhoud aanmaken</p>
-                <img src="../../assets/img/icons/icon-add-article-white.svg" alt="Icoon toevoegen van document met plus teken">
+                <img src="../../assets/img/icons/add-article.svg" alt="Icoon toevoegen van document met plus teken">
             </div>
         </a>
     </div>

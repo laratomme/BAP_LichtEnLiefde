@@ -1,13 +1,13 @@
 <?php if (!empty($_GET['action']) && $_GET['action'] == 'logout') { ?>
     <div class="info-box">
-        <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+        <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">
         <p>U bent nu uitgelogd.</p>
     </div>
 
 <?php } else { ?>
     <a class="button-link" href="index.php?page=index">
         <div class="button-blue button-back">
-            <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+            <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
             <p>Homepage</p>
         </div>
     </a>

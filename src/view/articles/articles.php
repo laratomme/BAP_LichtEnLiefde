@@ -5,7 +5,7 @@
     <!-- List -->
     <?php if (count($articles) == 0) { ?>
         <div class="info-box">
-            <img src="../../assets/img/icons/Icon-Info-Blue.svg" alt="Blauw info icoon">
+            <img src="../../assets/img/icons/info-blue.svg" alt="Blauw info icoon">
             <p>Geen inhoud toegevoegd.</p>
         </div>
     <?php } else { ?>
@@ -67,7 +67,7 @@
     <div class="beheer-header-grid">
         <a class="button-link" href="index.php?page=articles">
             <div class="button-blue button-back">
-                <img src="../../assets/img/icons/icon-arrow-white.svg" alt="Pijl naar links icoon">
+                <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
                 <p>Inhoud lijst</p>
             </div>
         </a>
