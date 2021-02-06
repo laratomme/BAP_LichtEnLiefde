@@ -30,3 +30,10 @@
 .form-icon-upload-label {
     border: none;
 }
+
+.form-icon-upload img {
+    min-height: 50px;
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+}

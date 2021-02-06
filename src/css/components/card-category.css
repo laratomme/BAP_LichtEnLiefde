@@ -50,10 +50,15 @@
 }
 
 .card-category--icon img {
-    height: 85px;
-    @media (min-width: 834px) {
-        height: 120px;
-    }
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
+}
+
+.card-category--icon svg {
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
 }
 
 .cat-link {

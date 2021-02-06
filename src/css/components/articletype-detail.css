@@ -53,3 +53,10 @@
     border: 1.5px solid var(--colorBlue);
     border-radius: 1px 1px 0px 0px;
 }
+
+.default-iconen img {
+    min-height: 50px;
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+}
