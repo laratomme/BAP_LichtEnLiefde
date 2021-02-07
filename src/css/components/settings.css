@@ -1,14 +1,11 @@
 .settings-flex {
-    max-width: 480px;
+    width: fit-content;
     margin: 0 auto;
 }
 
 .settings-grid {
     display: grid;
     grid-gap: 15px;
-    width: -webkit-fill-available;
-    width: 100%;
-    max-width: 480px;
 }
 
 .settings-input {
@@ -42,6 +39,8 @@ label .label-kleur {
 
 .settings-radios {
     margin-bottom: 1em;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .settings-radios .radio {
@@ -52,6 +51,7 @@ label .label-kleur {
     display: inline;
     cursor: pointer;
     padding: 20px;
+    margin: 0 5px;
     @media (min-width: 834px) {
         padding: 20px 40px;
     }
