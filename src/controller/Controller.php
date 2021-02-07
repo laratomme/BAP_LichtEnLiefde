@@ -29,6 +29,9 @@ class Controller
       $this->set('css', '<link href="style.css" rel="stylesheet">'); // regular css tag
     }
 
+    $this->checkLogin();
+    $this->checkSettings();
+
     $this->fetchBreadCrumb();
 
     $this->createViewVarWithContent();
@@ -41,8 +44,6 @@ class Controller
       unset($_SESSION['error']);
     }
 
-    $this->checkLogin();
-    $this->checkSettings();
   }
 
   public function set($variableName, $value)
