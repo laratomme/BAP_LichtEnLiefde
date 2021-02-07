@@ -8,7 +8,7 @@
   <?php echo $css; ?>
 </head>
 
-<body>
+<body class="<?php echo $_SESSION["uiData"]['Contrast'] ?> <?php echo $_SESSION["uiData"]['Font'] ?>">
 
   <div class="layout">
 

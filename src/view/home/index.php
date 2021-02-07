@@ -40,12 +40,12 @@
             </div>
         </div>
     </a>
-    <div class="card-contact card-contact-chat">
+    <!-- <div class="card-contact card-contact-chat">
         <div class="flex-icon">
             <?php echo file_get_contents(__DIR__ . '/../../assets/img/icons/chat.svg'); ?>
         </div>
         <div class="card-contact--yellow">
             <p>Chat</p>
         </div>
-    </div>
+    </div> -->
 </div>

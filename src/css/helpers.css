@@ -49,3 +49,22 @@
 .skip-link:focus {
     transform: translateY(0%);
 }
+
+.nocolor {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.font-size-100 {
+    font-size: 100%;
+}
+
+.font-size-125 {
+    font-size: 125%;
+}
+
+.font-size-150 {
+    font-size: 150%;
+}
