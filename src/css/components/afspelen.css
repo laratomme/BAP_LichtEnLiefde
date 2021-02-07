@@ -1,0 +1,7 @@
+.afspelen-buttons {
+    display: flex;
+}
+
+.afspelen-buttons button {
+    margin-right: 10px;
+}
