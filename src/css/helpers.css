@@ -31,3 +31,21 @@
 .error-box {
     border: 2px solid var(--colorError);
 }
+
+.skip-link {
+    background-color: #FFC91E;
+    color: black;
+    font-weight: 700;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    width: fit-content;
+    position: relative;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+}
+
+.skip-link:focus {
+    transform: translateY(0%);
+}

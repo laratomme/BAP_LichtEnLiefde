@@ -32,6 +32,11 @@ $routes = array(
         'action' => 'contact',
         'name' => 'Contact'
     ),
+    'search' => array(
+        'controller' => 'Articles',
+        'action' => 'search',
+        'name' => 'Zoeken'
+    ),
     'login' => array(
         'controller' => 'Login',
         'action' => 'login',

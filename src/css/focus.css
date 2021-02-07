@@ -1,0 +1,58 @@
+:focus {
+    outline: 2px dotted var(--colorBlue);
+}
+
+.logo-lichtenliefde:focus:focus {
+    outline: 2.5px dotted var(--colorBlue);
+    outline-offset: 5px;
+}
+
+.button-link:focus {
+    outline: 2.5px dotted var(--colorBlue);
+    outline-offset: 5px;
+    text-decoration: underline;
+}
+
+.settings-link:focus {
+    outline: 2.5px dotted var(--colorWhite);
+    outline-offset: 5px;
+    text-decoration: underline;
+    color: var(--colorWhite);
+}
+
+.search-input:focus {
+    outline: 2.5px dotted var(--colorBlue);
+    text-decoration: underline;
+    color: var(--colorBlue);
+}
+
+.nav-link:focus {
+    outline: 2.5px dotted var(--colorBlue);
+    outline-offset: 2px;
+    text-decoration: underline;
+    background-color: var(--colorBlue);
+    color: var(--colorWhite);
+}
+
+.breadcrumbs:focus a {
+    text-decoration: underline;
+    background-color: var(--colorYellow);
+    outline: 2.5px dotted var(--colorBlack);
+}
+
+.cat-link:focus {
+    outline: 4.5px dotted var(--colorBlue);
+    outline-offset: 2px;
+}
+
+.card-contact-a:focus,
+.card-contact-chat:focus {
+    outline: 4.5px dotted var(--colorBlue);
+    outline-offset: 2px;
+}
+
+address a:focus {
+    outline: 2.5px dotted var(--colorWhite);
+    outline-offset: 2px;
+    text-decoration: underline;
+}
