@@ -14,6 +14,8 @@ class SettingsController extends Controller
             $data = array();
             $data['Font'] = $_POST['font'];
             $data['Contrast'] = $_POST['contrast'];
+            $data['VoiceRate'] = $_POST['voicerate'];
+            $data['VoicePitch'] = $_POST['voicepitch'];
 
             $encoded = json_encode($data);
 
@@ -28,6 +30,8 @@ class SettingsController extends Controller
         $data = array();
         $data['Font'] = "font-size-100";
         $data['Contrast'] = "color";
+        $data['VoiceRate'] = 0.8;
+        $data['VoicePitch'] = 1.0;
         $_SESSION["uiData"] = $data;
     }
 

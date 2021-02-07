@@ -10,6 +10,7 @@
 
 /* Components */
 
+@import './css/components/afspelen.css';
 @import './css/components/articles.css';
 @import './css/components/articles-detail.css';
 @import './css/components/articletypes.css';

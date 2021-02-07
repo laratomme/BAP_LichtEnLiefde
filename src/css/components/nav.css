@@ -28,6 +28,6 @@
 }
 
 .nav-list a:active {
-    color: var(--colorBlue);
+    color: var(--colorWhite);
     text-decoration: underline;
 }
