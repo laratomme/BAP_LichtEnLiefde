@@ -56,3 +56,11 @@ address a:focus {
     outline-offset: 2px;
     text-decoration: underline;
 }
+
+[type=text]:focus,
+[type=email]:focus,
+[type=password]:focus,
+[type=tel]:focus,
+textarea:focus {
+    box-shadow: inset 0px 0px 5px 0px #1f96ff;
+}
