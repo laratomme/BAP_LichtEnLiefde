@@ -52,6 +52,7 @@
           </a>
 
           <form action="index.php?page=search" method="POST" class="search-wrap">
+            <button class="search-speech-button" type="button">Spreek</button>
             <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar..." value="<?php if (!empty($_POST['search'])) {
                                                                                                                                                                 echo $_POST['search'];
                                                                                                                                                               } ?>">
