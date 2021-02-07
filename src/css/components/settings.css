@@ -60,10 +60,6 @@ label .label-kleur {
     }
 }
 
-.settings-radios input[type=radio] {
-    display: none;
-}
-
 .settings-radios input[type=radio]:checked+.radio {
     background-color: var(--colorBlue);
     border: 2.5px solid var(--colorBlue);

@@ -64,3 +64,9 @@ address a:focus {
 textarea:focus {
     box-shadow: inset 0px 0px 5px 0px #1f96ff;
 }
+
+.settings-radios input[type=radio]:focus+.radio {
+    outline: 2.5px dotted var(--colorBlue);
+    outline-offset: 5px;
+    text-decoration: underline;
+}

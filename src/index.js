@@ -1,4 +1,3 @@
-require('./style.css');
-{
-    
+require('./style.css'); {
+
 }
