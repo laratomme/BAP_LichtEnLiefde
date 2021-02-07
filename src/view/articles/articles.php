@@ -163,7 +163,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.js"></script>
 <script>
-    let baseUrl = 'http://localhost:8888/';
+    let baseUrl = 'https://whispering-tor-32699.herokuapp.com/';
     let editor = new Jodit('#area_editor', {
         language: 'nl',
         textIcons: false,
