@@ -9,7 +9,7 @@
 .search-input {
     background: var(--colorWhite);
     color: var(--colorDarkGrey);
-    padding: .7em .4em;
+    padding: .7em .2em;
     font-size: var(--fontSmall);
     border: none;
     border-radius: 1px;

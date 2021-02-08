@@ -28,14 +28,20 @@
     <div class="settings-line"></div>
 
     <p class="settings-h2">Audio Assist</p>
-    <div class="settings-radios voice-settings">
-      <label for="voicerate">Tempo</label>
-      <input class="voicerate-slider" type="range" min="0.5" max="1.5" step="0.1" id="voicerate" name="voicerate" value="<?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : "0.8" ?>">
-      <div class="voicerate-waarde"><?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : "0.8" ?></div>
-      <label for="voicepitch">Pitch</label>
-      <input class="voicepitch-slider" type="range" min="0" max="1.5" step="0.1" id="voicepitch" name="voicepitch" value="<?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : "1" ?>">
-      <div class="voicepitch-waarde"><?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : "1" ?></div>
+    <div class="voice-settings">
+      <div class="voice-setting">
+        <label for="voicerate">Tempo</label>
+        <input class="voicerate-slider" type="range" min="0.5" max="1.5" step="0.1" id="voicerate" name="voicerate" value="<?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : "0.8" ?>">
+        <div class="voicerate-waarde"><?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : "0.8" ?></div>
+      </div>
+      <div class="voice-setting">
+        <label for="voicepitch">Pitch</label>
+        <input class="voicepitch-slider" type="range" min="0" max="1.5" step="0.1" id="voicepitch" name="voicepitch" value="<?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : "1" ?>">
+        <div class="voicepitch-waarde"><?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : "1" ?></div>
+      </div>
     </div>
+
+    <div class="settings-line"></div>
 
     <div class="form-grid-items settings-button">
       <button class="button-yellow" type="submit" name="action" value="update">Pas aan</button>
