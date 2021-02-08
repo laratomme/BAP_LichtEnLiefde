@@ -29,3 +29,8 @@
 .grid-categories-data--item {
     padding-left: .556em;
 }
+
+.categories-flex {
+    display: flex;
+    flex-wrap: wrap;
+}

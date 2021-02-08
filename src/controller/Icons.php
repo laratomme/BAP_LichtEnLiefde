@@ -33,7 +33,7 @@ class Icons
                 if ($data['UpdateIcon']) {
                     if ($icon['IsCustom']) {
                         $icon['Icon'] = $this->_handleUpload($data['IconFile'], $icon['Id']);
-                    } else {                   
+                    } else {
                         $icon['Icon'] = $data['DefaultIcon'];
                     }
                     $this->iconDAO->update($icon);
@@ -57,7 +57,7 @@ class Icons
 
             $ext = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
             $fileLoc = $folder . $id . '.' . $ext;
-            $file = '/assets/img/icons/' . $id . '.' . $ext;
+            $file = '../../assets/img/icons/' . $id . '.' . $ext;
 
             if (!is_dir($folder)) {
                 mkdir($folder, 0777, true);

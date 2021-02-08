@@ -38,7 +38,7 @@
           <p class="grid-categories-data--item"><?php echo $category['CategoryParentName'] ?></p>
         </div>
         <div>
-          <p class="grid-categories-data--item"><?php echo $category['UserGroupID'] ?></p>
+          <p class="grid-categories-data--item"><?php echo $category['UserGroupName'] ?></p>
         </div>
 
         <a class="button-link button-bewerken" href="index.php?page=categories&id=<?php echo $category['CategoryID'] ?>">
@@ -142,7 +142,7 @@
         </div>
       <?php } ?>
 
-      <div class="hidden default-iconen">
+      <div class="default-iconen">
         <div class="icoon-kiezen-p">
           <p>Default iconen:</p>
         </div>
