@@ -44,16 +44,50 @@ class ArticleDAO extends DAO
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
-            WHERE ar.CategoryID = :Id AND";
+            WHERE ar.CategoryID = :Id";
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $sql = $sql . " (ar.UserGroupID is null OR ar.UserGroupID = :UserGroupID)";
+            if ($_SESSION['userData']['UserGroupID'] !== -1) {
+                $sql .= " AND (ar.UserGroupID is null OR ar.UserGroupID = :UserGroupID)";
+            }
         } else {
-            $sql = $sql . " ar.UserGroupID is null";
+            $sql .= " AND ar.UserGroupID is null";
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
+            if ($_SESSION['userData']['UserGroupID'] !== -1) {
+                $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
+            }
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function readAllBySearch($search)
+    {
+        $sql = "SELECT ar.ArticleID, ar.Title, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon, search.Relevance
+            FROM BAP_Article ar
+            INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
+            INNER JOIN 
+            (
+                select ArticleID, MATCH(Content,Title) AGAINST (:Filter) as Relevance FROM BAP_Article
+            ) as search on search.ArticleID = ar.ArticleID
+            WHERE search.Relevance > 0";
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            if ($_SESSION['userData']['UserGroupID'] !== -1) {
+                $sql .= " AND (ar.UserGroupID is null OR ar.UserGroupID = :UserGroupID)";
+            }
+        } else {
+            $sql .= " AND ar.UserGroupID is null";
+        }
+        $sql .= " ORDER BY search.Relevance DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':Filter', $search);
+        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
+            if ($_SESSION['userData']['UserGroupID'] !== -1) {
+                $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
+            }
         }
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -66,32 +100,6 @@ class ArticleDAO extends DAO
         $stmt->bindValue(':Id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function readByFilter($filter)
-    {
-        $sql = "SELECT ar.ArticleID, ar.Title, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon, search.Relevance
-            FROM BAP_Article ar
-            INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
-            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
-            INNER JOIN 
-            (
-                select ArticleID, MATCH(Content,Title) AGAINST (:Filter) as Relevance FROM BAP_Article
-            ) as search on search.ArticleID = ar.ArticleID
-            WHERE search.Relevance > 0 AND";
-        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $sql .= " (ar.UserGroupID is null OR ar.UserGroupID = :UserGroupID)";
-        } else {
-            $sql .= " ar.UserGroupID is null";
-        }
-        $sql .= " ORDER BY search.Relevance DESC";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':Filter', $filter);
-        if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
-            $stmt->bindValue(':UserGroupID', $_SESSION['userData']['UserGroupID']);
-        }
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update($data)

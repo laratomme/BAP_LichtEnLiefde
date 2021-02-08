@@ -113,7 +113,7 @@ class ArticlesController extends Controller
     {
         $articles = null;
         if (!empty($_POST['search'])) {
-            $articles = $this->articleDAO->readByFilter($_POST['search']);
+            $articles = $this->articleDAO->readAllBySearch($_POST['search']);
         }
         $this->set('articles', $articles);
     }
