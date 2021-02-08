@@ -52,11 +52,11 @@
           </a>
 
           <form action="index.php?page=search" method="POST" class="search-wrap">
-            <button class="search-speech-button" type="button">Spreek</button>
+            <button class="search-speech-button button-blue" type="button">Spreek<img class="speak-icon" src="../../assets/img/icons/speak.svg" alt="Spreek icoon"></button>
             <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar..." value="<?php if (!empty($_POST['search'])) {
                                                                                                                                                                 echo $_POST['search'];
                                                                                                                                                               } ?>">
-            <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/search.svg" alt="Zwart vergrootglas zoek icoon"></button>
+            <button class="button-link search-button">Zoeken <img class="search-icon" src="../../assets/img/icons/search.svg" alt="Vergrootglas zoek icoon"></button>
           </form>
         </div>
       </div>

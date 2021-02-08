@@ -2,7 +2,7 @@
 <h1><?php echo $category['Name'] ?></h1>
 <?php if (!empty($children)) { ?>
     <h2 class="header-grey-cat">Categorieën</h2>
-    <div>
+    <div class="categories-flex">
         <?php foreach ($children as $child) : ?>
 
             <a class="cat-link" href="<?php if (empty($child['ExternalUrl'])) { ?>

@@ -8,7 +8,7 @@ class CategoryDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_Category (Name, Description, OnMainMenu, ExternalUrl, CategoryParentID, UserGroupID, IconID) 
+            $sql = "INSERT INTO BAP_Category (Name, Description, OnMainMenu, ExternalUrl, CategoryParentID, UserGroupID, IconID)
                 VALUES (:Name, :Description, :OnMainMenu, :ExternalUrl, :CategoryParentID, :UserGroupID, :IconID)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
@@ -27,10 +27,11 @@ class CategoryDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, catPar.Name as CategoryParentName, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, catPar.Name as CategoryParentName, cat.UserGroupID, ug.Name as UserGroupName, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
-            LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID";
+            LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID
+            LEFT JOIN BAP_UserGroup ug on ug.UserGroupID = cat.UserGroupID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,7 +106,7 @@ class CategoryDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_Category SET 
+            $sql = "UPDATE BAP_Category SET
                 Name = :Name,
                 Description = :Description,
                 OnMainMenu = :OnMainMenu,
