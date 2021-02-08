@@ -142,7 +142,7 @@
         </div>
       <?php } ?>
 
-      <div class="default-iconen">
+      <div class="default-iconen display-icons <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
         <div class="icoon-kiezen-p">
           <p>Default iconen:</p>
         </div>
@@ -185,9 +185,11 @@
         </div>
       </div>
 
-      <div class="hidden form-icon-upload icoon-uploaden">
-        <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
-        <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
+      <div class="display-icons <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
+        <div class="form-icon-upload icoon-uploaden">
+          <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
+          <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
+        </div>
       </div>
 
       <?php if (empty($_GET['id'])) { ?>
@@ -202,18 +204,3 @@
   </div>
 
 <?php } ?>
-
-<script>
-  const displayIconBox = checkbox => {
-    const checkboxicon = checkbox.querySelector('.icoon-aanpassen');
-    checkbox.addEventListener('click', () => {
-      showDiv();
-      console.log('Check')
-    });
-  };
-  const showDiv = () => {
-    const defaultIconen = document.getElementsByClassName('.default-iconen');
-    defaultIconen.classList.remove('hidden');
-    defaultIconen.classList.add('.form-grid-items .default-iconen');
-  }
-</script>

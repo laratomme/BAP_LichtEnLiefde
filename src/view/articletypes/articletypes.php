@@ -87,11 +87,11 @@
 
                 <div class="form-icon-upload">
                     <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
-                    <input id="updateicon" type="checkbox" name="updateicon" />
+                    <input class="icoon-aanpassen" id="updateicon" type="checkbox" name="updateicon" />
                 </div>
             <?php } ?>
 
-            <div class="form-grid-items default-iconen">
+            <div class="default-iconen display-icons <?php echo !empty($_GET['id']) && !empty($articletype['Icon']) ? "hidden" : ""; ?>">
                 <div class="icoon-kiezen-p">
                     <p>Default iconen:</p>
                 </div>
@@ -129,10 +129,13 @@
                 </div>
             </div>
 
-            <div class="form-icon-upload">
-                <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
-                <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
+            <div class="display-icons <?php echo !empty($_GET['id']) && !empty($articletype['Icon']) ? "hidden" : ""; ?>">
+                <div class="form-icon-upload">
+                    <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
+                    <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
+                </div>
             </div>
+
 
             <?php if (empty($_GET['id'])) { ?>
                 <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Type Toevoegen</button>
