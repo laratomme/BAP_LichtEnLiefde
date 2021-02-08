@@ -82,7 +82,7 @@
             <?php if (!empty($_GET['id']) && !empty($articletype['Icon'])) { ?>
                 <div class="form-icon-upload">
                     <label class="form-icon-upload-label" for="icon">Huidig Icoon</label>
-                    <img src="<?php echo $articletype['Icon'] ?>" alt="Icoon">
+                    <img src="<?php echo $articletype['Icon'] ?>" alt="Huidig Icoon">
                 </div>
 
                 <div class="form-icon-upload">

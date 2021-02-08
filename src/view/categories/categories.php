@@ -133,7 +133,7 @@
       <?php if (!empty($_GET['id']) && !empty($category['Icon'])) { ?>
         <div class="form-icon-upload">
           <label class="form-icon-upload-label" for="icon">Huidig Icoon:</label>
-          <img src="<?php echo $category['Icon'] ?>" alt="Icoon">
+          <img src="<?php echo $category['Icon'] ?>" alt="Huidig Icoon">
         </div>
 
         <div class="form-icon-upload">

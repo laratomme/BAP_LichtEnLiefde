@@ -15,7 +15,7 @@
                 </div>
                 <div class="inhoud-item-label">
                     <p><?php echo $article['ArticleTypeName'] ?></p>
-                    <img src="<?php echo $article['Icon'] ?>" alt="Icoon">
+                    <img src="<?php echo $article['Icon'] ?>" alt="<?php echo $article['ArticleTypeName'] ?>">
                 </div>
             </a>
             <div class="inhoud-lijst-lijn"></div>

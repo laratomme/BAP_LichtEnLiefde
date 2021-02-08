@@ -17,7 +17,7 @@
                         <?php if (strpos($child['Icon'], '.svg') !== false) { ?>
                             <?php echo file_get_contents(__DIR__ . '/' . $child['Icon']); ?>
                         <?php } else { ?>
-                            <img src="<?php echo $child['Icon'] ?>" alt="Icoon">
+                            <img src="<?php echo $child['Icon'] ?>" alt="<?php echo $child['Name'] ?>">
                         <?php } ?>
                     </div>
                     <div class="card-category--label">
@@ -73,7 +73,7 @@
                 </div>
                 <div class="inhoud-item-label">
                     <p><?php echo $article['ArticleTypeName'] ?></p>
-                    <img src="<?php echo $article['Icon'] ?>" alt="Icoon">
+                    <img src="<?php echo $article['Icon'] ?>" alt="<?php echo $article['ArticleTypeName'] ?>">
                 </div>
             </a>
             <div class="inhoud-lijst-lijn"></div>
