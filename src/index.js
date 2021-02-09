@@ -1,5 +1,7 @@
 require('./style.css');
-require('./js/validate.js'); {
+require('./validate.js');
+
+{
     // Voice Recognition
     const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
 
