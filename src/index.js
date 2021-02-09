@@ -39,8 +39,106 @@ require('./validate.js');
         searchInput.value = speechResult;
         searchForm.submit();
     }
+    ///Notifciation sounds from Zapsplat.com
 
-    //Notifciation sounds from Zapsplat.com
+    // Speech Synthesis
+    let synth;
+    let voice;
+    let attempts = 0;
+    const loadVoices = () => {
+        attempts++;
+        const voices = synth.getVoices();
+        if (voices.length) {
+            voice = voices.find(_voice => /nl[-_]NL/.test(_voice.lang));
+        }
+        if (!voice) {
+            if (attempts < 10) {
+                setTimeout(() => {
+                    loadVoices();
+                }, 250);
+            } else {
+                console.error('`nl-NL` voice not found.');
+            }
+        }
+    }
+
+    if ('speechSynthesis' in window) {
+        synth = window.speechSynthesis;
+        loadVoices();
+    }
+
+    window.onbeforeunload = () => {
+        synth.cancel();
+    };
+
+    // Speech Functions
+    const pitchControl = document.querySelector('.synth-pitch');
+    const rateControl = document.querySelector('.synth-rate');
+    const playControl = document.querySelector('.synth-play');
+    const pauseControl = document.querySelector('.synth-pause');
+    const stopControl = document.querySelector('.synth-stop');
+    const textControl = document.querySelector('.synth-text');
+
+    let manualPause = false;
+    let timeoutResumeInfinity;
+
+    const readSynthText = () => {
+        if (!synth.speaking) {
+            manualPause = false;
+
+            let message = textControl.textContent;
+
+            let synthUtter = new SpeechSynthesisUtterance(message);
+            synthUtter.addEventListener('error', error => console.error(error));
+
+            synthUtter.onstart = (e) => {
+                resumeInfinity();
+            };
+
+            synthUtter.onend = (e) => {
+                clearTimeout(timeoutResumeInfinity)
+            }
+
+            synthUtter.voice = voice;
+            synthUtter.lang = voice.lang;
+            synthUtter.pitch = pitchControl.textContent;
+            synthUtter.rate = rateControl.textContent;
+            synth.cancel();
+            synth.speak(synthUtter);
+            return;
+        } else {
+            pauseSynthText();
+        }
+    };
+
+    const resumeInfinity = () => {
+        if (!manualPause) {
+            synth.pause();
+            synth.resume();
+        }
+        timeoutResumeInfinity = setTimeout(resumeInfinity, 1000);
+    }
+
+    const pauseSynthText = () => {
+        if (manualPause) {
+            manualPause = false;
+            synth.resume();
+        } else {
+            manualPause = true;
+            synth.pause();
+        }
+    }
+
+    const stopSynthText = () => {
+        synth.cancel();
+    }
+
+    // Key Events
+    document.addEventListener("keypress", (e) => {
+        if (e.key == "Enter") {
+            readSynthText();
+        }
+    });
 
     // javascript forms
     const checkboxForm = document.querySelector('.icoon-aanpassen');
@@ -63,6 +161,27 @@ require('./validate.js');
                         display.classList.add('hidden');
                     }
                 });
+            });
+        }
+
+        if (playControl) {
+            playControl.addEventListener("click", (e) => {
+                e.preventDefault();
+                readSynthText();
+            });
+        }
+
+        if (pauseControl) {
+            pauseControl.addEventListener("click", (e) => {
+                e.preventDefault();
+                pauseSynthText();
+            });
+        }
+
+        if (stopControl) {
+            stopControl.addEventListener("click", (e) => {
+                e.preventDefault();
+                stopSynthText();
             });
         }
     }

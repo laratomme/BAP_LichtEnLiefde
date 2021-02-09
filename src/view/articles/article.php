@@ -1,11 +1,11 @@
 <!-- Artikel -->
 <h1><?php echo $article['Title'] ?></h1>
 <div class="afspelen-buttons">
-  <button class="button-afspelen-article button-blue" type="button" onclick="speakArticle()">Lees Inhoud<img class="afspelen-icon" src="../../assets/img/icons/afspelen.svg" alt="Afspelen geluid icoon"></button>
-  <button class="button-pauzeer-article button-white" type="button" onclick="pauseArticle()">Pauze<img class="afspelen-icon" src="../../assets/img/icons/pauze.svg" alt="Pauzeer icoon"></button>
-  <button class="button-pauzeer-article button-white" type="button" onclick="stopArticle()">Stop<img class="afspelen-icon" src="../../assets/img/icons/stop.svg" alt="Stop icoon"></button>
+  <button class="synth-play button-blue" type="button">Lees Inhoud<img class="afspelen-icon" src="../../assets/img/icons/afspelen.svg" alt="Afspelen geluid icoon"></button>
+  <button class="synth-pause button-white" type="button">Pauze<img class="afspelen-icon" src="../../assets/img/icons/pauze.svg" alt="Pauzeer icoon"></button>
+  <button class="synth-stop button-white" type="button">Stop<img class="afspelen-icon" src="../../assets/img/icons/stop.svg" alt="Stop icoon"></button>
 </div>
-<div class="inhoud-content"><?php echo $article['Content'] ?></div>
+<div class="synth-text"><?php echo $article['Content'] ?></div>
 
 <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>
   <div class="beheer-art-flex">
@@ -24,73 +24,7 @@
     </a>
   </div>
 <?php } ?>
-<script>
-  const synth = speechSynthesis;
-  const content = document.querySelector('.inhoud-content');
-
-  let manualPause = false;
-
-  document.addEventListener("keypress", (event) => {
-    if (event.key == "Enter") {
-      speakArticle();
-    }
-  });
-
-  window.onbeforeunload = () => {
-    synth.cancel();
-  };
-
-  const speakArticle = () => {
-    if (!synth.speaking) {
-      manualPause = false;
-
-      let message = content.textContent;
-
-      let synthUtter = new SpeechSynthesisUtterance(message);
-
-      synthUtter.onstart = function(event) {
-        resumeInfinity();
-      };
-
-      synthUtter.onend = (e) => {
-        clearTimeout(timeoutResumeInfinity)
-      }
-
-      synthUtter.onerror = (e) => {
-        console.log('Error Speaking');
-      }
-
-      synthUtter.voice = synth.getVoices().filter((a) => {
-        return a.lang == 'nl-NL';
-      })[0];
-      synthUtter.pitch = <?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : 1.0 ?>;
-      synthUtter.rate = <?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : 0.8 ?>;
-      synth.cancel();
-      synth.speak(synthUtter);
-      return;
-    }
-    pauseArticle();
-  };
-
-  const resumeInfinity = () => {
-    if (!manualPause) {
-      synth.pause();
-      synth.resume();
-    }
-    timeoutResumeInfinity = setTimeout(resumeInfinity, 1000);
-  }
-
-  const pauseArticle = () => {
-    if (manualPause) {
-      manualPause = false;
-      synth.resume();
-    } else {
-      manualPause = true;
-      synth.pause();
-    }
-  }
-
-  const stopArticle = () => {
-    synth.cancel();
-  }
-</script>
+<div class="hidden">
+  <span class="synth-pitch"><?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : 1.0 ?></span>
+  <span class="synth-rate"><?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : 0.8 ?></span>
+</div>
