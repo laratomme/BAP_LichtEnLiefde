@@ -32,10 +32,13 @@ class CategoriesController extends Controller
                 header('Location: index.php?page=home');
                 exit();
             }
-            $this->set('category', $category);
 
-            $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
-            $this->set('articles', $this->articleDAO->readAllByCategoryId($category['CategoryID']));
+            if ($this->security->hasAccess($category['UserGroupID'])) {
+                $this->set('category', $category);
+
+                $this->set('children', $this->categoryDAO->readAllChildren($category['CategoryID']));
+                $this->set('articles', $this->articleDAO->readAllByCategoryId($category['CategoryID']));
+            }
         } else {
             header('Location: index.php?page=home');
             exit();

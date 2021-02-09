@@ -32,7 +32,9 @@ class ArticlesController extends Controller
                 header('Location: index.php?page=home');
                 exit();
             }
-            $this->set('article', $article);
+            if ($this->security->hasAccess($article['UserGroupID'])) {
+                $this->set('article', $article);
+            }
         } else {
             header('Location: index.php?page=home');
             exit();

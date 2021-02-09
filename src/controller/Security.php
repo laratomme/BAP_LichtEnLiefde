@@ -73,7 +73,6 @@ class Security
         $this->userDAO->updateToken($user['UserID'], $encoded);
         $_SESSION["userData"] = $user;
         setcookie("userData", $encoded, time() + (86400 * 7));
-        // setcookie("auto", $encoded, time() + $expiration, "/~root/", "example.com", 1, 1);
     }
 
     public function removeLoginData()
@@ -83,19 +82,52 @@ class Security
         setcookie("userData", "", time() - 3600);
     }
 
-    public function isAdmin()
+    public function isAdmin($redirect = true)
     {
         if (!isset($_SESSION["userData"]) || empty($_SESSION["userData"])) {
-            header("Location: index.php?page=home");
-            exit();
+            if ($redirect) {
+                header("Location: index.php?page=home");
+                exit();
+            } else {
+                return false;
+            }
         }
 
         if (!isset($_SESSION['userData']['UserGroupID'])) {
-            header("Location: index.php?page=home");
-            exit();
+            if ($redirect) {
+                header("Location: index.php?page=home");
+                exit();
+            } else {
+                return false;
+            }
         }
 
         return $_SESSION['userData']['UserGroupID'] === $this->adminID;
+    }
+
+    public function hasAccess($userGroupId)
+    {
+        if (!$this->isAdmin(false)) {
+            if (!empty($userGroupId)) {
+                if (!isset($_SESSION["userData"]) || empty($_SESSION["userData"])) {
+                    header("Location: index.php?page=home");
+                    exit();
+                }
+
+                if (!isset($_SESSION['userData']['UserGroupID'])) {
+                    header("Location: index.php?page=home");
+                    exit();
+                }
+
+                if ($_SESSION['userData']['UserGroupID'] != $userGroupId) {
+                    header("Location: index.php?page=home");
+                    exit();
+                }
+
+                return false;
+            }
+        }
+        return true;
     }
 
     private function verify($data, $hash)
