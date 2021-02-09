@@ -70,3 +70,19 @@ select {
     display: flex;
     justify-content: center;
 }
+
+.form-password-update {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1.5px solid var(--colorBlue);
+    border-radius: 1px 1px 0px 0px;
+}
+
+.form-password-update input [type="checkbox"] {
+    margin: auto 0;
+}
+
+.form-password-update-label {
+    border: none;
+}

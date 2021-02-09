@@ -30,8 +30,10 @@ class UsersController extends Controller
                 $data['LastName'] = $_POST['lastname'];
                 $data['Email'] = $_POST['email'];
                 $data['Login'] = $_POST['login'];
-                $data['Password'] = $_POST['password'];
                 $data['UserGroupId'] = $_POST['usergroupid'];
+
+                $data['UpdatePassword'] = empty($_POST['updatepassword']) ? 0 : 1;
+                $data['Password'] = $_POST['password'];
 
                 switch ($action) {
                     case 'create':
@@ -44,6 +46,9 @@ class UsersController extends Controller
                         }
                         break;
                     case 'update':
+                        if ($data['UpdatePassword']) {
+                            $this->userDAO->updatePassword($data);
+                        }
                         if ($this->userDAO->update($data)) {
                             header("Location: index.php?page=users&id=" . $data['Id']);
                             exit();

@@ -138,11 +138,11 @@
 
         <div class="form-icon-upload">
           <label class="form-icon-upload-label" for="updateicon">Icoon Aanpassen:</label>
-          <input class="icoon-aanpassen" id="updateicon" type="checkbox" name="updateicon" />
+          <input class="toggle-zichtbaar" id="updateicon" type="checkbox" name="updateicon" />
         </div>
       <?php } ?>
 
-      <div class="default-iconen display-icons <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
+      <div class="default-iconen display-toggle <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
         <div class="icoon-kiezen-p">
           <p>Default iconen:</p>
         </div>
@@ -185,7 +185,7 @@
         </div>
       </div>
 
-      <div class="display-icons <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
+      <div class="display-toggle <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
         <div class="form-icon-upload icoon-uploaden">
           <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
           <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />

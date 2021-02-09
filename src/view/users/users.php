@@ -93,11 +93,17 @@
                                                                                                         echo $user['Login'];
                                                                                                     } ?>" minlength="3" maxlength="64" required />
                 </div>
-                <div class="form-grid-items">
-                    <label for="password">Wachtwoord</label>
-                    <input id="password" type="text" name="password" placeholder="Wachtwoord" value="<?php if (!empty($user['Password'])) {
-                                                                                                            echo $user['Password'];
-                                                                                                        } ?>" minlength="3" maxlength="64" required />
+                <?php if (!empty($_GET['id'])) { ?>
+                    <div class="form-password-update">
+                        <label class="form-password-update-label" for="updatepassword">Wachtwoord Aanpassen:</label>
+                        <input class="toggle-zichtbaar" id="updatepassword" type="checkbox" name="updatepassword" />
+                    </div>
+                <?php } ?>
+                <div class="display-password display-toggle <?php echo !empty($_GET['id']) ? "hidden" : ""; ?>">
+                    <div class="form-grid-items">
+                        <label for="password">Wachtwoord</label>
+                        <input id="password" type="text" name="password" placeholder="Wachtwoord" minlength="3" maxlength="64" />
+                    </div>
                 </div>
                 <div class="form-grid-items">
                     <label for="usergroupid">Gebruikergroep</label>

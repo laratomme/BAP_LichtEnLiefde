@@ -26,7 +26,7 @@ class UserDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT u.UserID, u.Login, u.Password, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
+        $sql = "SELECT u.UserID, u.Login, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
             FROM BAP_User u
             INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID";
         $stmt = $this->pdo->prepare($sql);
@@ -36,7 +36,7 @@ class UserDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT u.UserID, u.Login, u.Password, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
+        $sql = "SELECT u.UserID, u.Login, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
             FROM BAP_User u
             INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID
             WHERE u.UserID = :Id";
@@ -77,8 +77,7 @@ class UserDAO extends DAO
                         FirstName = :FirstName, 
                         LastName = :LastName, 
                         Email = :Email, 
-                        Login = :Login, 
-                        Password = :Password, 
+                        Login = :Login,
                         UserGroupID = :UserGroupId 
                     WHERE UserID = :Id";
             $stmt = $this->pdo->prepare($sql);
@@ -86,8 +85,24 @@ class UserDAO extends DAO
             $stmt->bindValue(':LastName', $data['LastName']);
             $stmt->bindValue(':Email', $data['Email']);
             $stmt->bindValue(':Login', $data['Login']);
-            $stmt->bindValue(':Password', $data['Password']);
             $stmt->bindValue(':UserGroupId', $data['UserGroupId']);
+            $stmt->bindValue(':Id', $data['Id']);
+            if ($stmt->execute()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function updatePassword($data)
+    {
+        $errors = $this->validate($data);
+        if (empty($errors)) {
+            $sql = "UPDATE BAP_User SET 
+                        Password = :Password 
+                    WHERE UserID = :Id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':Password', $data['Password']);
             $stmt->bindValue(':Id', $data['Id']);
             if ($stmt->execute()) {
                 return true;
@@ -135,7 +150,7 @@ class UserDAO extends DAO
         if (empty($data['Login'])) {
             $errors['Login'] = 'Gelieve een login naam in te geven';
         }
-        if (empty($data['Password'])) {
+        if (empty($data['Id']) && empty($data['Password'])) {
             $errors['Password'] = 'Gelieve een wachtwoord in te geven';
         }
         return $errors;

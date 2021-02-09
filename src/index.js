@@ -34,11 +34,11 @@ require('./style.css');;
     }
 
     recog.onresult = (e) => {
-            const speechResult = e.results[0][0].transcript;
-            searchInput.value = speechResult;
-            searchForm.submit();
-        }
-        ///Notifciation sounds from Zapsplat.com
+        const speechResult = e.results[0][0].transcript;
+        searchInput.value = speechResult;
+        searchForm.submit();
+    }
+    ///Notifciation sounds from Zapsplat.com
 
     // Speech Synthesis
     let synth;
@@ -150,7 +150,7 @@ require('./style.css');;
     });
 
     // javascript forms
-    const checkboxForm = document.querySelector('.icoon-aanpassen');
+    const checkboxForm = document.querySelector('.toggle-zichtbaar');
 
     const init = () => {
         if (speechButton) {
@@ -162,7 +162,7 @@ require('./style.css');;
 
         if (checkboxForm) {
             checkboxForm.addEventListener('click', () => {
-                const displays = document.querySelectorAll('.display-icons');
+                const displays = document.querySelectorAll('.display-toggle');
                 displays.forEach(display => {
                     if (checkboxForm.checked) {
                         display.classList.remove('hidden');
