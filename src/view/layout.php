@@ -52,7 +52,7 @@
           </a>
 
           <form action="index.php?page=search" method="POST" class="search-wrap">
-            <button class="search-speech-button button-blue" type="button">Spreek<img class="speak-icon" src="../../assets/img/icons/speak.svg" alt="Spreek icoon"></button>
+            <button class="search-speech-button button-blue" type="button">Spreek<?php echo file_get_contents(__DIR__ . '/../assets/img/icons/speak.svg'); ?></button>
             <input class="search-input" type="search" id="search" name="search" aria-label="Zoek doorheen het platform" placeholder="Ik zoek naar..." value="<?php if (!empty($_POST['search'])) {
                                                                                                                                                                 echo $_POST['search'];
                                                                                                                                                               } ?>">

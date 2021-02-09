@@ -16,8 +16,7 @@ require('./style.css'); {
     }
 
     recog.onaudiostart = (e) => {
-        // Stylen dat we nu recorden
-        console.log('Audio Start');
+        speechButton.classList.add('speech-active');
     }
 
     recog.onspeechend = () => {
@@ -25,8 +24,7 @@ require('./style.css'); {
     }
 
     recog.onaudioend = (e) => {
-        // Stylen dat we niet meer recorden
-        console.log('Audio End');
+        speechButton.classList.remove('speech-active');
     }
 
     recog.onresult = (e) => {

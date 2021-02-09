@@ -42,7 +42,6 @@
 
 .search-button {
     width: fit-content;
-    height: 40px;
     padding: 0.333em;
     background: var(--colorYellow);
     box-shadow: 0px 12px 25px rgba(255, 201, 30, 0.25);
@@ -61,6 +60,20 @@
     @media (min-width: 834px) {
         padding: .8em;
     }
+}
+
+.search-speech-button {
+    margin-right: 5px;
+}
+
+.speech-active {
+    background-color: var(--colorYellow);
+    border: 2px solid var(--colorBlack);
+    color: var(--colorBlack);
+}
+
+.speech-active path {
+    fill: var(--colorBlack);
 }
 
 .settings-link {
