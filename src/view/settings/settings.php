@@ -32,7 +32,7 @@
     <div class="settings-line"></div>
 
     <fieldset>
-      <legend class="settings-h2">Audio Assist</legend>
+      <legend class="settings-h2">Audio Assist - Stem</legend>
       <div class="voice-settings">
         <div class="voice-setting">
           <label for="voicerate">Tempo</label>
@@ -45,6 +45,7 @@
           <div class="voicepitch-waarde"><?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : "1" ?></div>
         </div>
       </div>
+      <button class="button-white button-voice-test">Test stem</button>
     </fieldset>
 
     <div class="settings-line"></div>
