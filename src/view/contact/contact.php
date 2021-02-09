@@ -12,15 +12,18 @@
 
         <div class="form-grid-items">
             <label for="firstname">Jouw voornaam *</label>
-            <input id="firstname" name="firstname" type="text" placeholder="Voornaam" required>
+            <input id="firstname" name="firstname" type="text" placeholder="Voornaam" required class="input">
+            <p class="error"></p>
         </div>
         <div class="form-grid-items">
             <label for="lastname">Jouw naam *</label>
-            <input id="lastname" name="lastname" type="text" placeholder="Naam" required>
+            <input id="lastname" name="lastname" type="text" placeholder="Naam" required class="input">
+            <p class="error"></p>
         </div>
         <div class="form-grid-items">
             <label for="email">Vul jouw email in *</label>
-            <input id="email" type="email" name="email" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required>
+            <input id="email" type="email" name="email" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required class="input">
+            <p class="error"></p>
         </div>
         <div class="form-grid-items">
             <label for="tel">Vul jouw telefoonnummer in (optioneel)</label>
@@ -28,7 +31,8 @@
         </div>
         <div class="form-grid-items">
             <label for="vraag">Jouw vraag *</label>
-            <textarea id="vraag" name="vraag" rows="5" cols="30" placeholder="Jouw vraag" required></textarea>
+            <textarea id="vraag" name="vraag" rows="5" cols="30" placeholder="Jouw vraag" required></textarea class="input">
+            <p class="error"></p>
         </div>
         <div class="button-contact">
             <button class="button-yellow button-contact-yellow" type="submit" name="action" value="contact">Verzend vraag</button>
