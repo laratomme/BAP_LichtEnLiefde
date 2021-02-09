@@ -1,5 +1,4 @@
-require('./style.css');
-require('./validate.js');
+require('./style.css');;
 
 {
     // Voice Recognition
@@ -35,11 +34,11 @@ require('./validate.js');
     }
 
     recog.onresult = (e) => {
-        const speechResult = e.results[0][0].transcript;
-        searchInput.value = speechResult;
-        searchForm.submit();
-    }
-    ///Notifciation sounds from Zapsplat.com
+            const speechResult = e.results[0][0].transcript;
+            searchInput.value = speechResult;
+            searchForm.submit();
+        }
+        ///Notifciation sounds from Zapsplat.com
 
     // Speech Synthesis
     let synth;
