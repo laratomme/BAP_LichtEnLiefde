@@ -5,19 +5,21 @@ footer {
     font-weight: var(--fontWeightSemiBold);
     margin-top: 1.222em;
     bottom: 0px;
+    padding-bottom: 12px;
     width: 100%;
     flex-shrink: 1;
     justify-content: center;
     @media (min-width: 834px) {
         margin-top: 2em;
+        padding-bottom: 12px;
     }
 }
 
 address {
     font-style: normal;
     line-height: 175%;
-    padding: .556em;
-    margin: .9em .6em;
+    padding: .2em;
+    margin: .2em;
     color: var(--colorWhite);
     text-align: start;
     display: flex;
@@ -26,14 +28,20 @@ address {
     align-items: center;
     @media (min-width: 834px) {
         justify-content: center;
+        padding: .556em;
+        margin: .9em .6em;
     }
 }
 
 .address-item {
     display: flex;
     align-items: center;
-    height: 35px;
-    margin: 8px;
+    height: 15px;
+    margin: 5px 0;
+    @media (min-width: 834px) {
+        height: 35px;
+        margin: 8px;
+    }
 }
 
 .address-item p,
