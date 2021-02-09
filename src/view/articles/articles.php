@@ -163,55 +163,62 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.4.25/jodit.min.js"></script>
 <script>
-    let baseUrl = 'https://whispering-tor-32699.herokuapp.com/';
-    let editor = new Jodit('#area_editor', {
-        language: 'nl',
-        textIcons: false,
-        toolbarButtonSize: 'small',
-        iframe: false,
-        iframeStyle: '*,.jodit-wysiwyg {color:red;}',
-        height: 500,
-        defaultMode: Jodit.MODE_WYSIWYG,
-        observer: {
-            timeout: 100
-        },
-        uploader: {
-            url: baseUrl + 'uploader.php',
-            format: 'json',
-            prepareData: function(data) {
-                return data;
-            },
-            isSuccess: function(resp) {
-                return !resp.error;
-            },
-            getMsg: function(resp) {
-                return resp.msg.join !== undefined ? resp.msg.join(' ') : resp.msg;
-            },
-            process: function(resp) {
-                return {
-                    images: resp['images'],
-                    path: resp.path,
-                    error: resp.error,
-                    msg: resp.msg
-                };
-            },
-            error: function(e) {
-                this.events.fire('errorPopap', [e.getMessage(), 'error', 4000]);
-            },
-            defaultHandlerSuccess: function(data, resp) {
-                var i, field = 'images';
-                if (data[field] && data[field].length) {
-                    for (i = 0; i < data[field].length; i += 1) {
-                        this.selection.insertImage(data[field][i]);
+    const editorController = document.querySelector('#area_editor')
+
+    const init = () => {
+        if (editorController) {
+            let editor = new Jodit('#area_editor', {
+                language: 'nl',
+                textIcons: false,
+                toolbarButtonSize: 'small',
+                iframe: false,
+                iframeStyle: '*,.jodit-wysiwyg {color:red;}',
+                height: 500,
+                defaultMode: Jodit.MODE_WYSIWYG,
+                observer: {
+                    timeout: 100
+                },
+                uploader: {
+                    url: '/uploader.php',
+                    format: 'json',
+                    prepareData: function(data) {
+                        return data;
+                    },
+                    isSuccess: function(resp) {
+                        return !resp.error;
+                    },
+                    getMsg: function(resp) {
+                        return resp.msg.join !== undefined ? resp.msg.join(' ') : resp.msg;
+                    },
+                    process: function(resp) {
+                        return {
+                            images: resp['images'],
+                            path: resp.path,
+                            error: resp.error,
+                            msg: resp.msg
+                        };
+                    },
+                    error: function(e) {
+                        this.events.fire('errorPopap', [e.getMessage(), 'error', 4000]);
+                    },
+                    defaultHandlerSuccess: function(data, resp) {
+                        var i, field = 'images';
+                        if (data[field] && data[field].length) {
+                            for (i = 0; i < data[field].length; i += 1) {
+                                this.selection.insertImage(data[field][i]);
+                            }
+                        }
+                    },
+                    defaultHandlerError: function(resp) {
+                        this.events.fire('errorPopap', [this.options.uploader.getMsg(resp)]);
                     }
+                },
+                commandToHotkeys: {
+                    'openreplacedialog': 'ctrl+p'
                 }
-            },
-            defaultHandlerError: function(resp) {
-                this.events.fire('errorPopap', [this.options.uploader.getMsg(resp)]);
-            }
-        },
-        commandToHotkeys: {
-            'openreplacedialog': 'ctrl+p'
+            });
         }
-    });
+    }
+
+    init();
 </script>
