@@ -1,4 +1,5 @@
-require('./style.css'); {
+require('./style.css');
+require('./js/validate.js'); {
     // Voice Recognition
     const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
 
@@ -17,6 +18,8 @@ require('./style.css'); {
 
     recog.onaudiostart = (e) => {
         speechButton.classList.add('speech-active');
+        let audioStart = new Audio('/assets/sounds/notification-start.mp3');
+        audioStart.play();
     }
 
     recog.onspeechend = () => {
@@ -25,6 +28,8 @@ require('./style.css'); {
 
     recog.onaudioend = (e) => {
         speechButton.classList.remove('speech-active');
+        let audioEnd = new Audio('/assets/sounds/notification-stop.mp3');
+        audioEnd.play();
     }
 
     recog.onresult = (e) => {
@@ -32,6 +37,8 @@ require('./style.css'); {
         searchInput.value = speechResult;
         searchForm.submit();
     }
+
+    //Notifciation sounds from Zapsplat.com
 
     // javascript forms
     const checkboxForm = document.querySelector('.icoon-aanpassen');
