@@ -134,8 +134,18 @@ require('./style.css');;
 
     // Key Events
     document.addEventListener("keypress", (e) => {
-        if (e.key == "Enter") {
-            readSynthText();
+        const tag = e.target.tagName;
+        if (tag != 'INPUT' && tag != 'DIV') {
+            if (e.key == "p") {
+                if (playControl) {
+                    readSynthText();
+                }
+            }
+            if (e.key == "z") {
+                if (speechButton) {
+                    recog.start();
+                }
+            }
         }
     });
 
