@@ -1,6 +1,8 @@
+<!-- Adjust 'upload_max_filesize' and 'post_max_size' to handle bigger files -->
+
 <?php
 header('Content-Type: application/json');
-$base = '/assets/img/articles/';
+$base = '/assets/articles/';
 $path = realpath(dirname(__FILE__)) . $base;
 
 $errors = [
@@ -14,10 +16,12 @@ $errors = [
     'A PHP extension stopped the file upload.',
 ];
 
-// Black and white list
+// Blacklist and tag list
 $config = [
-    'white_extensions' => ['png', 'jpeg', 'gif', 'jpg'],
-    'black_extensions' => ['php', 'exe', 'phtml'],
+    'black_extensions' => ['php', 'exe', 'phtml', 'msi'],
+    'image_extensions' => ['png', 'jpeg', 'gif', 'jpg', 'svg'],
+    'video_extensions' => ['mp4', 'mov', '3gp'],
+    'audio_extensions' => ['mp3', 'mpg', 'mpeg', 'flac', 'wav']
 ];
 
 function makeSafe($file)
@@ -27,7 +31,7 @@ function makeSafe($file)
     return trim(preg_replace($regex, '', $file));
 }
 
-$result = (object)['error' => 0, 'msg' => [], 'images' => []];
+$result = (object)['error' => 0, 'msg' => [], 'files' => [], 'tags' => []];
 
 function warning_handler($errno, $errstr)
 {
@@ -59,14 +63,7 @@ if (
 
         if (move_uploaded_file($tmp_name, $file = $path . makeSafe($_FILES['files']['name'][$i]))) {
             $info = pathinfo($file);
-            // check whether the file extension is included in the whitelist
-            if (isset($config['white_extensions']) and count($config['white_extensions'])) {
-                if (!in_array(strtolower($info['extension']), $config['white_extensions'])) {
-                    unlink($file);
-                    trigger_error('File type not in white list', E_USER_WARNING);
-                    continue;
-                }
-            }
+
             //check whether the file extension is included in the black list
             if (isset($config['black_extensions']) and count($config['black_extensions'])) {
                 if (in_array(strtolower($info['extension']), $config['black_extensions'])) {
@@ -75,20 +72,37 @@ if (
                     continue;
                 }
             }
+
+            // check the file type
+            if (isset($config['image_extensions']) and count($config['image_extensions'])) {
+                $extension = strtolower($info['extension']);
+                $tag;
+                if (in_array($extension, $config['image_extensions'])) {
+                    $tag = 'img';
+                } else if (in_array($extension, $config['video_extensions'])) {
+                    $tag = 'video';
+                } else if (in_array($extension, $config['audio_extensions'])) {
+                    $tag = 'audio';
+                } else {
+                    $tag = 'a';
+                }
+                $result->tags[]  = $tag;
+            }
+
             $result->msg[] = 'File ' . $_FILES['files']['name'][$i] . ' was upload';
-            $result->images[] = $base . basename($file);
+            $result->files[] = $base . basename($file);
         } else {
             $result->error = 5;
             if (!is_writable($path)) {
                 trigger_error('Destination directory is not writeble', E_USER_WARNING);
             } else {
-                trigger_error('No images have been uploaded', E_USER_WARNING);
+                trigger_error('No files have been uploaded', E_USER_WARNING);
             }
         }
     }
 };
 
-if (!$result->error and !count($result->images)) {
+if (!$result->error and !count($result->files)) {
     $result->error = 5;
     trigger_error('No files have been uploaded', E_USER_WARNING);
 }
