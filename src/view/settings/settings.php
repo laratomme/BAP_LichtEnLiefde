@@ -1,7 +1,9 @@
+<!-- Instellingen -->
 <div class="settings-flex">
   <h1>Instellingen</h1>
   <form class="settings-grid" action="index.php?page=settings" method="post">
 
+    <!-- Lettergrootte -->
     <fieldset>
       <legend class="settings-h2">Lettergrootte</legend>
       <div class="settings-radios">
@@ -18,6 +20,7 @@
 
     <div class="settings-line"></div>
 
+    <!-- Contrast/ kleur -->
     <fieldset>
       <legend class="settings-h2">Kleur</legend>
       <div class="settings-radios">
@@ -31,6 +34,7 @@
 
     <div class="settings-line"></div>
 
+    <!-- Voice -->
     <fieldset>
       <legend class="settings-h2">Audio Assist - Stem</legend>
       <div class="voice-settings">
@@ -56,6 +60,7 @@
   </form>
 </div>
 <div class="synth-text hidden">Zo klinkt mijn stem met deze instellingen.</div>
+
 <script>
   var pitch = document.querySelector('.voicepitch-slider');
   var pitchValue = document.querySelector('.voicepitch-waarde');

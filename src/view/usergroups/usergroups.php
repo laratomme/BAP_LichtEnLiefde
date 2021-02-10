@@ -1,4 +1,4 @@
-<!-- Usergroups -->
+<!-- Gebruiker Groepen -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
     <h1 class="beheer-h1">Gebruikers Groepen</h1>
     <!-- List -->

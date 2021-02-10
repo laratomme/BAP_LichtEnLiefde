@@ -5,6 +5,7 @@
 .button-contact {
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 input[type=tel] {

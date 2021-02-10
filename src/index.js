@@ -17,6 +17,7 @@ require('./style.css');;
         console.log('Error tijdens herkennen van de stem');
     }
 
+    //Notifciation sounds from Zapsplat.com
     recog.onaudiostart = (e) => {
         speechButton.classList.add('speech-active');
         let audioStart = new Audio('/assets/sounds/notification-start.mp3');
@@ -27,6 +28,7 @@ require('./style.css');;
         recog.stop();
     }
 
+    //Notifciation sounds from Zapsplat.com
     recog.onaudioend = (e) => {
         speechButton.classList.remove('speech-active');
         let audioEnd = new Audio('/assets/sounds/notification-stop.mp3');
@@ -38,7 +40,6 @@ require('./style.css');;
         searchInput.value = speechResult;
         searchForm.submit();
     }
-    ///Notifciation sounds from Zapsplat.com
 
     // Speech Synthesis
     let synth;

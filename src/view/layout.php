@@ -12,6 +12,7 @@
 
   <div class="layout">
 
+    <!-- Header -->
     <header class="header">
       <a class="skip-link" href='#main'>Naar de hoofdinhoud</a>
       <div class="header-items container">
@@ -44,6 +45,7 @@
         </div>
       </div>
 
+      <!-- Zoekbar -->
       <div class="search">
         <div class="search-container">
           <a class="settings-link" href="index.php?page=settings">
@@ -63,6 +65,7 @@
 
       <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>
 
+        <!-- Header -->
         <nav class="beheerder-nav">
           <ul class="nav-list">
             <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>
@@ -76,6 +79,7 @@
 
     </header>
 
+    <!-- Error / Info Pop-ups -->
     <?php
     if (!empty($_SESSION['error'])) {
       echo '<div class="error-box"> <img src="../../assets/img/icons/error-red.svg" alt="Rood error icoon">' . $_SESSION['error'] . '</div>';
@@ -85,6 +89,7 @@
     }
     ?>
 
+    <!-- Breadcrumbs -->
     <?php if (!empty($crumbs)) { ?>
       <div class="breadcrumbs container">
         <p>U bevindt zich op</p>
@@ -103,10 +108,12 @@
       </div>
     <?php } ?>
 
+    <!-- Main Content -->
     <main class="main container" id="main">
       <?php echo $content; ?>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <address>

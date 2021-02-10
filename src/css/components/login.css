@@ -41,6 +41,7 @@ input[type=password] {
 .button-back {
     transition-duration: 0.1s;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .button-back img {

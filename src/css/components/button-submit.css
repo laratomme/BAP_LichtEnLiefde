@@ -1,6 +1,7 @@
 .button-submit {
     margin-top: 25px;
     border: 1px solid var(--colorBlue);
+    cursor: pointer;
 }
 
 .button-submit-yellow {
@@ -12,4 +13,5 @@
 
 .button-delete {
     border: 1px solid var(--colorWhite);
+    cursor: pointer;
 }
