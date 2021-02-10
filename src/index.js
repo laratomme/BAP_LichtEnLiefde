@@ -151,7 +151,23 @@ require('./style.css');;
     });
 
     // javascript forms
-    const checkboxForm = document.querySelector('.toggle-zichtbaar');
+    const $toggleController = document.querySelector('.toggle-zichtbaar');
+
+    const $categoryController = document.querySelector('.category-control');
+    const $usergroupController = document.querySelector('.usergroup-control');
+
+    const setUserGroup = (e) => {
+        $value = e.target.value;
+
+        $usergroupController.disabled = false;
+        if ($value) {
+            $parent = $value.split('_');
+            if ($parent[1]) {
+                $usergroupController.value = $parent[1];
+                $usergroupController.disabled = true;
+            }
+        }
+    };
 
     const init = () => {
         if (speechButton) {
@@ -161,17 +177,21 @@ require('./style.css');;
             });
         }
 
-        if (checkboxForm) {
-            checkboxForm.addEventListener('click', () => {
+        if ($toggleController) {
+            $toggleController.addEventListener('click', () => {
                 const displays = document.querySelectorAll('.display-toggle');
                 displays.forEach(display => {
-                    if (checkboxForm.checked) {
+                    if ($toggleController.checked) {
                         display.classList.remove('hidden');
                     } else {
                         display.classList.add('hidden');
                     }
                 });
             });
+        }
+
+        if ($categoryController) {
+            $categoryController.addEventListener('change', setUserGroup);
         }
 
         if (playControl) {

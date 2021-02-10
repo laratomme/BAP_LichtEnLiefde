@@ -26,7 +26,8 @@ class ArticleTypeDAO extends DAO
     {
         $sql = "SELECT art.ArticleTypeID, art.Name, art.Description, art.IconID, ic.Icon
             FROM BAP_ArticleType art
-            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID";
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
+            ORDER BY art.Name";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

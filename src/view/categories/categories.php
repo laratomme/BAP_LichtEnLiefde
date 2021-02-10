@@ -112,21 +112,21 @@
                                                                   } ?> />
       </div>
       <div class="form-grid-items">
-        <label for="categoryparentid">Bovenliggende categorie</label>
-        <select id="categoryparentid" name="categoryparentid">
+        <label for="categoryparent">Bovenliggende categorie</label>
+        <select id="categoryparent" name="categoryparent" class="category-control">
           <option value> -- Geen bovenliggende categorie -- </option>
           <?php if (count($parents) > 0) { ?>
             <?php foreach ($parents as $parent) : ?>
-              <option value="<?php echo $parent['CategoryID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
-                                                                      echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
-                                                                    } ?>><?php echo $parent['Name'] ?></option>
+              <option value="<?php echo $parent['CategoryID'] . '_' . $parent['UserGroupID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
+                                                                                                    echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
+                                                                                                  } ?>><?php echo $parent['Name'] ?></option>
             <?php endforeach ?>
           <?php } ?>
         </select>
       </div>
       <div class="form-grid-items">
         <label for="usergroupid">Gebruikergroep</label>
-        <select id="usergroupid" name="usergroupid">
+        <select id="usergroupid" name="usergroupid" class="usergroup-control" <?php echo !empty($category['ParentUserGroupID']) ? 'disabled' : ''; ?>>
           <option value> -- Geen gebruikergroep -- </option>
           <?php if (count($usergroups) > 0) { ?>
             <?php foreach ($usergroups as $usergroup) : ?>

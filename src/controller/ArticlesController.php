@@ -50,7 +50,10 @@ class ArticlesController extends Controller
                 $data = array();
                 $data['Id'] = $_POST['id'];
                 $data['ArticleTypeId'] = $_POST['articletypeid'];
-                $data['CategoryId'] = $_POST['categoryid'];
+
+                $category = !empty($_POST['category']) ? explode("_", trim($_POST['category'])) : null;
+                $data['CategoryId'] = !empty($category) ? $category[0] : null;
+
                 $data['UserGroupId'] = $_POST['usergroupid'];
                 $data['Title'] = $_POST['title'];
                 $data['Description'] = $_POST['description'];
@@ -86,7 +89,9 @@ class ArticlesController extends Controller
                         $this->_handleLoadSubData();
                         $article = null;
                         if (!empty($_GET['categoryid'])) {
-                            $article['CategoryID'] = (int)$_GET['categoryid'];
+                            $category = $this->categoryDAO->readById($_GET['categoryid']);
+                            $article['CategoryID'] = $category['CategoryID'];
+                            $article['ParentUserGroupID'] = $category['UserGroupID'];
                         }
                         $this->set('article', $article);
                         break;

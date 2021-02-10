@@ -54,7 +54,10 @@ class CategoriesController extends Controller
                 $data = array();
                 $data['Id'] = $_POST['id'];
                 $data['IconId'] = $_POST['iconid'];
-                $data['CategoryParentId'] = $_POST['categoryparentid'];
+
+                $categoryParent = !empty($_POST['categoryparent']) ? explode("_", trim($_POST['categoryparent'])) : null;
+                $data['CategoryParentId'] = !empty($categoryParent) ? $categoryParent[0] : null;
+                
                 $data['UserGroupId'] = $_POST['usergroupid'];
                 $data['Name'] = $_POST['name'];
                 $data['Description'] = $_POST['description'];

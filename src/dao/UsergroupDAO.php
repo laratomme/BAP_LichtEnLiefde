@@ -21,7 +21,7 @@ class UsergroupDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM BAP_UserGroup";
+        $sql = "SELECT * FROM BAP_UserGroup ORDER BY Name";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

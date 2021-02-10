@@ -120,21 +120,21 @@
                     </select>
                 </div>
                 <div class="form-grid-items">
-                    <label for="categoryid">Categorie</label>
-                    <select id="categoryid" name="categoryid">
+                    <label for="category">Categorie</label>
+                    <select id="category" name="category" class="category-control">
                         <option value> -- Kies een Categorie -- </option>
                         <?php if (count($categories) > 0) { ?>
                             <?php foreach ($categories as $category) : ?>
-                                <option value="<?php echo $category['CategoryID']; ?>" <?php if (!empty($article['CategoryID'])) {
-                                                                                            echo $category['CategoryID'] === $article['CategoryID'] ? "selected" : "";
-                                                                                        } ?>><?php echo $category['Name'] ?></option>
+                                <option value="<?php echo $category['CategoryID'] . '_' . $category['UserGroupID']; ?>" <?php if (!empty($article['CategoryID'])) {
+                                                                                                                            echo $category['CategoryID'] === $article['CategoryID'] ? "selected" : "";
+                                                                                                                        } ?>><?php echo $category['Name'] ?></option>
                             <?php endforeach ?>
                         <?php } ?>
                     </select>
                 </div>
                 <div class="form-grid-items">
                     <label for="usergroupid">Gebruikergroep</label>
-                    <select id="usergroupid" name="usergroupid">
+                    <select id="usergroupid" name="usergroupid" class="usergroup-control" <?php echo !empty($article['ParentUserGroupID']) ? 'disabled' : ''; ?>>
                         <option value>Iedereen</option>
                         <?php if (count($usergroups) > 0) { ?>
                             <?php foreach ($usergroups as $usergroup) : ?>

@@ -32,7 +32,8 @@ class CategoryDAO extends DAO
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
             LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID
-            LEFT JOIN BAP_UserGroup ug on ug.UserGroupID = cat.UserGroupID";
+            LEFT JOIN BAP_UserGroup ug on ug.UserGroupID = cat.UserGroupID
+            ORDER BY cat.Name";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,10 +41,12 @@ class CategoryDAO extends DAO
 
     public function readAllExceptId($id)
     {
-        $sql = "SELECT CategoryID, Name, CategoryParentID FROM BAP_Category";
+        $sql = "SELECT CategoryID, Name, CategoryParentID, UserGroupID
+            FROM BAP_Category";
         if (!empty($id)) {
-            $sql = $sql . " WHERE CategoryID != :Id";
+            $sql .= " WHERE CategoryID != :Id";
         }
+        $sql .= " ORDER BY Name";
         $stmt = $this->pdo->prepare($sql);
         if (!empty($id)) {
             $stmt->bindValue(':Id', $id);
@@ -65,6 +68,7 @@ class CategoryDAO extends DAO
         } else {
             $sql .= " AND cat.UserGroupID is null";
         }
+        $sql .= " ORDER BY cat.Name";
         $stmt = $this->pdo->prepare($sql);
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
             if ($_SESSION['userData']['UserGroupID'] !== -1) {
@@ -88,6 +92,7 @@ class CategoryDAO extends DAO
         } else {
             $sql .= " AND cat.UserGroupID is null";
         }
+        $sql .= " ORDER BY cat.Name";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':ParentId', $parentId);
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
@@ -101,9 +106,10 @@ class CategoryDAO extends DAO
 
     public function readById($id)
     {
-        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon
+        $sql = "SELECT cat.CategoryID, cat.CategoryParentID, cat.UserGroupID, cat.Name, cat.Description, cat.OnMainMenu, cat.ExternalUrl, cat.IconID, ic.Icon, catPar.UserGroupID as ParentUserGroupID
             FROM BAP_Category cat
             INNER JOIN BAP_Icon ic on ic.IconID = cat.IconID
+            LEFT JOIN BAP_Category catPar on catPar.CategoryID = cat.CategoryParentID
             WHERE cat.CategoryID = :Id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':Id', $id);

@@ -29,7 +29,8 @@ class UserDAO extends DAO
     {
         $sql = "SELECT u.UserID, u.Login, u.FirstName, u.LastName, u.Email, u.UserGroupID, ug.Name as UserGroupName
             FROM BAP_User u
-            INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID";
+            INNER JOIN BAP_UserGroup ug on ug.UserGroupID = u.UserGroupID
+            ORDER BY u.LastName";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
