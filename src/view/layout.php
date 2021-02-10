@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="favicon" type="image/png" src="../../assets/img/logo-lichtenliefde.png"/>
   <title>Licht en Liefde Platform</title>
   <?php echo $css; ?>
 </head>
