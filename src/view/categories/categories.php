@@ -61,13 +61,27 @@
 <?php } else { ?>
 
   <div class="beheer-header-grid">
-    <a class="button-link" href="index.php?page=categories">
-      <div class="button-blue button-back">
-        <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
-        <p>Categorieën</p>
-      </div>
-    </a>
+
+    <div>
+      <a class="button-link" href="index.php?page=categories">
+        <div class="button-blue button-back">
+          <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
+          <p>Categorieën</p>
+        </div>
+      </a>
+
+      <?php if (!empty($_GET['id'])) { ?>
+        <a class="button-link" href="index.php?page=category&id=<?php echo $category['CategoryID'] ?>">
+          <div class="button-blue button-back">
+            <img src="../../assets/img/icons/arrow.svg" alt="Pijl naar links icoon">
+            <p>Bekijk categorie</p>
+          </div>
+        </a>
+      <?php } ?>
+    </div>
+
     <h1 class="beheer-h1">Categorie</h1>
+
   </div>
 
   <!-- Detail -->
