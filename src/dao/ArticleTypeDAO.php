@@ -1,3 +1,4 @@
+<!-- Inhoud Type DAO -->
 <?php
 
 require_once(__DIR__ . '/DAO.php');
@@ -8,7 +9,7 @@ class ArticleTypeDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_ArticleType (Name, Description, IconID) 
+            $sql = "INSERT INTO BAP_ArticleType (Name, Description, IconID)
             VALUES (:Name, :Description, :IconId)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Name', $data['Name']);
@@ -47,9 +48,9 @@ class ArticleTypeDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_ArticleType SET 
-                        Name = :Name, 
-                        Description = :Description, 
+            $sql = "UPDATE BAP_ArticleType SET
+                        Name = :Name,
+                        Description = :Description,
                         IconID = :IconID
                     WHERE ArticleTypeID = :ID";
             $stmt = $this->pdo->prepare($sql);

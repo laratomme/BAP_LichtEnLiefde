@@ -1,3 +1,4 @@
+<!-- Inhoud DAO -->
 <?php
 
 require_once(__DIR__ . '/DAO.php');
@@ -8,7 +9,7 @@ class ArticleDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "INSERT INTO BAP_Article (Title, Description, Content, ExternalUrl, ArticleTypeID, CategoryID, UserGroupID) 
+            $sql = "INSERT INTO BAP_Article (Title, Description, Content, ExternalUrl, ArticleTypeID, CategoryID, UserGroupID)
                 VALUES (:Title, :Description, :Content, :ExternalUrl, :ArticleTypeID, :CategoryID, :UserGroupID)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':Title', $data['Title']);
@@ -27,7 +28,7 @@ class ArticleDAO extends DAO
 
     public function readAll()
     {
-        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, cat.Name as CategoryName, ar.UserGroupID, ug.Name as UserGroupName, ar.Title, ar.Description, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon 
+        $sql = "SELECT ar.ArticleID, ar.ArticleTypeID, ar.CategoryID, cat.Name as CategoryName, ar.UserGroupID, ug.Name as UserGroupName, ar.Title, ar.Description, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
@@ -43,7 +44,7 @@ class ArticleDAO extends DAO
         $sql = "SELECT ar.ArticleID, ar.Title, ar.Description, ar.Content, ar.ExternalUrl, art.Name as ArticleTypeName, ic.Icon
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
-            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID 
+            INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
             WHERE ar.CategoryID = :Id";
         if (!empty($_SESSION['userData']) && !empty($_SESSION['userData']['UserGroupID'])) {
             if ($_SESSION['userData']['UserGroupID'] !== -1) {
@@ -69,7 +70,7 @@ class ArticleDAO extends DAO
             FROM BAP_Article ar
             INNER JOIN BAP_ArticleType art on art.ArticleTypeID = ar.ArticleTypeID
             INNER JOIN BAP_Icon ic on ic.IconID = art.IconID
-            INNER JOIN 
+            INNER JOIN
             (
                 select ArticleID, MATCH(Content,Title) AGAINST (:Filter) as Relevance FROM BAP_Article
             ) as search on search.ArticleID = ar.ArticleID
@@ -106,8 +107,8 @@ class ArticleDAO extends DAO
     {
         $errors = $this->validate($data);
         if (empty($errors)) {
-            $sql = "UPDATE BAP_Article SET 
-                        Title = :Title, 
+            $sql = "UPDATE BAP_Article SET
+                        Title = :Title,
                         Description = :Description,
                         Content = :Content,
                         ExternalUrl = :ExternalUrl,
