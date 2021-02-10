@@ -30,6 +30,12 @@ body {
     font-weight: var(--fontWeightBold);
     line-height: 110%;
     margin: .4em 0;
+    @media (min-width: 834px) {
+        font-size: var(--fontHeaderTablet);
+    }
+    @media (min-width: 1280px) {
+        font-size: var(--fontHeaderDekstop);
+    }
 }
 
 h2 {

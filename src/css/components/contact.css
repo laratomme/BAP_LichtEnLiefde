@@ -91,6 +91,7 @@ textarea {
 
 .contactcard:hover a {
     text-decoration: underline;
+    color: var(--colorBlue);
 }
 
 .contactcard:active {
