@@ -34,7 +34,7 @@
 
     <div class="settings-line"></div>
 
-    <!-- Voice -->
+    <!-- Voorlees stem -->
     <fieldset>
       <legend class="settings-h2">Audio Assist - Stem</legend>
       <div class="voice-settings">
@@ -61,6 +61,7 @@
 </div>
 <div class="synth-text hidden">Zo klinkt mijn stem met deze instellingen.</div>
 
+<!-- Voorlees stem script -->
 <script>
   var pitch = document.querySelector('.voicepitch-slider');
   var pitchValue = document.querySelector('.voicepitch-waarde');

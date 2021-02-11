@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="favicon" type="image/png" src="../../assets/img/logo-lichtenliefde.png"/>
+  <link rel="favicon" type="image/png" src="../../assets/img/logo-lichtenliefde.png" />
   <title>Licht en Liefde Platform</title>
   <?php echo $css; ?>
 </head>
@@ -66,7 +66,7 @@
 
       <?php if (!empty($_SESSION["userData"]) && $_SESSION["userData"]["UserGroupID"] === -1) { ?>
 
-        <!-- Header -->
+        <!-- Admin (Beheerder) navigatie -->
         <nav class="beheerder-nav">
           <ul class="nav-list">
             <li><a class="nav-link" href="index.php?page=users">Gebruikers</a></li>

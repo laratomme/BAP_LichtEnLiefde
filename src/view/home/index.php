@@ -1,3 +1,4 @@
+<!-- Home Pagina -->
 <h1 class="h1">Licht en Liefde Platform</h1>
 <p>Vind informatie op het webplatform van Netwerk Licht en Liefde.</p>
 

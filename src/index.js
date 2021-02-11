@@ -134,7 +134,7 @@ require('./style.css');;
     }
 
     // Key Events
-    document.addEventListener("keypress", (e) => {
+    document.addEventListener('keypress', (e) => {
         const tag = e.target.tagName;
         if (tag != 'INPUT' && tag != 'DIV') {
             if (e.key == "p") {
@@ -153,6 +153,9 @@ require('./style.css');;
     // javascript forms
     const $toggleController = document.querySelector('.toggle-zichtbaar');
     const $toggleReverseController = document.querySelector('.toggle-reverse-zichtbaar');
+
+    const $togglePasswordController = document.querySelector('.toggle-wachtwoord');
+    const $passwordController = document.querySelector('.input-wachtwoord');
 
     const $categoryController = document.querySelector('.category-control');
     const $usergroupController = document.querySelector('.usergroup-control');
@@ -176,7 +179,7 @@ require('./style.css');;
 
     const init = () => {
         if (speechButton) {
-            speechButton.addEventListener("click", (e) => {
+            speechButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 recog.start();
             });
@@ -208,16 +211,22 @@ require('./style.css');;
             });
         }
 
+        if ($togglePasswordController) {
+            $togglePasswordController.addEventListener('click', () => {
+                $passwordController.required = !$passwordController.required;
+            })
+        }
+
         if ($iconPickerControllers) {
             $iconPickerControllers.forEach($element => {
-                $element.addEventListener("click", () => {
-                    $customIconPickerController.value = "";
+                $element.addEventListener('click', () => {
+                    $customIconPickerController.value = '';
                 });
             });
         }
 
         if ($customIconPickerController) {
-            $customIconPickerController.addEventListener("change", (e) => {
+            $customIconPickerController.addEventListener('change', (e) => {
                 if (e.target.files.length > 0) {
                     $iconPickerControllers.forEach($element => {
                         $element.checked = false;
@@ -234,21 +243,21 @@ require('./style.css');;
         }
 
         if (playControl) {
-            playControl.addEventListener("click", (e) => {
+            playControl.addEventListener('click', (e) => {
                 e.preventDefault();
                 readSynthText();
             });
         }
 
         if (pauseControl) {
-            pauseControl.addEventListener("click", (e) => {
+            pauseControl.addEventListener('click', (e) => {
                 e.preventDefault();
                 pauseSynthText();
             });
         }
 
         if (stopControl) {
-            stopControl.addEventListener("click", (e) => {
+            stopControl.addEventListener('click', (e) => {
                 e.preventDefault();
                 stopSynthText();
             });

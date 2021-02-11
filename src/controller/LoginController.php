@@ -33,6 +33,7 @@ class LoginController extends Controller
                 header("Location: index.php?page=home");
                 exit();
             } else {
+              // Foutmelding popup
                 $_SESSION['error'] = "Het E-mailadres of Wachtwoord is verkeerd ingegeven.";
             }
         } else {

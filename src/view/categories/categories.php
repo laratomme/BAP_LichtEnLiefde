@@ -1,4 +1,4 @@
-<!-- Categories -->
+<!-- Categorieën -->
 <?php if (empty($_GET['action']) && empty($_GET['id'])) { ?>
   <h1 class="beheer-h1">Categorieën</h1>
   <!-- List -->
@@ -9,6 +9,7 @@
     </div>
   <?php } else { ?>
 
+    <!-- Lijst van Categorieën -->
     <div class="grid-categories">
       <div>
         <p>Naam</p>
@@ -60,6 +61,7 @@
 
 <?php } else { ?>
 
+  <!-- Detail -->
   <div class="beheer-header-grid">
 
     <div>
@@ -81,10 +83,9 @@
     </div>
 
     <h1 class="beheer-h1">Categorie</h1>
-
   </div>
 
-  <!-- Detail -->
+  <!-- Categorie aanmaken -->
   <div class="categorie-form">
     <form class="form-grid" enctype="multipart/form-data" action="index.php?page=categories" method="post">
       <input type="hidden" name="id" value="<?php if (!empty($category['CategoryID'])) {
@@ -93,6 +94,7 @@
       <input type="hidden" name="iconid" value="<?php if (!empty($category['IconID'])) {
                                                   echo $category['IconID'];
                                                 } ?>" />
+      <p>Vul alle velden in om een categorie aan te maken.</p>
       <div class="form-grid-items">
         <label for="name">Naam</label>
         <input id="name" type="text" name="name" placeholder="Categorie naam" value="<?php if (!empty($category['Name'])) {
@@ -100,20 +102,20 @@
                                                                                       } ?>" minlength="3" maxlength="64" required />
       </div>
       <div class="form-grid-items">
-        <label for="description">Beschrijving</label>
+        <label for="description">Beschrijving <span class="optioneel">(optioneel)</span></label>
         <input id="description" type="text" name="description" placeholder="Beschrijving" value="<?php if (!empty($category['Description'])) {
                                                                                                     echo $category['Description'];
                                                                                                   } ?>" minlength="3" maxlength="256" />
       </div>
       <div class="form-icon-upload">
-        <label class="form-icon-upload-label" for="onmainmenu">Zichtbaar op hoofdmenu:</label>
+        <label class="form-icon-upload-label" for="onmainmenu">Zichtbaar op hoofdmenu: <span class="optioneel">(hoofdcategorie)</span></label>
         <input id="onmainmenu" type="checkbox" name="onmainmenu" class="toggle-reverse-zichtbaar" <?php if (!empty($category['OnMainMenu'])) {
                                                                                                     echo "checked";
                                                                                                   } ?> />
       </div>
       <div class="display-reverse-toggle <?php echo !empty($category['OnMainMenu']) ? "hidden" : ""; ?>">
         <div class="form-grid-items">
-          <label for="categoryparent">Bovenliggende categorie</label>
+          <label for="categoryparent">Bovenliggende categorie <span class="optioneel">(subcategorie)</span></label>
           <select id="categoryparent" name="categoryparent" class="category-control">
             <option value> -- Geen bovenliggende categorie -- </option>
             <?php if (count($parents) > 0) { ?>
@@ -127,7 +129,7 @@
         </div>
       </div>
       <div class="form-grid-items">
-        <label for="usergroupid">Gebruikergroep</label>
+        <label for="usergroupid">Gebruikergroep <span class="optioneel">(zichtbaar voor)</span></label>
         <select id="usergroupid" name="usergroupid" class="usergroup-control" <?php echo !empty($category['ParentUserGroupID']) ? 'disabled' : ''; ?>>
           <option value> -- Geen gebruikergroep -- </option>
           <?php if (count($usergroups) > 0) { ?>
@@ -140,7 +142,7 @@
         </select>
       </div>
       <div class="form-grid-items">
-        <label for="externalurl">Externe Link</label>
+        <label for="externalurl">Externe Link <span class="optioneel">(optioneel)</span></label>
         <input id="externalurl" type="text" name="externalurl" placeholder="Url" value="<?php if (!empty($category['ExternalUrl'])) {
                                                                                           echo $category['ExternalUrl'];
                                                                                         } ?>" minlength="3" maxlength="256" />
@@ -203,11 +205,12 @@
 
       <div class="display-toggle <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
         <div class="form-icon-upload icoon-uploaden">
-          <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
+          <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden: <span class="optioneel">(optioneel)</span></label>
           <input id="iconfile" class="custom-icon-picker" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
         </div>
       </div>
 
+      <!-- Categorie beheren buttons -->
       <?php if (empty($_GET['id'])) { ?>
         <button class="button-yellow button-submit-yellow" type="submit" name="action" value="create">Categorie Toevoegen</button>
       <?php } else { ?>

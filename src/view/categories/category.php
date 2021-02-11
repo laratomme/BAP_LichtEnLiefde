@@ -1,4 +1,4 @@
-<!-- Onderliggende Categories -->
+<!-- Onderliggende Categorieën -->
 <h1><?php echo $category['Name'] ?></h1>
 <?php if (!empty($children)) { ?>
     <h2 class="header-grey-cat">Categorieën</h2>
