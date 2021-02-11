@@ -157,6 +157,10 @@ require('./style.css');;
     const $categoryController = document.querySelector('.category-control');
     const $usergroupController = document.querySelector('.usergroup-control');
 
+    const $iconPickerControllers = document.querySelectorAll('.icon-picker');
+    const $defaultIconController = document.querySelector('.default-icon');
+    const $customIconPickerController = document.querySelector('.custom-icon-picker');
+
     const setUserGroup = (e) => {
         $value = e.target.value;
 
@@ -201,6 +205,27 @@ require('./style.css');;
                         display.classList.remove('hidden');
                     }
                 });
+            });
+        }
+
+        if ($iconPickerControllers) {
+            $iconPickerControllers.forEach($element => {
+                $element.addEventListener("click", () => {
+                    $customIconPickerController.value = "";
+                });
+            });
+        }
+
+        if ($customIconPickerController) {
+            $customIconPickerController.addEventListener("change", (e) => {
+                if (e.target.files.length > 0) {
+                    $iconPickerControllers.forEach($element => {
+                        $element.checked = false;
+                    });
+                } else {
+                    $defaultIconController.checked = true;
+                }
+
             });
         }
 
