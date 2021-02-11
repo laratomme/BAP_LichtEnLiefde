@@ -164,38 +164,38 @@
         </div>
 
         <div class="icons-flex">
+          <label class="form-icon-label" for="icondefault4">
+            <input type="radio" id="icondefault4" class="icon-picker default-icon" name="defaulticon" value="../../assets/img/icons/category-folder.svg" <?php echo empty($_GET['id']) ? "checked" : "" ?>>
+            <img src="../../assets/img/icons/category-folder.svg">
+          </label>
+
           <label class="form-icon-label" for="icondefault">
-            <input type="radio" id="icondefault" name="defaulticon" value="../../assets/img/icons/category-binder.svg">
+            <input type="radio" id="icondefault" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-binder.svg">
             <img src="../../assets/img/icons/category-binder.svg">
           </label>
 
           <label class="form-icon-label" for="icondefault2">
-            <input type="radio" id="icondefault2" name="defaulticon" value="../../assets/img/icons/category-book.svg">
+            <input type="radio" id="icondefault2" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-book.svg">
             <img src="../../assets/img/icons/category-book.svg">
           </label>
 
           <label class="form-icon-label" for="icondefault3">
-            <input type="radio" id="icondefault3" name="defaulticon" value="../../assets/img/icons/category-clipboard.svg">
+            <input type="radio" id="icondefault3" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-clipboard.svg">
             <img src="../../assets/img/icons/category-clipboard.svg">
           </label>
 
-          <label class="form-icon-label" for="icondefault4">
-            <input type="radio" id="icondefault4" name="defaulticon" value="../../assets/img/icons/category-folder.svg">
-            <img src="../../assets/img/icons/category-folder.svg">
-          </label>
-
           <label class="form-icon-label" for="icondefault5">
-            <input type="radio" id="icondefault5" name="defaulticon" value="../../assets/img/icons/category-pc.svg">
+            <input type="radio" id="icondefault5" class="icon-picker" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-pc.svg">
             <img src="../../assets/img/icons/category-pc.svg">
           </label>
 
           <label class="form-icon-label" for="icondefault6">
-            <input type="radio" id="icondefault6" name="defaulticon" value="../../assets/img/icons/category-person.svg">
+            <input type="radio" id="icondefault6" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-person.svg">
             <img src="../../assets/img/icons/category-person.svg">
           </label>
 
           <label class="form-icon-label" for="icondefault7">
-            <input type="radio" id="icondefault7" name="defaulticon" value="../../assets/img/icons/category-info.svg">
+            <input type="radio" id="icondefault7" class="icon-picker" name="defaulticon" value="../../assets/img/icons/category-info.svg">
             <img src="../../assets/img/icons/category-info.svg">
           </label>
         </div>
@@ -204,7 +204,7 @@
       <div class="display-toggle <?php echo !empty($_GET['id']) && !empty($category['Icon']) ? "hidden" : ""; ?>">
         <div class="form-icon-upload icoon-uploaden">
           <label class="form-icon-upload-label" for="iconfile">Icoon Uploaden:</label>
-          <input id="iconfile" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
+          <input id="iconfile" class="custom-icon-picker" type="file" name="iconfile" accept=".gif,.jpg,.jpeg,.png,.svg" />
         </div>
       </div>
 
