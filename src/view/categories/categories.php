@@ -107,22 +107,24 @@
       </div>
       <div class="form-icon-upload">
         <label class="form-icon-upload-label" for="onmainmenu">Zichtbaar op hoofdmenu:</label>
-        <input id="onmainmenu" type="checkbox" name="onmainmenu" <?php if (!empty($category['OnMainMenu'])) {
-                                                                    echo "checked";
-                                                                  } ?> />
+        <input id="onmainmenu" type="checkbox" name="onmainmenu" class="toggle-reverse-zichtbaar" <?php if (!empty($category['OnMainMenu'])) {
+                                                                                                    echo "checked";
+                                                                                                  } ?> />
       </div>
-      <div class="form-grid-items">
-        <label for="categoryparent">Bovenliggende categorie</label>
-        <select id="categoryparent" name="categoryparent" class="category-control">
-          <option value> -- Geen bovenliggende categorie -- </option>
-          <?php if (count($parents) > 0) { ?>
-            <?php foreach ($parents as $parent) : ?>
-              <option value="<?php echo $parent['CategoryID'] . '_' . $parent['UserGroupID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
-                                                                                                    echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
-                                                                                                  } ?>><?php echo $parent['Name'] ?></option>
-            <?php endforeach ?>
-          <?php } ?>
-        </select>
+      <div class="display-reverse-toggle <?php echo !empty($category['OnMainMenu']) ? "hidden" : ""; ?>">
+        <div class="form-grid-items">
+          <label for="categoryparent">Bovenliggende categorie</label>
+          <select id="categoryparent" name="categoryparent" class="category-control">
+            <option value> -- Geen bovenliggende categorie -- </option>
+            <?php if (count($parents) > 0) { ?>
+              <?php foreach ($parents as $parent) : ?>
+                <option value="<?php echo $parent['CategoryID'] . '_' . $parent['UserGroupID']; ?>" <?php if (!empty($category['CategoryParentID'])) {
+                                                                                                      echo $parent['CategoryID'] === $category['CategoryParentID'] ? "selected" : "";
+                                                                                                    } ?>><?php echo $parent['Name'] ?></option>
+              <?php endforeach ?>
+            <?php } ?>
+          </select>
+        </div>
       </div>
       <div class="form-grid-items">
         <label for="usergroupid">Gebruikergroep</label>

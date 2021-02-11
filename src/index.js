@@ -152,6 +152,7 @@ require('./style.css');;
 
     // javascript forms
     const $toggleController = document.querySelector('.toggle-zichtbaar');
+    const $toggleReverseController = document.querySelector('.toggle-reverse-zichtbaar');
 
     const $categoryController = document.querySelector('.category-control');
     const $usergroupController = document.querySelector('.usergroup-control');
@@ -185,6 +186,19 @@ require('./style.css');;
                         display.classList.remove('hidden');
                     } else {
                         display.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        if ($toggleReverseController) {
+            $toggleReverseController.addEventListener('click', () => {
+                const displays = document.querySelectorAll('.display-reverse-toggle');
+                displays.forEach(display => {
+                    if ($toggleReverseController.checked) {
+                        display.classList.add('hidden');
+                    } else {
+                        display.classList.remove('hidden');
                     }
                 });
             });

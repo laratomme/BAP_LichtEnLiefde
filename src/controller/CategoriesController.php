@@ -55,13 +55,13 @@ class CategoriesController extends Controller
                 $data['Id'] = $_POST['id'];
                 $data['IconId'] = $_POST['iconid'];
 
+                $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
                 $categoryParent = !empty($_POST['categoryparent']) ? explode("_", trim($_POST['categoryparent'])) : null;
-                $data['CategoryParentId'] = !empty($categoryParent) ? $categoryParent[0] : null;
+                $data['CategoryParentId'] = empty($_POST['onmainmenu']) ? (!empty($categoryParent) ? $categoryParent[0] : null) : null;
                 
                 $data['UserGroupId'] = $_POST['usergroupid'];
                 $data['Name'] = $_POST['name'];
                 $data['Description'] = $_POST['description'];
-                $data['OnMainMenu'] = empty($_POST['onmainmenu']) ? 0 : 1;
                 $data['ExternalUrl'] =  !empty($_POST['externalurl']) ? $this->_fixUrl($_POST['externalurl']) : null;
 
                 $data['UpdateIcon'] = empty($_POST['updateicon']) ? 0 : 1;
