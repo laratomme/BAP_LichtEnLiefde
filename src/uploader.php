@@ -1,6 +1,6 @@
 <?php
-//Adjust 'upload_max_filesize' and 'post_max_size' to handle bigger files in PHP.ini
-//Uploaden files - editor
+// Adjust 'upload_max_filesize' and 'post_max_size' to handle bigger files in PHP.ini
+// Uploaden files - editor
 
 header('Content-Type: application/json');
 $base = '/assets/articles/';
