@@ -1,5 +1,5 @@
-<!-- Adjust 'upload_max_filesize' and 'post_max_size' to handle bigger files -->
-
+<!-- Adjust 'upload_max_filesize' and 'post_max_size' to handle bigger files in PHP.ini-->
+<!-- Uploaden files - editor -->
 <?php
 header('Content-Type: application/json');
 $base = '/assets/articles/';
@@ -17,6 +17,7 @@ $errors = [
 ];
 
 // Blacklist and tag list
+// uploaden van img, video of audio files
 $config = [
     'black_extensions' => ['php', 'exe', 'phtml', 'msi'],
     'image_extensions' => ['png', 'jpeg', 'gif', 'jpg', 'svg'],
@@ -74,20 +75,25 @@ if (
             }
 
             // check the file type
-            if (isset($config['image_extensions']) and count($config['image_extensions'])) {
-                $extension = strtolower($info['extension']);
-                $tag;
-                if (in_array($extension, $config['image_extensions'])) {
-                    $tag = 'img';
-                } else if (in_array($extension, $config['video_extensions'])) {
-                    $tag = 'video';
-                } else if (in_array($extension, $config['audio_extensions'])) {
-                    $tag = 'audio';
-                } else {
-                    $tag = 'a';
-                }
-                $result->tags[]  = $tag;
+            $extension = strtolower($info['extension']);
+            $tag;
+            if (
+                isset($config['image_extensions']) and count($config['image_extensions']) &&
+                in_array($extension, $config['image_extensions'])
+            ) {
+                $tag = 'img';
+            } else if (
+                isset($config['video_extensions']) and count($config['video_extensions']) &&
+                in_array($extension, $config['video_extensions'])) {
+                $tag = 'video';
+            } else if (
+                isset($config['audio_extensions']) and count($config['audio_extensions']) &&
+                in_array($extension, $config['audio_extensions'])) {
+                $tag = 'audio';
+            } else {
+                $tag = 'a';
             }
+            $result->tags[]  = $tag;
 
             $result->msg[] = 'File ' . $_FILES['files']['name'][$i] . ' was upload';
             $result->files[] = $base . basename($file);

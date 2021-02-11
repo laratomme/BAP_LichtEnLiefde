@@ -1,5 +1,7 @@
-<!-- Artikel -->
+<!-- Artikel (Inhoud) -->
 <h1><?php echo $article['Title'] ?></h1>
+
+<!-- Voorlezen Feature -->
 <div class="afspelen-buttons">
   <button class="synth-play button-blue" type="button">Lees Inhoud<img class="afspelen-icon" src="../../assets/img/icons/afspelen.svg" alt="Afspelen geluid icoon"></button>
   <button class="synth-pause button-white" type="button">Pauze<img class="afspelen-icon" src="../../assets/img/icons/pauze.svg" alt="Pauzeer icoon"></button>
@@ -24,6 +26,8 @@
     </a>
   </div>
 <?php } ?>
+
+<!-- Voorlees Stem settings -->
 <div class="hidden">
   <span class="synth-pitch"><?php echo !empty($_SESSION["uiData"]['VoicePitch']) ? $_SESSION["uiData"]['VoicePitch'] : 1.0 ?></span>
   <span class="synth-rate"><?php echo !empty($_SESSION["uiData"]['VoiceRate']) ? $_SESSION["uiData"]['VoiceRate'] : 0.8 ?></span>

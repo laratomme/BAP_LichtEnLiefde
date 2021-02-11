@@ -25,7 +25,7 @@
       <input id="email" type="email" name="email" placeholder="voorbeeld@email.com" minlength="3" maxlength="64" required>
     </div>
     <div class="form-grid-items">
-      <label for="tel">Vul jouw telefoonnummer in (optioneel)</label>
+      <label for="tel">Vul jouw telefoonnummer in <span class="optioneel">(optioneel)</span></label>
       <input id="tel" type="tel" name="tel" placeholder="Telefoonnummer">
     </div>
     <div class="form-grid-items">
